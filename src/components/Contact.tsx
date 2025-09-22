@@ -61,8 +61,14 @@ Message: ${message}`;
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email",
-      value: "info@winmaxgulf.com",
-      link: "mailto:info@winmaxgulf.com"
+      value: [
+        "info@winmaxgulf.com",
+        "marimuthu@winmaxgulf.com"
+      ],
+      links: [
+        "mailto:info@winmaxgulf.com",
+        "mailto:marimuthu@winmaxgulf.com"
+      ]
     },
     {
       icon: <MapPin className="h-6 w-6" />,
