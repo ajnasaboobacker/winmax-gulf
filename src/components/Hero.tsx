@@ -33,7 +33,8 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [heroImages.length]);
   return (
-    <section id="home" className="relative h-screen flex items-center overflow-hidden">
+    <main>
+      <section id="home" className="relative h-screen flex items-center overflow-hidden">
       {/* Rotating Background Banner */}
       <div className="absolute inset-0 z-10">
         {heroImages.map((image, index) => (
@@ -153,7 +154,8 @@ const Hero = () => {
            <div className="w-1 h-3 bg-winmax-orange rounded-full mt-2"></div>
          </div>
        </div>
-    </section>
+     </section>
+    </main>
   );
 };
 

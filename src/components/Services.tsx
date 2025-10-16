@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
+import { LazyImage } from "@/components/LazyImage";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Eye, Monitor, Music, Info } from "lucide-react";
 import pdlcBanner from "@/assets/pdlc-banner.jpg";
@@ -159,10 +160,11 @@ const Services = () => {
                   className="overflow-hidden group hover:scale-105 transition-all duration-700 h-full min-h-[600px] flex flex-col"
                 >
               <div className="relative h-48 overflow-hidden">
-                <img 
+                <LazyImage 
                   src={service.image}
-                  alt={service.title}
+                  alt={`${service.title} - WinmaxGulf Smart Technology Solutions UAE`}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  skeletonClassName="h-48"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-winmax-orange/10 to-winmax-orange/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

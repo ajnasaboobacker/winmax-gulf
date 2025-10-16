@@ -16,7 +16,7 @@ const SEOHead = ({
   keywords = "PDLC smart film UAE, LED displays Dubai, DJ club solutions, smart glass technology, interactive displays, privacy glass, electronic switchable glass, digital signage UAE",
   ogTitle = "WinmaxGulf - Smart Technology Solutions UAE",
   ogDescription = "Leading provider of PDLC smart film, LED displays & DJ solutions in UAE. Transform your space with cutting-edge technology.",
-  ogImage = "https://winmaxgulf.com/og-image.jpg",
+  ogImage = "/favicon.png",
   structuredData
 }: SEOHeadProps) => {
 
@@ -55,7 +55,7 @@ const SEOHead = ({
         "name": "WinmaxGulf",
         "description": "Leading UAE provider of PDLC smart film, LED display systems, and DJ club solutions",
         "url": "https://winmaxgulf.com",
-        "logo": "https://winmaxgulf.com/logo.png",
+        "logo": window.location.origin + "/favicon.png",
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+971527200466",

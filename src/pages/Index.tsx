@@ -19,19 +19,21 @@ const Index = () => {
     <>
       <SEOHead />
       <div className="min-h-screen bg-background">
-      <Header />
-      <Hero />
-      <InteractiveElements />
-      <Services />
-      <TechnologyShowcase />
-      <About />
-      <TrustBadges />
-      <Gallery />
-      <Process />
-      <EnhancedTestimonials />
-      <Contact />
-      <Footer />
-      <CharacterAnimations />
+        <Header />
+        <Hero />
+        <article>
+          <InteractiveElements />
+          <Services />
+          <TechnologyShowcase />
+          <About />
+          <TrustBadges />
+          <Gallery />
+          <Process />
+          <EnhancedTestimonials />
+          <Contact />
+        </article>
+        <Footer />
+        <CharacterAnimations />
       </div>
     </>
   );
