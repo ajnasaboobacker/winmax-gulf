@@ -18,7 +18,7 @@ const Index = () => {
   return (
     <>
       <SEOHead />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen">
         <Header />
         <Hero />
         <article>
