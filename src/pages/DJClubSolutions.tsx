@@ -201,26 +201,29 @@ const DJClubSolutions = () => {
             </p>
           </EnhancedScrollAnimation>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             {services.map((service, index) => (
               <EnhancedScrollAnimation 
                 key={index}
                 animation="zoomIn"
                 delay={index * 100}
+                className="h-full"
               >
-                <Interactive3DCard intensity={15} glowEffect>
-                  <GlassmorphismCard intensity="medium" className="p-6 h-full hover:shadow-glow transition-all duration-500 group">
-                    <div className="text-center">
-                      <div className="mb-4 inline-flex p-3 bg-gradient-to-r from-winmax-orange to-winmax-orange-light rounded-lg">
-                        <service.icon className="h-6 w-6 text-white" />
+                <Interactive3DCard intensity={15} glowEffect className="h-full">
+                  <GlassmorphismCard intensity="medium" className="p-6 h-full min-h-[280px] hover:shadow-glow transition-all duration-500 group flex flex-col">
+                    <div className="text-center flex flex-col flex-1 justify-between">
+                      <div>
+                        <div className="mb-4 inline-flex p-3 bg-gradient-to-r from-winmax-orange to-winmax-orange-light rounded-lg">
+                          <service.icon className="h-6 w-6 text-white" />
+                        </div>
+                        <h3 className="text-lg font-bold mb-3 group-hover:text-winmax-orange transition-colors">{service.title}</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-4">{service.description}</p>
                       </div>
-                      <h3 className="text-lg font-bold mb-3 group-hover:text-winmax-orange transition-colors">{service.title}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
                       
                       <Button
                         variant="outline"
                         size="sm"
-                        className="mt-4 w-full border-winmax-orange/50 text-winmax-orange hover:bg-winmax-orange/10"
+                        className="w-full border-winmax-orange/50 text-winmax-orange hover:bg-winmax-orange/10"
                         onClick={() => window.open('https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20DJSOLUTION%20services', '_blank')}
                       >
                         Learn More
