@@ -34,7 +34,7 @@ const Hero = () => {
   }, [heroImages.length]);
   return (
     <main>
-      <section id="home" className="relative h-screen flex items-center overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden -mt-24 pt-24">
       {/* Rotating Background Banner */}
       <div className="absolute inset-0 z-10">
         {heroImages.map((image, index) => (
