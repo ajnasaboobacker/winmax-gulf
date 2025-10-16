@@ -201,13 +201,13 @@ const DJClubSolutions = () => {
             </p>
           </EnhancedScrollAnimation>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             {services.map((service, index) => (
               <EnhancedScrollAnimation 
                 key={index}
                 animation="zoomIn"
                 delay={index * 100}
-                className="h-full"
+                className="flex"
               >
                 <Interactive3DCard intensity={15} glowEffect className="h-full">
                   <GlassmorphismCard intensity="medium" className="p-6 h-full min-h-[280px] hover:shadow-glow transition-all duration-500 group flex flex-col">
