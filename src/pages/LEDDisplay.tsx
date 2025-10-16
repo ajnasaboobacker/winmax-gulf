@@ -192,16 +192,17 @@ const LEDDisplay = () => {
             </h2>
           </EnhancedScrollAnimation>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
             {whyChooseUs.map((item, index) => (
               <EnhancedScrollAnimation 
                 key={index}
                 animation="zoomIn"
                 delay={index * 150}
+                className="h-full"
               >
-                <Interactive3DCard intensity={15} glowEffect>
-                  <GlassmorphismCard intensity="medium" className="p-8 h-full hover:shadow-glow transition-all duration-500">
-                    <div className="flex items-start gap-6">
+                <Interactive3DCard intensity={15} glowEffect className="h-full">
+                  <GlassmorphismCard intensity="medium" className="p-8 h-full min-h-[240px] hover:shadow-glow transition-all duration-500 flex flex-col">
+                    <div className="flex items-start gap-6 flex-1">
                       <div className="flex-shrink-0">
                         <div className="w-12 h-12 bg-gradient-to-r from-winmax-orange to-winmax-orange-light rounded-lg flex items-center justify-center mb-4">
                           <item.icon className="h-6 w-6 text-white" />
@@ -210,7 +211,7 @@ const LEDDisplay = () => {
                           {item.number}
                         </Badge>
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <h3 className="text-xl font-bold mb-3 text-winmax-orange">{item.title}</h3>
                         <p className="text-muted-foreground leading-relaxed">{item.description}</p>
                       </div>
