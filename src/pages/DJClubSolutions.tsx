@@ -210,7 +210,7 @@ const DJClubSolutions = () => {
                 className="flex"
               >
                 <Interactive3DCard intensity={15} glowEffect className="h-full">
-                  <GlassmorphismCard intensity="medium" className="p-6 h-full min-h-[280px] hover:shadow-glow transition-all duration-500 group flex flex-col">
+                  <GlassmorphismCard intensity="medium" className="p-6 w-full min-h-[320px] hover:shadow-glow transition-all duration-500 group flex flex-col">
                     <div className="text-center flex flex-col flex-1 justify-between">
                       <div>
                         <div className="mb-4 inline-flex p-3 bg-gradient-to-r from-winmax-orange to-winmax-orange-light rounded-lg">
