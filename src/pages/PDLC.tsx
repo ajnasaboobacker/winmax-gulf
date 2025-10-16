@@ -246,15 +246,18 @@ const PDLC = () => {
                 key={index}
                 animation="zoomIn"
                 delay={index * 100}
+                className="h-full"
               >
                 <Interactive3DCard intensity={15} glowEffect className="h-full">
-                  <GlassmorphismCard intensity="medium" className="p-6 h-full hover:shadow-glow transition-all duration-500 flex flex-col">
-                    <div className="text-center flex flex-col h-full">
-                      <div className="mb-4 inline-flex p-3 bg-gradient-to-r from-winmax-orange to-winmax-orange-light rounded-lg mx-auto">
-                        <method.icon className="h-6 w-6 text-white" />
+                  <GlassmorphismCard intensity="medium" className="p-6 h-full min-h-[280px] hover:shadow-glow transition-all duration-500 flex flex-col">
+                    <div className="text-center flex flex-col flex-1 justify-between">
+                      <div>
+                        <div className="mb-4 inline-flex p-3 bg-gradient-to-r from-winmax-orange to-winmax-orange-light rounded-lg">
+                          <method.icon className="h-6 w-6 text-white" />
+                        </div>
+                        <h3 className="text-lg font-semibold mb-3">{method.title}</h3>
                       </div>
-                      <h3 className="text-lg font-semibold mb-3">{method.title}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{method.description}</p>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{method.description}</p>
                     </div>
                   </GlassmorphismCard>
                 </Interactive3DCard>
