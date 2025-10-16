@@ -240,7 +240,7 @@ const PDLC = () => {
             </h2>
           </EnhancedScrollAnimation>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {controlMethods.map((method, index) => (
               <EnhancedScrollAnimation 
                 key={index}
