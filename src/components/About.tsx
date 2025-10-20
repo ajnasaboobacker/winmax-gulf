@@ -36,8 +36,7 @@ const About = () => {
             </div>
             
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
-              Transforming Spaces with 
-              <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent"> Innovation</span>
+              About WinmaxGulf - Transforming Spaces with Innovation
             </h2>
             
             <p className="text-lg text-foreground/80 mb-8">

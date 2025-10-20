@@ -132,8 +132,7 @@ const Services = () => {
           
           <EnhancedScrollAnimation animation="slideInRotate" delay={200}>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Complete Technology 
-              <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent"> Solutions</span>
+              Our Technology Solutions
             </h2>
           </EnhancedScrollAnimation>
           
@@ -181,7 +180,7 @@ const Services = () => {
               <CardContent className="p-6 relative flex-grow flex flex-col justify-between">
                 <div className="absolute inset-0 bg-gradient-to-br from-winmax-orange/5 to-winmax-orange/2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
-                  <h3 
+                   <h3 
                     className={`text-xl font-bold mb-3 group-hover:text-winmax-orange transition-colors duration-300 ${
                       service.title === "PDLC Smart Film" || service.title === "LED Display Systems" || service.title === "DJ Club Solutions" ? "cursor-pointer hover:underline" : ""
                     }`}

@@ -33,8 +33,8 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [heroImages.length]);
   return (
-    <main role="main" aria-label="Main content">
-      <section id="home" className="relative min-h-screen flex items-center overflow-hidden -mt-24 pt-24 bg-black">
+    <main>
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden -mt-24 pt-24 bg-black" role="banner">
       {/* Rotating Background Banner */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((image, index) => (
@@ -61,20 +61,21 @@ const Hero = () => {
           </div>
         ))}
         
-        {/* Banner Indicators */}
-        <div className="absolute bottom-20 right-8 z-10 flex space-x-2">
-          {heroImages.map((_, index) => (
-            <button
-              key={index}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentImageIndex 
-                  ? 'bg-winmax-orange scale-110' 
-                  : 'bg-white/50 hover:bg-white/70'
-              }`}
-              onClick={() => setCurrentImageIndex(index)}
-            />
-          ))}
-        </div>
+         {/* Banner Indicators */}
+         <div className="absolute bottom-20 right-8 z-10 flex space-x-2">
+           {heroImages.map((_, index) => (
+             <button
+               key={index}
+               className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                 index === currentImageIndex 
+                   ? 'bg-winmax-orange scale-110' 
+                   : 'bg-white/50 hover:bg-white/70'
+               }`}
+               onClick={() => setCurrentImageIndex(index)}
+               aria-label={`View ${heroImages[index].title}`}
+             />
+           ))}
+         </div>
       </div>
 
       {/* Subtle Particle Background */}
@@ -98,20 +99,19 @@ const Hero = () => {
 
            {/* Main Heading */}
            <EnhancedScrollAnimation animation="slideInRotate" delay={400}>
-             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-12 leading-[1.2] tracking-tight pb-4">
-               Transform Your Space with 
-               <span className="block bg-gradient-to-r from-winmax-orange via-tech-blue to-winmax-orange-light bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%] mt-4 pb-6" aria-label="Smart Technology">Smart Technology</span>
+             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-12 leading-[1.2] tracking-tight pb-4 bg-gradient-to-r from-white via-winmax-orange to-white bg-clip-text text-transparent">
+               WinmaxGulf - Smart Technology Solutions UAE
              </h1>
            </EnhancedScrollAnimation>
 
            {/* Subheading */}
            <EnhancedScrollAnimation animation="fadeInUp" delay={600}>
              <div className="max-w-4xl">
-               <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4 leading-relaxed font-light">
-                 Leading UAE provider of PDLC smart film, LED display systems, and turnkey DJ club solutions.
-               </p>
-               <p className="text-lg md:text-xl text-winmax-orange font-medium mb-12">
-                 Enhance privacy, visual communication, and create immersive experiences.
+               <h2 className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4 leading-relaxed font-light">
+                 Leading UAE provider of PDLC smart film, LED display systems, and turnkey DJ club solutions transforming residential, commercial, and corporate environments.
+               </h2>
+               <p className="text-lg md:text-xl mb-12">
+                 Enhance privacy, visual communication, and create immersive experiences with our innovative smart technology solutions. We deliver complete end-to-end services including design, installation, training, maintenance, and expert technical support to ensure customer success across Dubai, Abu Dhabi, and the wider UAE region.
                </p>
              </div>
            </EnhancedScrollAnimation>

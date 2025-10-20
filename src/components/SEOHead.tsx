@@ -11,11 +11,11 @@ interface SEOHeadProps {
 }
 
 const SEOHead = ({
-  title = "WinmaxGulf - Leading UAE Smart Technology Solutions | PDLC Film, LED Displays, DJ Systems",
-  description = "Transform your space with WinmaxGulf's innovative PDLC smart film, LED display systems, and turnkey DJ club solutions. Leading technology provider in UAE with 500+ successful installations.",
+  title = "WinmaxGulf - Smart Technology Solutions UAE",
+  description = "Leading UAE provider of PDLC smart film, LED displays & DJ solutions. 500+ successful installations in Dubai.",
   keywords = "PDLC smart film UAE, LED displays Dubai, DJ club solutions, smart glass technology, interactive displays, privacy glass, electronic switchable glass, digital signage UAE",
   ogTitle = "WinmaxGulf - Smart Technology Solutions UAE",
-  ogDescription = "Leading provider of PDLC smart film, LED displays & DJ solutions in UAE. Transform your space with cutting-edge technology.",
+  ogDescription = "Leading UAE provider of PDLC smart film, LED displays & DJ solutions. 500+ successful installations.",
   ogImage = "/favicon.png",
   structuredData
 }: SEOHeadProps) => {
@@ -76,7 +76,10 @@ const SEOHead = ({
         },
         "sameAs": [
           "https://www.instagram.com/winmaxgulf",
-          "https://www.linkedin.com/company/winmaxgulf"
+          "https://www.linkedin.com/company/winmaxgulf",
+          "https://www.facebook.com/winmaxgulf",
+          "https://twitter.com/winmaxgulf",
+          "https://www.youtube.com/@winmaxgulf"
         ],
         "aggregateRating": {
           "@type": "AggregateRating",
