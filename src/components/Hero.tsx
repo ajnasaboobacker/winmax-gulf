@@ -33,7 +33,7 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [heroImages.length]);
   return (
-    <main>
+    <main role="main" aria-label="Main content">
       <section id="home" className="relative min-h-screen flex items-center overflow-hidden -mt-24 pt-24 bg-black">
       {/* Rotating Background Banner */}
       <div className="absolute inset-0 z-0">
@@ -48,6 +48,8 @@ const Hero = () => {
               src={image.src}
               alt={image.alt}
               className="w-full h-full object-cover"
+              loading="eager"
+              fetchPriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent"></div>
             {/* Technology Title Overlay */}
@@ -98,7 +100,7 @@ const Hero = () => {
            <EnhancedScrollAnimation animation="slideInRotate" delay={400}>
              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-12 leading-[1.2] tracking-tight pb-4">
                Transform Your Space with 
-               <span className="block bg-gradient-to-r from-winmax-orange via-tech-blue to-winmax-orange-light bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%] mt-4 pb-6">Smart Technology</span>
+               <span className="block bg-gradient-to-r from-winmax-orange via-tech-blue to-winmax-orange-light bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%] mt-4 pb-6" aria-label="Smart Technology">Smart Technology</span>
              </h1>
            </EnhancedScrollAnimation>
 
@@ -121,9 +123,10 @@ const Hero = () => {
                   size="lg"
                   className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light hover:opacity-90 px-12 py-6 text-xl font-semibold transition-all duration-300 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105"
                   onClick={() => window.open('https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20services', '_blank')}
+                  aria-label="Get started with WinmaxGulf today"
                 >
                   Get Started Today
-                  <ArrowRight className="ml-3 h-6 w-6" />
+                  <ArrowRight className="ml-3 h-6 w-6" aria-hidden="true" />
                 </Button>
                 
                 <Button 
@@ -131,8 +134,9 @@ const Hero = () => {
                   size="lg"
                   className="border-2 border-winmax-orange text-winmax-orange hover:bg-winmax-orange/10 backdrop-blur-sm px-12 py-6 text-xl font-semibold rounded-full transition-all duration-300 hover:border-winmax-orange/60"
                   onClick={() => setShowDemoModal(true)}
+                  aria-label="Watch demonstration video"
                 >
-                 <Play className="mr-3 h-6 w-6" />
+                 <Play className="mr-3 h-6 w-6" aria-hidden="true" />
                  Watch Demo
                </Button>
              </div>
@@ -148,7 +152,7 @@ const Hero = () => {
       />
 
       {/* Scroll Indicator */}
-       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 animate-bounce cursor-pointer">
+       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 animate-bounce cursor-pointer" role="img" aria-label="Scroll down for more">
          <div className="w-6 h-10 border-2 border-winmax-orange rounded-full flex justify-center bg-winmax-orange/10 hover:bg-winmax-orange/20 transition-colors">
            <div className="w-1 h-3 bg-winmax-orange rounded-full mt-2"></div>
          </div>

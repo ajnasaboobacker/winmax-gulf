@@ -1,0 +1,21 @@
+{
+  "name": "WinmaxGulf - Smart Technology Solutions",
+  "short_name": "WinmaxGulf",
+  "description": "Leading UAE provider of PDLC smart film, LED displays & DJ club solutions",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0F1C",
+  "theme_color": "#FF6B35",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

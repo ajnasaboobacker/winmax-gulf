@@ -56,21 +56,65 @@ const SEOHead = ({
         "description": "Leading UAE provider of PDLC smart film, LED display systems, and DJ club solutions",
         "url": "https://winmaxgulf.com",
         "logo": window.location.origin + "/favicon.png",
+        "image": window.location.origin + "/favicon.png",
+        "telephone": "+971527200466",
+        "email": "info@winmaxgulf.com",
+        "priceRange": "$$",
+        "foundingDate": "2015",
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+971527200466",
           "contactType": "sales",
-          "areaServed": "AE"
+          "areaServed": "AE",
+          "availableLanguage": ["en", "ar"]
         },
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "AE",
-          "addressRegion": "Dubai"
+          "addressRegion": "Dubai",
+          "addressLocality": "Dubai"
         },
         "sameAs": [
           "https://www.instagram.com/winmaxgulf",
           "https://www.linkedin.com/company/winmaxgulf"
-        ]
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "500",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Smart Technology Solutions",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "PDLC Smart Film Installation",
+                "description": "Privacy glass and switchable smart film solutions"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "LED Display Systems",
+                "description": "High-quality LED displays for commercial and retail spaces"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "DJ Club Solutions",
+                "description": "Turnkey DJ equipment and club setup services"
+              }
+            }
+          ]
+        }
       };
       addStructuredData(defaultStructuredData);
     }
