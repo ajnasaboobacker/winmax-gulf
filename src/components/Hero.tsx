@@ -34,7 +34,7 @@ const Hero = () => {
   }, [heroImages.length]);
   return (
     <main>
-      <section id="home" className="relative min-h-screen flex items-center overflow-hidden -mt-24 pt-24">
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden -mt-24 pt-24 bg-black">
       {/* Rotating Background Banner */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((image, index) => (
@@ -44,11 +44,10 @@ const Hero = () => {
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <LazyImage 
+            <img
               src={image.src}
               alt={image.alt}
               className="w-full h-full object-cover"
-              skeletonClassName="h-full"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent"></div>
             {/* Technology Title Overlay */}
