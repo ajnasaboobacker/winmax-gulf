@@ -50,7 +50,7 @@ const Hero = () => {
               className="w-full h-full object-cover"
               skeletonClassName="h-full"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background/70 to-background/10"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-background/50 to-transparent"></div>
             {/* Technology Title Overlay */}
             <div className="absolute top-8 right-8 z-10">
               <div className="bg-background/80 backdrop-blur-md px-4 py-2 rounded-full border border-winmax-orange/30">
