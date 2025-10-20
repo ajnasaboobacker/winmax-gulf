@@ -36,7 +36,7 @@ const Hero = () => {
     <main>
       <section id="home" className="relative min-h-screen flex items-center overflow-hidden -mt-24 pt-24">
       {/* Rotating Background Banner */}
-      <div className="absolute inset-0 z-10">
+      <div className="absolute inset-0 z-0">
         {heroImages.map((image, index) => (
           <div
             key={index}
