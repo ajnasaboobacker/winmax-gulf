@@ -50,10 +50,10 @@ const Hero = () => {
               className="w-full h-full object-cover"
               skeletonClassName="h-full"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent"></div>
             {/* Technology Title Overlay */}
             <div className="absolute top-8 right-8 z-10">
-              <div className="bg-background/80 backdrop-blur-md px-4 py-2 rounded-full border border-winmax-orange/30">
+              <div className="bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-winmax-orange/30">
                 <span className="text-sm font-medium text-winmax-orange">{image.title}</span>
               </div>
             </div>
@@ -77,21 +77,21 @@ const Hero = () => {
       </div>
 
       {/* Subtle Particle Background */}
-      <ParticleBackground className="z-20 opacity-30" density={40} />
+      <ParticleBackground className="z-10 opacity-20" density={40} />
       
       {/* Minimal Floating Elements */}
-      <div className="absolute inset-0 pointer-events-none z-30">
+      <div className="absolute inset-0 pointer-events-none z-20">
         <div className="absolute top-20 right-20 w-12 h-12 bg-winmax-orange/20 rounded-full animate-pulse hidden lg:block"></div>
-        <div className="absolute bottom-40 right-40 w-8 h-8 bg-tech-blue/20 rounded-full animate-bounce [animation-delay:2s] hidden lg:block"></div>
-        <div className="absolute top-1/2 right-10 w-6 h-6 bg-tech-cyan/20 rounded-full animate-pulse [animation-delay:1s] hidden lg:block"></div>
+        <div className="absolute bottom-40 right-40 w-8 h-8 bg-winmax-orange/15 rounded-full animate-bounce [animation-delay:2s] hidden lg:block"></div>
+        <div className="absolute top-1/2 right-10 w-6 h-6 bg-winmax-orange/10 rounded-full animate-pulse [animation-delay:1s] hidden lg:block"></div>
         <div className="absolute top-40 left-20 w-10 h-10 bg-winmax-orange/15 rounded-full animate-bounce hidden lg:block"></div>
       </div>
 
-        <div className="container mx-auto px-6 lg:px-8 relative z-40">
+        <div className="container mx-auto px-6 lg:px-8 relative z-30">
           <EnhancedScrollAnimation animation="bounceIn" delay={200}>
             <div className="max-w-7xl mx-auto py-20 lg:py-32 overflow-visible">
            {/* Badge */}
-           <div className="inline-flex items-center px-8 py-4 rounded-full mb-8 bg-background/70 backdrop-blur-md border border-winmax-orange/30 shadow-lg">
+           <div className="inline-flex items-center px-8 py-4 rounded-full mb-8 bg-black/50 backdrop-blur-md border border-winmax-orange/30 shadow-lg">
              <span className="text-base font-medium text-winmax-orange">✨ Innovative Technology Solutions</span>
            </div>
 
