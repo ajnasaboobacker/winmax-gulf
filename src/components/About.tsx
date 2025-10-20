@@ -36,26 +36,29 @@ const About = () => {
             </div>
             
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
-              About WinmaxGulf - Transforming Spaces with Innovation
+              About WinmaxGulf - Leading UAE Technology Provider
             </h2>
             
-            <p className="text-lg text-foreground/80 mb-8">
-              Winmax Gulf is a leading UAE-based provider of advanced technology solutions, specializing in PDLC smart film, LED display systems, and turnkey DJ club solutions. We transform residential, commercial, and corporate environments through innovative products that enhance privacy, visual communication, and interactive user experiences.
+            <p className="text-lg text-foreground/80 mb-4">
+              Winmax Gulf is a leading UAE-based provider of advanced smart technology solutions, specializing in PDLC smart film, LED display systems, and turnkey DJ club solutions. Since our establishment, we have transformed over 500 residential, commercial, and corporate environments throughout Dubai, Abu Dhabi, and across the UAE through innovative products that enhance privacy control, visual communication, and create immersive entertainment experiences.
+            </p>
+            <p className="text-base text-foreground/70 mb-8">
+              Our comprehensive approach combines cutting-edge technology with expert installation, personalized training, ongoing maintenance, and dedicated technical support. We work closely with architects, interior designers, business owners, and homeowners to deliver customized solutions that meet specific requirements while exceeding quality expectations and industry standards.
             </p>
 
             {/* Vision & Mission */}
             <div className="space-y-6">
               <div className="p-6 rounded-lg bg-winmax-orange/10 border border-winmax-orange/20">
-                <h3 className="font-bold text-lg mb-2 text-winmax-orange">Our Vision</h3>
+                <h3 className="font-bold text-lg mb-2 text-winmax-orange">Our Vision for the Future</h3>
                 <p className="text-foreground/80">
-                  To be the leading provider of smart and innovative technology solutions that transform environments and elevate everyday experiences across the UAE and beyond.
+                  To be the leading provider of smart and innovative technology solutions that transform environments and elevate everyday experiences across the UAE and beyond. We envision a future where intelligent technology seamlessly integrates into every space, enhancing functionality, aesthetics, and user experiences while maintaining the highest standards of quality, reliability, and customer satisfaction.
                 </p>
               </div>
               
               <div className="p-6 rounded-lg bg-winmax-orange/10 border border-winmax-orange/20">
-                <h3 className="font-bold text-lg mb-2 text-winmax-orange">Our Mission</h3>
+                <h3 className="font-bold text-lg mb-2 text-winmax-orange">Our Mission and Values</h3>
                 <p className="text-foreground/80">
-                  To deliver high-quality technology solutions that empower businesses, enhance privacy, and create impactful visual experiences through innovation, reliability, and customer-focused service.
+                  To deliver high-quality technology solutions that empower businesses, enhance privacy, and create impactful visual experiences through continuous innovation, unwavering reliability, and customer-focused service. We are committed to excellence in every project, ensuring that our clients receive not just products, but comprehensive solutions backed by expert guidance, professional installation, thorough training, and responsive ongoing support.
                 </p>
               </div>
             </div>

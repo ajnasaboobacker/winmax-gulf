@@ -32,11 +32,13 @@ const Process = () => {
             <span className="text-sm font-medium text-winmax-orange">Our Process</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
-            Simple & 
-            <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent"> Efficient</span>
+            Our Professional Installation Process
           </h2>
-          <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-            Our streamlined process ensures smooth project delivery from initial consultation to final handover.
+          <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-4">
+            Our streamlined three-phase process ensures smooth project delivery from initial consultation to final handover, minimizing disruption while maximizing results. With over 500 successful installations across Dubai and the UAE, we have perfected our approach to deliver exceptional quality and customer satisfaction.
+          </p>
+          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+            Every project receives personalized attention from our certified technicians and engineers, ensuring that your smart technology solution is installed correctly, operates efficiently, and delivers lasting value. We provide comprehensive training, detailed documentation, and ongoing technical support to ensure your complete success.
           </p>
         </div>
 
@@ -69,7 +71,7 @@ const Process = () => {
 
                     {/* Content */}
                     <h3 className="text-xl font-bold mb-4 group-hover:text-winmax-orange transition-colors text-foreground">
-                      {step.title}
+                      Phase {index + 1}: {step.title}
                     </h3>
                     <p className="text-foreground/80 mb-6">
                       {step.description}
@@ -101,9 +103,9 @@ const Process = () => {
         {/* Bottom CTA */}
         <div className="text-center mt-16 animate-fade-in">
           <div className="p-8 rounded-lg bg-winmax-orange/10 border border-winmax-orange/20">
-            <h3 className="text-2xl font-bold mb-4 text-foreground">Ready to Get Started?</h3>
+            <h3 className="text-2xl font-bold mb-4 text-foreground">Ready to Transform Your Space?</h3>
             <p className="text-foreground/80 mb-6">
-              Let's discuss your project requirements and find the perfect solution for your needs.
+              Let's discuss your project requirements and find the perfect smart technology solution for your needs. Our expert consultants are ready to provide personalized recommendations, detailed cost estimates, and comprehensive project planning to bring your vision to life with innovative technology solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 

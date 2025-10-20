@@ -51,11 +51,13 @@ const TechnologyShowcase = () => {
             Technology Innovation
           </Badge>
           <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
-            Cutting-Edge 
-            <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent"> Technology</span>
+            Advanced Smart Technology Solutions
           </h2>
-          <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-            Discover how our advanced technologies transform spaces with intelligent automation and seamless integration.
+          <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-6">
+            Discover how our advanced technologies transform residential and commercial spaces with intelligent automation, seamless integration, and cutting-edge innovation. Our smart solutions deliver enhanced privacy control, superior visual communication, and immersive entertainment experiences tailored to your unique requirements.
+          </p>
+          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+            From automated PDLC smart glass systems to ultra-high-definition LED displays and complete DJ club installations, we provide comprehensive technology solutions backed by expert installation, training, and ongoing technical support throughout Dubai and the UAE.
           </p>
         </div>
 
@@ -83,9 +85,9 @@ const TechnologyShowcase = () => {
                   <h3 className="text-xl font-bold mb-2 group-hover:text-winmax-orange transition-colors">
                     {tech.title}
                   </h3>
-                  <p className="text-sm text-foreground/70 mb-4 font-medium">
+                  <h4 className="text-sm text-foreground/70 mb-4 font-medium">
                     {tech.subtitle}
-                  </p>
+                  </h4>
                   
                   {/* Features List */}
                   <ul className="space-y-2 mb-6">
@@ -124,11 +126,10 @@ const TechnologyShowcase = () => {
         <div className="relative bg-gradient-to-r from-card to-secondary/20 rounded-2xl p-8 border border-border/50">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4 text-foreground">
-              See Our Technology in 
-              <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent"> Action</span>
+              Experience Our Technology Live
             </h3>
             <p className="text-foreground/80 mb-6 max-w-2xl mx-auto">
-              Experience live demonstrations of our smart glass and LED display systems. Book a consultation to see how our technology can transform your space.
+              Experience live demonstrations of our PDLC smart glass technology, LED display systems, and DJ club solutions. Book a personalized consultation with our technology experts to see how our innovative solutions can transform your residential, commercial, or entertainment space with enhanced functionality, aesthetic appeal, and operational efficiency.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

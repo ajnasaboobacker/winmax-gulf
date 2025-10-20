@@ -132,14 +132,16 @@ const Services = () => {
           
           <EnhancedScrollAnimation animation="slideInRotate" delay={200}>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Our Technology Solutions
+              Comprehensive Smart Technology Services
             </h2>
           </EnhancedScrollAnimation>
           
           <EnhancedScrollAnimation animation="fadeInUp" delay={400}>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              We deliver complete product and project services, covering design, project assistance, training, ongoing maintenance, and 
-              <span className="text-winmax-orange font-semibold"> expert technical support to ensure customer success.</span>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-4">
+              We deliver complete end-to-end product and project services across the UAE, covering initial consultation, custom design solutions, professional project assistance, comprehensive installation, hands-on training, scheduled ongoing maintenance, and expert 24/7 technical support to ensure complete customer success and satisfaction with every smart technology solution we provide.
+            </p>
+            <p className="text-lg text-muted-foreground/80 max-w-2xl mx-auto">
+              Our three core service offerings - PDLC Smart Film for instant privacy control, LED Display Systems for superior visual communication, and complete DJ Club Solutions for immersive entertainment - represent the pinnacle of smart technology innovation in residential, commercial, and entertainment applications throughout Dubai and the wider UAE region.
             </p>
           </EnhancedScrollAnimation>
         </EnhancedScrollAnimation>
@@ -242,8 +244,9 @@ const Services = () => {
         <EnhancedScrollAnimation animation="bounceIn" delay={600}>
           <div className="text-center mt-16">
             <GlassmorphismCard intensity="light" className="inline-block p-8 mx-auto">
+              <h3 className="text-2xl font-bold mb-4">Custom Technology Solutions</h3>
               <p className="text-lg text-muted-foreground mb-6">
-                Need a <span className="text-winmax-orange font-semibold">custom solution</span>? We're here to help.
+                Need a custom smart technology solution tailored to your unique requirements? Our expert team specializes in designing and implementing bespoke solutions that combine PDLC smart film, LED displays, and entertainment systems to create truly unique spaces that exceed your expectations and deliver exceptional value.
               </p>
               <Interactive3DCard intensity={15} glowEffect>
                 <Button 

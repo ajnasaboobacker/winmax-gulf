@@ -46,10 +46,13 @@ const Gallery = () => {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
-              Our <span className="text-winmax-orange">Project Gallery</span>
+              Completed Projects & Installations
             </h2>
-            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
-              Explore our completed projects and see how we transform spaces with innovative technology solutions.
+            <p className="text-xl text-foreground/80 max-w-2xl mx-auto mb-4">
+              Explore our portfolio of completed projects and see how we transform residential, commercial, and entertainment spaces with innovative technology solutions across Dubai and the UAE. From luxury homes to corporate offices, retail spaces to nightclubs, our installations demonstrate the versatility and impact of smart technology.
+            </p>
+            <p className="text-lg text-foreground/70 max-w-xl mx-auto">
+              Each project showcases our commitment to quality installation, attention to detail, and dedication to exceeding client expectations with cutting-edge PDLC smart film, LED display systems, and complete DJ club solutions.
             </p>
           </div>
 
