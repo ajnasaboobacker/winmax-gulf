@@ -108,10 +108,10 @@ const Hero = () => {
            <EnhancedScrollAnimation animation="fadeInUp" delay={600}>
              <div className="max-w-4xl">
                <h2 className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4 leading-relaxed font-light">
-                 Leading UAE provider of PDLC smart film, LED display systems, and turnkey DJ club solutions transforming residential, commercial, and corporate environments.
+                 Leading UAE provider of <a href="/#services" className="text-winmax-orange hover:underline">PDLC smart film</a>, <a href="/#services" className="text-winmax-orange hover:underline">LED display systems</a>, and turnkey <a href="/#services" className="text-winmax-orange hover:underline">DJ club solutions</a> transforming residential, commercial, and corporate environments across Dubai and Abu Dhabi.
                </h2>
                <p className="text-lg md:text-xl mb-12">
-                 Enhance privacy, visual communication, and create immersive experiences with our innovative smart technology solutions. We deliver complete end-to-end services including design, installation, training, maintenance, and expert technical support to ensure customer success across Dubai, Abu Dhabi, and the wider UAE region.
+                 Enhance privacy, visual communication, and create immersive experiences with our innovative <strong>smart technology solutions</strong> in the <strong>UAE</strong>. We deliver complete end-to-end services including <a href="/#process" className="text-winmax-orange hover:underline">consultation</a>, design, professional installation, comprehensive training, ongoing maintenance, and expert technical support to ensure customer success. Our <a href="/#about" className="text-winmax-orange hover:underline">experienced team</a> has completed over 500 successful installations throughout Dubai, Abu Dhabi, and the wider UAE region, making us a trusted partner for smart technology solutions in the Middle East.
                </p>
              </div>
            </EnhancedScrollAnimation>

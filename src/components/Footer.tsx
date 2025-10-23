@@ -107,48 +107,48 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Services */}
+          {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-4 text-foreground">Services</h3>
+            <h3 className="font-bold text-lg mb-4 text-foreground">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <a 
-                  href="https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20PDLC%20services"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/#services"
                   className="text-foreground/80 hover:text-winmax-orange transition-colors"
                 >
-                  PDLC Smart Film
+                  Our Services
                 </a>
               </li>
               <li>
                 <a 
-                  href="https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20LED%20DISPLAY%20services"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/#about"
                   className="text-foreground/80 hover:text-winmax-orange transition-colors"
                 >
-                  LED Display Systems
+                  About Us
                 </a>
               </li>
               <li>
                 <a 
-                  href="https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20DJSOLUTION%20services"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/#process"
                   className="text-foreground/80 hover:text-winmax-orange transition-colors"
                 >
-                  DJ Club Solutions
+                  Our Process
                 </a>
               </li>
               <li>
                 <a 
-                  href="https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20custom%20solutions"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/#gallery"
                   className="text-foreground/80 hover:text-winmax-orange transition-colors"
                 >
-                  Custom Solutions
+                  Project Gallery
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/#contact"
+                  className="text-foreground/80 hover:text-winmax-orange transition-colors"
+                >
+                  Contact Us
                 </a>
               </li>
             </ul>
@@ -189,16 +189,19 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-foreground/80">
-            © {currentYear} Winmax Gulf. All rights reserved.
+            © {currentYear} Winmax Gulf - Smart Technology Solutions UAE. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-foreground/80 hover:text-winmax-orange transition-colors">
-              Privacy Policy
+          <nav className="flex space-x-6 mt-4 md:mt-0" aria-label="Footer navigation">
+            <a href="/#home" className="text-foreground/80 hover:text-winmax-orange transition-colors">
+              Home
             </a>
-            <a href="#" className="text-foreground/80 hover:text-winmax-orange transition-colors">
-              Terms of Service
+            <a href="/#services" className="text-foreground/80 hover:text-winmax-orange transition-colors">
+              Services
             </a>
-          </div>
+            <a href="/#about" className="text-foreground/80 hover:text-winmax-orange transition-colors">
+              About
+            </a>
+          </nav>
         </div>
       </div>
     </footer>
