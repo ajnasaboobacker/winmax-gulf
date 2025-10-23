@@ -40,10 +40,10 @@ const About = () => {
             </h2>
             
             <p className="text-lg text-foreground/80 mb-4">
-              Winmax Gulf is a leading UAE-based provider of advanced smart technology solutions, specializing in PDLC smart film, LED display systems, and turnkey DJ club solutions. Since our establishment, we have transformed over 500 residential, commercial, and corporate environments throughout Dubai, Abu Dhabi, and across the UAE through innovative products that enhance privacy control, visual communication, and create immersive entertainment experiences.
+              <a href="/#home" className="text-winmax-orange hover:underline">Winmax Gulf</a> is a leading UAE-based provider of advanced <a href="/#services" className="text-winmax-orange hover:underline">smart technology solutions</a>, specializing in <strong>PDLC smart film</strong>, <strong>LED display systems</strong>, and turnkey <strong>DJ club solutions</strong>. Since our establishment, we have transformed over 500 residential, commercial, and corporate environments throughout <strong>Dubai</strong>, <strong>Abu Dhabi</strong>, and across the <strong>UAE</strong> through innovative products that enhance privacy control, visual communication, and create immersive entertainment experiences.
             </p>
             <p className="text-base text-foreground/70 mb-8">
-              Our comprehensive approach combines cutting-edge technology with expert installation, personalized training, ongoing maintenance, and dedicated technical support. We work closely with architects, interior designers, business owners, and homeowners to deliver customized solutions that meet specific requirements while exceeding quality expectations and industry standards.
+              Our comprehensive approach combines cutting-edge technology with expert <a href="/#process" className="text-winmax-orange hover:underline">installation services</a>, personalized training, ongoing maintenance, and dedicated technical support. We work closely with architects, interior designers, business owners, and homeowners to deliver customized <strong>smart technology solutions</strong> that meet specific requirements while exceeding quality expectations and industry standards throughout the <strong>UAE</strong> region. Contact us today through our <a href="/#contact" className="text-winmax-orange hover:underline">contact page</a> to discuss your project.
             </p>
 
             {/* Vision & Mission */}

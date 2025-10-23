@@ -90,17 +90,17 @@ Message: ${message}`;
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
             Let's Start Your 
-            <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent"> Project</span>
+            <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent"> Smart Technology Project</span>
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-            Ready to transform your space with innovative technology? Contact us today for a free consultation.
+            Ready to transform your space with innovative <strong>smart technology solutions</strong> in <strong>Dubai</strong> and across the <strong>UAE</strong>? Contact <strong>WinmaxGulf</strong> today for a free consultation. Our expert team specializes in <a href="/#services" className="text-winmax-orange hover:underline">PDLC smart film, LED displays, and DJ solutions</a>. Call us at <a href="tel:+971527200466" className="text-winmax-orange hover:underline">+971 527 200 466</a> or message us on <a href="https://wa.me/+971527200466" target="_blank" rel="noopener noreferrer" className="text-winmax-orange hover:underline">WhatsApp</a>.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left Side - Contact Info */}
           <div className="animate-fade-in">
-            <h3 className="text-2xl font-bold mb-8 text-foreground">Get in Touch</h3>
+            <h3 className="text-2xl font-bold mb-8 text-foreground">Contact WinmaxGulf - UAE Smart Technology Experts</h3>
             
             <div className="space-y-6 mb-8">
               {contactInfo.map((info, index) => (
@@ -266,7 +266,7 @@ Message: ${message}`;
                 <h4 className="font-semibold text-foreground">Serving Across UAE</h4>
               </div>
               <p className="text-foreground/80">
-                We provide our services across Dubai, Abu Dhabi, Sharjah, and all other Emirates in the UAE.
+                We provide professional <strong>smart technology solutions</strong> across <strong>Dubai</strong>, <strong>Abu Dhabi</strong>, <strong>Sharjah</strong>, and all other <strong>Emirates</strong> in the <strong>UAE</strong>. Our services include <a href="/#services" className="text-winmax-orange hover:underline">PDLC smart film installation</a>, <a href="/#services" className="text-winmax-orange hover:underline">LED display systems</a>, and <a href="/#services" className="text-winmax-orange hover:underline">DJ club solutions</a>. Visit our <a href="/#about" className="text-winmax-orange hover:underline">about page</a> to learn more about WinmaxGulf.
               </p>
             </div>
           </div>
@@ -277,7 +277,7 @@ Message: ${message}`;
           <div className="p-8 rounded-lg bg-gradient-to-r from-background to-secondary/20 border border-border">
             <h3 className="text-2xl font-bold mb-4 text-foreground">Ready to Transform Your Space?</h3>
             <p className="text-foreground/80 mb-6 max-w-2xl mx-auto">
-              Join hundreds of satisfied customers who have upgraded their spaces with our innovative technology solutions.
+              Join hundreds of satisfied customers throughout <strong>Dubai</strong> and the <strong>UAE</strong> who have upgraded their spaces with our innovative <strong>smart technology solutions</strong>. From residential homes to commercial offices and entertainment venues, <strong>WinmaxGulf</strong> delivers excellence in <a href="/#services" className="text-winmax-orange hover:underline">PDLC smart film</a>, <a href="/#services" className="text-winmax-orange hover:underline">LED displays</a>, and <a href="/#services" className="text-winmax-orange hover:underline">DJ solutions</a>. Contact us for professional installation and support.
             </p>
             <Button 
               size="lg"
