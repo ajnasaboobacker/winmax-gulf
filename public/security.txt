@@ -1,0 +1,3 @@
+Contact: info@winmaxgulf.com
+Preferred-Languages: en, ar
+Canonical: https://winmaxgulf.com/.well-known/security.txt

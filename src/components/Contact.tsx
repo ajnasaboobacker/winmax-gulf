@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Phone, Mail, MapPin, MessageCircle, Clock, Globe, Send } from "lucide-react";
 import { useState } from "react";
+import { z } from "zod";
+import { toast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,27 +17,95 @@ const Contact = () => {
     service: '',
     message: ''
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Security: Input validation schema
+  const contactSchema = z.object({
+    name: z.string()
+      .trim()
+      .min(2, { message: "Name must be at least 2 characters" })
+      .max(100, { message: "Name must be less than 100 characters" })
+      .regex(/^[a-zA-Z\s'-]+$/, { message: "Name can only contain letters, spaces, hyphens, and apostrophes" }),
+    email: z.string()
+      .trim()
+      .email({ message: "Invalid email address" })
+      .max(255, { message: "Email must be less than 255 characters" }),
+    phone: z.string()
+      .trim()
+      .min(8, { message: "Phone number must be at least 8 characters" })
+      .max(20, { message: "Phone number must be less than 20 characters" })
+      .regex(/^[+\d\s()-]+$/, { message: "Phone number can only contain numbers, spaces, +, -, and ()" }),
+    service: z.string()
+      .min(1, { message: "Please select a service" }),
+    message: z.string()
+      .trim()
+      .min(10, { message: "Message must be at least 10 characters" })
+      .max(1000, { message: "Message must be less than 1000 characters" })
+  });
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear error for this field when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const { name, email, phone, service, message } = formData;
-    const whatsappMessage = `Hello! I'm ${name}. 
-Email: ${email}
-Phone: ${phone}
-Service Interest: ${service}
-Message: ${message}`;
     
-    const link = document.createElement('a');
-    link.href = `https://wa.me/+971527200466?text=${encodeURIComponent(whatsappMessage)}`;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Security: Validate all inputs before processing
+    try {
+      const validatedData = contactSchema.parse(formData);
+      
+      // Security: Sanitize data for WhatsApp URL (encodeURIComponent handles XSS)
+      const whatsappMessage = `Hello! I'm ${validatedData.name}. 
+Email: ${validatedData.email}
+Phone: ${validatedData.phone}
+Service Interest: ${validatedData.service}
+Message: ${validatedData.message}`;
+      
+      const link = document.createElement('a');
+      link.href = `https://wa.me/+971527200466?text=${encodeURIComponent(whatsappMessage)}`;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Success notification
+      toast({
+        title: "Message Sent!",
+        description: "Redirecting you to WhatsApp...",
+      });
+      
+      // Clear form after successful submission
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: ''
+      });
+      setErrors({});
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        // Display validation errors
+        const newErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            newErrors[err.path[0] as string] = err.message;
+          }
+        });
+        setErrors(newErrors);
+        
+        toast({
+          title: "Validation Error",
+          description: "Please check the form and correct any errors.",
+          variant: "destructive",
+        });
+      }
+    }
   };
   const contactInfo = [
     {
@@ -185,8 +255,14 @@ Message: ${message}`;
                         value={formData.name}
                         onChange={(e) => handleInputChange('name', e.target.value)}
                         required
-                        className="bg-background/50 border-winmax-orange/30 focus:border-winmax-orange focus:ring-winmax-orange/20"
+                        maxLength={100}
+                        className={`bg-background/50 border-winmax-orange/30 focus:border-winmax-orange focus:ring-winmax-orange/20 ${errors.name ? 'border-destructive' : ''}`}
+                        aria-invalid={!!errors.name}
+                        aria-describedby={errors.name ? "name-error" : undefined}
                       />
+                      {errors.name && (
+                        <p id="name-error" className="text-sm text-destructive">{errors.name}</p>
+                      )}
                     </div>
                     
                     <div className="space-y-2">
@@ -198,8 +274,14 @@ Message: ${message}`;
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
                         required
-                        className="bg-background/50 border-winmax-orange/30 focus:border-winmax-orange focus:ring-winmax-orange/20"
+                        maxLength={255}
+                        className={`bg-background/50 border-winmax-orange/30 focus:border-winmax-orange focus:ring-winmax-orange/20 ${errors.email ? 'border-destructive' : ''}`}
+                        aria-invalid={!!errors.email}
+                        aria-describedby={errors.email ? "email-error" : undefined}
                       />
+                      {errors.email && (
+                        <p id="email-error" className="text-sm text-destructive">{errors.email}</p>
+                      )}
                     </div>
                   </div>
 
@@ -213,14 +295,20 @@ Message: ${message}`;
                         value={formData.phone}
                         onChange={(e) => handleInputChange('phone', e.target.value)}
                         required
-                        className="bg-background/50 border-winmax-orange/30 focus:border-winmax-orange focus:ring-winmax-orange/20"
+                        maxLength={20}
+                        className={`bg-background/50 border-winmax-orange/30 focus:border-winmax-orange focus:ring-winmax-orange/20 ${errors.phone ? 'border-destructive' : ''}`}
+                        aria-invalid={!!errors.phone}
+                        aria-describedby={errors.phone ? "phone-error" : undefined}
                       />
+                      {errors.phone && (
+                        <p id="phone-error" className="text-sm text-destructive">{errors.phone}</p>
+                      )}
                     </div>
                     
                     <div className="space-y-2">
                       <Label htmlFor="service" className="text-foreground font-medium">Service Interest *</Label>
-                      <Select onValueChange={(value) => handleInputChange('service', value)} required>
-                        <SelectTrigger className="bg-background/50 border-winmax-orange/30 focus:border-winmax-orange focus:ring-winmax-orange/20">
+                      <Select onValueChange={(value) => handleInputChange('service', value)} required value={formData.service}>
+                        <SelectTrigger className={`bg-background/50 border-winmax-orange/30 focus:border-winmax-orange focus:ring-winmax-orange/20 ${errors.service ? 'border-destructive' : ''}`}>
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>
@@ -231,6 +319,9 @@ Message: ${message}`;
                           ))}
                         </SelectContent>
                       </Select>
+                      {errors.service && (
+                        <p id="service-error" className="text-sm text-destructive">{errors.service}</p>
+                      )}
                     </div>
                   </div>
 
@@ -243,8 +334,15 @@ Message: ${message}`;
                       onChange={(e) => handleInputChange('message', e.target.value)}
                       required
                       rows={5}
-                      className="bg-background/50 border-winmax-orange/30 focus:border-winmax-orange focus:ring-winmax-orange/20 resize-none"
+                      maxLength={1000}
+                      className={`bg-background/50 border-winmax-orange/30 focus:border-winmax-orange focus:ring-winmax-orange/20 resize-none ${errors.message ? 'border-destructive' : ''}`}
+                      aria-invalid={!!errors.message}
+                      aria-describedby={errors.message ? "message-error" : undefined}
                     />
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <span>{errors.message && <span className="text-destructive">{errors.message}</span>}</span>
+                      <span>{formData.message.length}/1000</span>
+                    </div>
                   </div>
 
                   <Button 
