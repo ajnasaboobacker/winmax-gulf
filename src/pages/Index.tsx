@@ -13,6 +13,7 @@ import CharacterAnimations from "@/components/CharacterAnimations";
 import SEOHead from "@/components/SEOHead";
 import TrustBadges from "@/components/TrustBadges";
 import EnhancedTestimonials from "@/components/EnhancedTestimonials";
+import FAQ from "@/components/FAQ";
 
 const Index = () => {
   return (
@@ -35,6 +36,7 @@ const Index = () => {
           <Gallery />
           <Process />
           <EnhancedTestimonials />
+          <FAQ />
           <Contact />
         </article>
         <Footer />

@@ -8,6 +8,7 @@ import AnimatedGradientBackground from "@/components/AnimatedGradientBackground"
 import EnhancedScrollAnimation from "@/components/EnhancedScrollAnimations";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import Interactive3DCard from "@/components/Interactive3DCard";
+import SEOHead from "@/components/SEOHead";
 import ledBanner from "@/assets/led-banner.jpg";
 import ledDisplay from "@/assets/led-display.jpg";
 
@@ -120,9 +121,39 @@ const LEDDisplay = () => {
     }
   ];
 
+  const ledSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LED Display Systems",
+    "description": "Professional LED display installation for indoor and outdoor applications in Dubai and UAE",
+    "brand": {
+      "@type": "Brand",
+      "name": "WinmaxGulf"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "AED",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "180"
+    }
+  };
+
   return (
-    <div className="min-h-screen">
-      <Header />
+    <>
+      <SEOHead 
+        title="LED Display Systems UAE | Indoor & Outdoor LED Screens Dubai"
+        description="Professional LED display installation in Dubai. Indoor LED video walls, outdoor LED billboards, rental LED screens. Ultra HD quality with expert installation & support."
+        keywords="LED display Dubai, LED video wall UAE, outdoor LED screen, indoor LED display, LED billboard Dubai, LED screen rental UAE, digital signage Dubai"
+        ogTitle="LED Display Systems UAE | Professional Installation Dubai"
+        ogDescription="Professional LED display systems in Dubai. Ultra HD resolution, weather-resistant outdoor displays, custom configurations. Expert installation & 24/7 support."
+        structuredData={ledSchema}
+      />
+      <div className="min-h-screen">
+        <Header />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -408,7 +439,8 @@ const LEDDisplay = () => {
       </section>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

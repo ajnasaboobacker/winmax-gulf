@@ -48,76 +48,170 @@ const SEOHead = ({
     if (structuredData) {
       addStructuredData(structuredData);
     } else {
-      // Default structured data
+      // Enhanced default structured data with BreadcrumbList and LocalBusiness
       const defaultStructuredData = {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "WinmaxGulf",
-        "description": "Leading UAE provider of PDLC smart film, LED display systems, and DJ club solutions",
-        "url": "https://winmaxgulf.com",
-        "logo": window.location.origin + "/favicon.png",
-        "image": window.location.origin + "/favicon.png",
-        "telephone": "+971527200466",
-        "email": "info@winmaxgulf.com",
-        "priceRange": "$$",
-        "foundingDate": "2015",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+971527200466",
-          "contactType": "sales",
-          "areaServed": "AE",
-          "availableLanguage": ["en", "ar"]
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "AE",
-          "addressRegion": "Dubai",
-          "addressLocality": "Dubai"
-        },
-        "sameAs": [
-          "https://www.instagram.com/winmaxgulf",
-          "https://www.linkedin.com/company/winmaxgulf",
-          "https://www.facebook.com/winmaxgulf",
-          "https://twitter.com/winmaxgulf",
-          "https://www.youtube.com/@winmaxgulf"
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "500",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Smart Technology Solutions",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "PDLC Smart Film Installation",
-                "description": "Privacy glass and switchable smart film solutions"
+        "@graph": [
+          {
+            "@type": "Organization",
+            "name": "WinmaxGulf",
+            "alternateName": "Winmax Gulf",
+            "description": "Leading UAE provider of PDLC smart film, LED display systems, and DJ club solutions with 500+ successful installations",
+            "url": "https://winmaxgulf.com",
+            "logo": window.location.origin + "/favicon.png",
+            "image": window.location.origin + "/favicon.png",
+            "telephone": "+971527200466",
+            "email": "info@winmaxgulf.com",
+            "priceRange": "$$-$$$",
+            "foundingDate": "2015",
+            "slogan": "Smart Technology Solutions UAE",
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+971527200466",
+                "contactType": "sales",
+                "areaServed": ["AE", "UAE", "Dubai", "Abu Dhabi"],
+                "availableLanguage": ["en", "ar"],
+                "contactOption": "TollFree"
+              },
+              {
+                "@type": "ContactPoint",
+                "telephone": "+971527200466",
+                "contactType": "customer support",
+                "areaServed": "AE",
+                "availableLanguage": ["en", "ar"],
+                "hoursAvailable": "24/7"
               }
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "AE",
+              "addressRegion": "Dubai",
+              "addressLocality": "Dubai"
             },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "LED Display Systems",
-                "description": "High-quality LED displays for commercial and retail spaces"
-              }
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "25.2048",
+              "longitude": "55.2708"
             },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "DJ Club Solutions",
-                "description": "Turnkey DJ equipment and club setup services"
-              }
+            "sameAs": [
+              "https://www.instagram.com/winmaxgulf",
+              "https://www.linkedin.com/company/winmaxgulf",
+              "https://www.facebook.com/winmaxgulf",
+              "https://twitter.com/winmaxgulf",
+              "https://www.youtube.com/@winmaxgulf"
+            ],
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "500",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Smart Technology Solutions",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "PDLC Smart Film Installation",
+                    "description": "Switchable privacy glass and smart film solutions for offices, homes, and commercial spaces in Dubai and UAE",
+                    "areaServed": "United Arab Emirates",
+                    "provider": {
+                      "@type": "Organization",
+                      "name": "WinmaxGulf"
+                    }
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "LED Display Systems",
+                    "description": "Professional indoor and outdoor LED displays, video walls, and digital signage in Dubai and UAE",
+                    "areaServed": "United Arab Emirates",
+                    "provider": {
+                      "@type": "Organization",
+                      "name": "WinmaxGulf"
+                    }
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "DJ Club Solutions",
+                    "description": "Complete turnkey entertainment systems with professional sound, lighting, and DJ equipment for clubs and venues",
+                    "areaServed": "United Arab Emirates",
+                    "provider": {
+                      "@type": "Organization",
+                      "name": "WinmaxGulf"
+                    }
+                  }
+                }
+              ]
             }
-          ]
-        }
+          },
+          {
+            "@type": "LocalBusiness",
+            "name": "WinmaxGulf",
+            "image": window.location.origin + "/favicon.png",
+            "@id": "https://winmaxgulf.com",
+            "url": "https://winmaxgulf.com",
+            "telephone": "+971527200466",
+            "priceRange": "$$-$$$",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Dubai",
+              "addressLocality": "Dubai",
+              "addressRegion": "Dubai",
+              "addressCountry": "AE"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 25.2048,
+              "longitude": 55.2708
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+              ],
+              "opens": "00:00",
+              "closes": "23:59"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "500"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://winmaxgulf.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Services",
+                "item": "https://winmaxgulf.com/#services"
+              }
+            ]
+          }
+        ]
       };
       addStructuredData(defaultStructuredData);
     }

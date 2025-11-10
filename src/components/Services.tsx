@@ -132,7 +132,7 @@ const Services = () => {
           
           <EnhancedScrollAnimation animation="slideInRotate" delay={200}>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Comprehensive Smart Technology Services
+              Comprehensive <span className="text-winmax-orange">Smart Technology</span> Services in UAE
             </h2>
           </EnhancedScrollAnimation>
           

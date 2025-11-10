@@ -8,6 +8,7 @@ import AnimatedGradientBackground from "@/components/AnimatedGradientBackground"
 import EnhancedScrollAnimation from "@/components/EnhancedScrollAnimations";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import Interactive3DCard from "@/components/Interactive3DCard";
+import SEOHead from "@/components/SEOHead";
 import djBanner from "@/assets/dj-banner.jpg";
 import djClub from "@/assets/dj-club.jpg";
 
@@ -79,9 +80,38 @@ const DJClubSolutions = () => {
     "24/7 Technical Support"
   ];
 
+  const djSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "DJ Club Solutions",
+    "description": "Complete turnkey DJ club and entertainment system installations in Dubai and UAE",
+    "provider": {
+      "@type": "Organization",
+      "name": "WinmaxGulf"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Arab Emirates"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "70"
+    }
+  };
+
   return (
-    <div className="min-h-screen">
-      <Header />
+    <>
+      <SEOHead 
+        title="DJ Club Solutions UAE | Complete Entertainment Systems Dubai"
+        description="Turnkey DJ club solutions in Dubai & UAE. Professional sound systems, dynamic lighting, special effects. Complete nightclub & entertainment venue installations."
+        keywords="DJ club solutions Dubai, nightclub setup UAE, DJ equipment Dubai, entertainment systems UAE, club lighting Dubai, sound system installation UAE"
+        ogTitle="DJ Club Solutions UAE | Turnkey Entertainment Systems"
+        ogDescription="Complete DJ club solutions in Dubai. Professional sound, lighting, and entertainment systems. Turnkey installations for nightclubs & venues across UAE."
+        structuredData={djSchema}
+      />
+      <div className="min-h-screen">
+        <Header />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -365,7 +395,8 @@ const DJClubSolutions = () => {
       </section>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

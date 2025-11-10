@@ -10,32 +10,32 @@ const Gallery = () => {
   const galleryImages = [
     {
       src: "https://winmaxgulf.com/wp-content/uploads/elementor/thumbs/full-color-screen-display-led-rental-outdoor-for-stage-500x500-1-raj2sp72j49dfannxli5lyjoo6ltgty5ddyrqf8trs.webp",
-      alt: "Outdoor LED Display for Stage Events",
+      alt: "Full Color Outdoor LED Display Screen Installation for Stage Events Dubai UAE - WinmaxGulf Professional LED Display Systems",
       category: "LED Displays"
     },
     {
       src: "https://winmaxgulf.com/wp-content/uploads/elementor/thumbs/WhatsApp-Image-2025-08-02-at-8.31.16-PM-r9p49xdyjdc3cspl0ieotrdi96tptqcpupg2ts35q0.jpeg",
-      alt: "Indoor LED Installation",
+      alt: "Indoor LED Video Wall Installation Dubai - High Resolution Digital Signage by WinmaxGulf UAE",
       category: "LED Displays"
     },
     {
       src: "https://winmaxgulf.com/wp-content/uploads/elementor/thumbs/digital-art-inmersive-exhibition-1-scaled-ramaz8nn6zvhjzysi67e3813jyanr7ary0hou0syvc.jpg",
-      alt: "Digital Art Immersive Exhibition",
+      alt: "Interactive Digital Art Immersive Exhibition LED Display Installation Dubai - WinmaxGulf Smart Technology Solutions",
       category: "Interactive Installations"
     },
     {
       src: "https://winmaxgulf.com/wp-content/uploads/elementor/thumbs/WhatsApp-Image-2025-08-02-at-8.30.32-PM-r9p4a30zodky7n5yrq7daxmal6ybnoxh2gcnrcwqrs.jpeg",
-      alt: "Smart Technology Installation",
+      alt: "PDLC Smart Film Switchable Privacy Glass Installation Dubai Office - WinmaxGulf Smart Technology UAE",
       category: "PDLC Smart Film"
     },
     {
       src: "https://winmaxgulf.com/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-02-at-8.38.56-PM11111.jpg",
-      alt: "PDLC Smart Film Technology",
+      alt: "PDLC Switchable Smart Film Glass Privacy Control Dubai Commercial Space - WinmaxGulf Installation UAE",
       category: "PDLC Smart Film"
     },
     {
       src: "https://winmaxgulf.com/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-02-at-8.29.30-PM.jpeg",
-      alt: "DJ Club Setup",
+      alt: "Professional DJ Club Sound and Lighting System Setup Dubai - Complete Entertainment Solutions by WinmaxGulf UAE",
       category: "DJ Solutions"
     }
   ];
@@ -46,13 +46,13 @@ const Gallery = () => {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
-              Completed Projects & Installations
+              Completed Projects & <span className="text-winmax-orange">Smart Technology Installations</span> in Dubai & UAE
             </h2>
             <p className="text-xl text-foreground/80 max-w-2xl mx-auto mb-4">
-              Explore our portfolio of completed projects and see how we transform residential, commercial, and entertainment spaces with innovative technology solutions across Dubai and the UAE. From luxury homes to corporate offices, retail spaces to nightclubs, our installations demonstrate the versatility and impact of smart technology.
+              Explore our portfolio of <strong>500+ completed smart technology projects</strong> and see how <a href="/" className="text-winmax-orange hover:underline">WinmaxGulf</a> transforms residential, commercial, and entertainment spaces with innovative <a href="/#services" className="text-winmax-orange hover:underline">PDLC smart film</a>, <a href="/led-display" className="text-winmax-orange hover:underline">LED display systems</a>, and <a href="/dj-club-solutions" className="text-winmax-orange hover:underline">DJ club solutions</a> across <strong>Dubai, Abu Dhabi, and the wider UAE</strong>. From luxury homes and villas to corporate offices, retail spaces, hotels, and nightclubs, our professional installations demonstrate the versatility and transformative impact of cutting-edge smart glass technology and entertainment systems.
             </p>
             <p className="text-lg text-foreground/70 max-w-xl mx-auto">
-              Each project showcases our commitment to quality installation, attention to detail, and dedication to exceeding client expectations with cutting-edge PDLC smart film, LED display systems, and complete DJ club solutions.
+              Each project showcases our commitment to quality installation, meticulous attention to detail, and dedication to exceeding client expectations with cutting-edge <strong>smart technology solutions in the UAE</strong>. Our experienced team delivers complete end-to-end services from consultation to maintenance.
             </p>
           </div>
 
@@ -98,7 +98,7 @@ const Gallery = () => {
             </button>
             <img 
               src={selectedImage}
-              alt="Gallery Image"
+              alt="WinmaxGulf Smart Technology Installation Project - Dubai UAE"
               className="w-full h-auto max-h-[90vh] object-contain rounded-lg shadow-2xl"
             />
           </div>

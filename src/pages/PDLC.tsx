@@ -8,6 +8,7 @@ import AnimatedGradientBackground from "@/components/AnimatedGradientBackground"
 import EnhancedScrollAnimation from "@/components/EnhancedScrollAnimations";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import Interactive3DCard from "@/components/Interactive3DCard";
+import SEOHead from "@/components/SEOHead";
 import heroImage from "@/assets/hero-smart-glass.jpg";
 import bedroomImage from "@/assets/bedroom-room.jpg";
 import conferenceImage from "@/assets/conference-room.jpg";
@@ -86,9 +87,39 @@ const PDLC = () => {
     { category: "Retail", details: "Display windows and store interiors" }
   ];
 
+  const pdlcSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "PDLC Smart Film",
+    "description": "Premium switchable privacy glass film for instant transparency control in Dubai and UAE",
+    "brand": {
+      "@type": "Brand",
+      "name": "WinmaxGulf"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "AED",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "250"
+    }
+  };
+
   return (
-    <div className="min-h-screen">
-      <Header />
+    <>
+      <SEOHead 
+        title="PDLC Smart Film UAE | Switchable Privacy Glass Dubai | WinmaxGulf"
+        description="Premium PDLC smart film installation in Dubai & UAE. Instant privacy control, energy efficient switchable glass for offices, homes & commercial spaces. Expert installation."
+        keywords="PDLC smart film UAE, switchable glass Dubai, smart privacy glass, electronic glass UAE, PDLC film installation Dubai, privacy glass Abu Dhabi, smart glass technology UAE"
+        ogTitle="PDLC Smart Film UAE | Switchable Privacy Glass Solutions"
+        ogDescription="Premium PDLC smart film installation in Dubai. Instant privacy control with energy-efficient switchable glass technology. 500+ installations across UAE."
+        structuredData={pdlcSchema}
+      />
+      <div className="min-h-screen">
+        <Header />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -394,7 +425,8 @@ const PDLC = () => {
       </section>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 
