@@ -14,6 +14,7 @@ import EnhancedScrollAnimation from "./EnhancedScrollAnimations";
 import GlassmorphismCard from "./GlassmorphismCard";
 import Interactive3DCard from "./Interactive3DCard";
 import DemoSelectionModal from "./DemoSelectionModal";
+import { trackCTAClick, trackButtonClick, trackOutboundLink, trackModalOpen } from "@/hooks/useGATracking";
 
 const Hero = () => {
   const [showDemoModal, setShowDemoModal] = useState(false);
@@ -122,7 +123,11 @@ const Hero = () => {
                 <Button 
                   size="lg"
                   className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light hover:opacity-90 px-12 py-6 text-xl font-semibold transition-all duration-300 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105"
-                  onClick={() => window.open('https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20services', '_blank')}
+                  onClick={() => {
+                    trackCTAClick('Get Started Today', 'hero');
+                    trackOutboundLink('whatsapp_hero');
+                    window.open('https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20services', '_blank');
+                  }}
                   aria-label="Get started with WinmaxGulf today"
                 >
                   Get Started Today
@@ -133,7 +138,11 @@ const Hero = () => {
                   variant="outline" 
                   size="lg"
                   className="border-2 border-winmax-orange text-winmax-orange hover:bg-winmax-orange/10 backdrop-blur-sm px-12 py-6 text-xl font-semibold rounded-full transition-all duration-300 hover:border-winmax-orange/60"
-                  onClick={() => setShowDemoModal(true)}
+                  onClick={() => {
+                    trackButtonClick('Watch Demo', 'hero');
+                    trackModalOpen('demo_selection');
+                    setShowDemoModal(true);
+                  }}
                   aria-label="Watch demonstration video"
                 >
                  <Play className="mr-3 h-6 w-6" aria-hidden="true" />
