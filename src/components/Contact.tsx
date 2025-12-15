@@ -8,6 +8,7 @@ import { Phone, Mail, MapPin, MessageCircle, Clock, Globe, Send } from "lucide-r
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "@/hooks/use-toast";
+import { trackFormSubmission, trackButtonClick, trackOutboundLink } from "@/hooks/useGATracking";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -73,6 +74,10 @@ Message: ${validatedData.message}`;
       link.click();
       document.body.removeChild(link);
       
+      // Track successful form submission
+      trackFormSubmission('contact_form', true);
+      trackOutboundLink('whatsapp_contact');
+      
       // Success notification
       toast({
         title: "Message Sent!",
@@ -98,6 +103,9 @@ Message: ${validatedData.message}`;
           }
         });
         setErrors(newErrors);
+        
+        // Track failed form submission
+        trackFormSubmission('contact_form', false);
         
         toast({
           title: "Validation Error",

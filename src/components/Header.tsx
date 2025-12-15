@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import AnimatedIcon from "./AnimatedIcon";
 import { MicroInteractionButton } from "./Microinteractions";
 import winmaxLogo from "@/assets/winmax-logo-new.png";
+import { trackNavigation, trackCTAClick, trackOutboundLink } from "@/hooks/useGATracking";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,12 +41,12 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {isHomePage ? (
-              <a href="#home" className="relative text-white/90 hover:text-winmax-orange transition-all duration-300 group">
+              <a href="#home" className="relative text-white/90 hover:text-winmax-orange transition-all duration-300 group" onClick={() => trackNavigation('Home', 'header')}>
                 Home
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-winmax-orange transition-all duration-300 group-hover:w-full"></span>
               </a>
             ) : (
-              <Link to="/" className="relative text-white/90 hover:text-winmax-orange transition-all duration-300 group">
+              <Link to="/" className="relative text-white/90 hover:text-winmax-orange transition-all duration-300 group" onClick={() => trackNavigation('Home', 'header')}>
                 Home
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-winmax-orange transition-all duration-300 group-hover:w-full"></span>
               </Link>
@@ -102,6 +103,8 @@ const Header = () => {
               size="lg"
               className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light text-white font-semibold px-8 py-3 text-base hover:scale-105 hover:shadow-xl hover:shadow-winmax-orange/40 transition-all duration-300 border-0 rounded-lg group"
               onClick={() => {
+                trackCTAClick('Get Quote', 'header');
+                trackOutboundLink('whatsapp_header');
                 const link = document.createElement('a');
                 link.href = 'https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20services';
                 link.target = '_blank';
@@ -218,6 +221,8 @@ const Header = () => {
                 size="lg"
                 className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light text-white font-semibold px-6 py-3 text-base hover:opacity-90 transition-all duration-300 mt-4 w-full rounded-lg"
                 onClick={() => {
+                  trackCTAClick('Get Quote', 'mobile_header');
+                  trackOutboundLink('whatsapp_mobile_header');
                   const link = document.createElement('a');
                   link.href = 'https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20services';
                   link.target = '_blank';
