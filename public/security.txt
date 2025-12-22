@@ -1,3 +1,30 @@
-Contact: info@winmaxgulf.com
+# Security Policy for WinmaxGulf
+# https://winmaxgulf.com/.well-known/security.txt
+
+# Contact for security vulnerabilities
+Contact: mailto:info@winmaxgulf.com
+Contact: tel:+971527200466
+Contact: https://winmaxgulf.com/#contact
+
+# Preferred contact method and languages
 Preferred-Languages: en, ar
+
+# Our security policy
+Policy: https://winmaxgulf.com/security-policy
+
+# Acknowledgments for security researchers
+Acknowledgments: https://winmaxgulf.com/security-acknowledgments
+
+# Canonical URL for this file
 Canonical: https://winmaxgulf.com/.well-known/security.txt
+
+# Expiry date for this security.txt
+Expires: 2026-12-31T23:59:59.000Z
+
+# Hiring
+Hiring: https://winmaxgulf.com/careers
+
+# Comments
+# WinmaxGulf takes security seriously. If you discover a security
+# vulnerability, please report it responsibly to our team.
+# We appreciate your help in keeping our customers safe.
