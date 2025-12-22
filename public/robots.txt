@@ -1,26 +1,133 @@
+# Robots.txt for WinmaxGulf
+# https://winmaxgulf.com
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
 
+# Sitemap location
 Sitemap: https://winmaxgulf.com/sitemap.xml
 
-# AI Crawlers
+# Crawl delay for general bots
+Crawl-delay: 1
+
+# ===========================================
+# AI & LLM Crawlers - Full Access Granted
+# ===========================================
+
+# OpenAI Crawlers
 User-agent: GPTBot
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
 
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic Crawlers
 User-agent: Claude-Web
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
 
 User-agent: Anthropic-AI
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
+# Google AI Crawlers
 User-agent: Google-Extended
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: Googlebot
 Allow: /
 
-# LLMs.txt location
-# https://winmaxgulf.com/llms.txt
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
+# Microsoft/Bing Crawlers
+User-agent: Bingbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+# Meta/Facebook
+User-agent: FacebookBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Other AI Crawlers
+User-agent: CCBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: omgili
+Allow: /
+
+User-agent: omgilibot
+Allow: /
+
+# ===========================================
+# LLMs.txt Files Location
+# ===========================================
+# Main: https://winmaxgulf.com/llms.txt
+# Full: https://winmaxgulf.com/llms-full.txt
+# 
+# These files contain structured information
+# optimized for AI language models to understand
+# our business, products, and services.
+# ===========================================
+
+# Security.txt
+# https://winmaxgulf.com/security.txt

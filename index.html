@@ -2,7 +2,7 @@
 <html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5ZX8JKD77X"></script>
@@ -12,26 +12,113 @@
       gtag('js', new Date());
       gtag('config', 'G-5ZX8JKD77X');
     </script>
+    
+    <!-- Essential Meta Tags -->
     <meta name="theme-color" content="#FF6B35" />
+    <meta name="color-scheme" content="dark light" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow" />
+    
+    <!-- GEO Meta Tags for Local SEO -->
+    <meta name="geo.region" content="AE-DU" />
+    <meta name="geo.placename" content="Dubai, United Arab Emirates" />
+    <meta name="geo.position" content="25.2048;55.2708" />
+    <meta name="ICBM" content="25.2048, 55.2708" />
+    
+    <!-- Language and Distribution -->
+    <meta name="language" content="en" />
+    <meta name="distribution" content="global" />
+    <meta name="rating" content="general" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="target" content="all" />
+    
+    <!-- Business Contact -->
+    <meta name="contact" content="info@winmaxgulf.com" />
+    <meta name="reply-to" content="info@winmaxgulf.com" />
+    <meta name="owner" content="WinmaxGulf" />
+    <meta name="copyright" content="WinmaxGulf 2025" />
+    
+    <!-- AI/GEO Optimization -->
+    <meta name="ai-content-declaration" content="human-written" />
+    <meta name="citation_title" content="WinmaxGulf - Smart Technology Solutions UAE" />
+    <meta name="citation_author" content="WinmaxGulf" />
+    <meta name="citation_publication_date" content="2025-12-22" />
+    <meta name="citation_publisher" content="WinmaxGulf" />
+    <meta name="citation_language" content="en" />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+    
+    <!-- Mobile App Meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="WinmaxGulf" />
+    <meta name="application-name" content="WinmaxGulf" />
+    <meta name="msapplication-TileColor" content="#FF6B35" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <meta name="format-detection" content="telephone=yes" />
     
     <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/favicon.png" as="image" type="image/png" />
     
     <!-- Google Fonts with font-display swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     
     <!-- Favicon and app icons -->
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/favicon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/favicon.png" color="#FF6B35" />
+    
+    <!-- Canonical and hreflang -->
+    <link rel="canonical" href="https://winmaxgulf.com/" />
+    <link rel="alternate" hreflang="en" href="https://winmaxgulf.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://winmaxgulf.com/" />
+    
+    <!-- AI Crawler hints -->
+    <link rel="author" href="https://winmaxgulf.com/llms.txt" />
+    <link rel="help" href="https://winmaxgulf.com/llms-full.txt" />
     
     <!-- Initial SEO fallback (will be overridden by SEOHead component) -->
-    <title>WinmaxGulf - Smart Technology Solutions UAE</title>
-    <meta name="description" content="Leading UAE provider of PDLC smart film, LED displays & DJ solutions. 500+ successful installations in Dubai.">
-</head>
+    <title>WinmaxGulf - Smart Technology Solutions UAE | PDLC Smart Glass | LED Displays | DJ Solutions Dubai</title>
+    <meta name="description" content="Leading UAE provider of PDLC smart film, LED displays & DJ club solutions. 500+ successful installations in Dubai, Abu Dhabi & GCC. Expert smart glass technology installation. Contact: +971527200466" />
+    <meta name="keywords" content="PDLC smart film UAE, LED displays Dubai, DJ club solutions, smart glass technology Dubai, interactive displays UAE, privacy glass Dubai, electronic switchable glass UAE, digital signage Dubai, smart film installation, LED video walls UAE, switchable glass Dubai, smart window film, LED screen rental Dubai" />
+    
+    <!-- Open Graph fallback -->
+    <meta property="og:title" content="WinmaxGulf - Smart Technology Solutions UAE" />
+    <meta property="og:description" content="Leading UAE provider of PDLC smart film, LED displays & DJ solutions. 500+ successful installations." />
+    <meta property="og:image" content="https://winmaxgulf.com/favicon.png" />
+    <meta property="og:url" content="https://winmaxgulf.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="WinmaxGulf" />
+    <meta property="og:locale" content="en_AE" />
+    
+    <!-- Twitter Card fallback -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@winmaxgulf" />
+    <meta name="twitter:title" content="WinmaxGulf - Smart Technology Solutions UAE" />
+    <meta name="twitter:description" content="Leading UAE provider of PDLC smart film, LED displays & DJ solutions." />
+    <meta name="twitter:image" content="https://winmaxgulf.com/favicon.png" />
+  </head>
 
   <body>
     <div id="root"></div>
