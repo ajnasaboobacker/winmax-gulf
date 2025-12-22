@@ -89,23 +89,84 @@ const PDLC = () => {
 
   const pdlcSchema = {
     "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "PDLC Smart Film",
-    "description": "Premium switchable privacy glass film for instant transparency control in Dubai and UAE",
-    "brand": {
-      "@type": "Brand",
-      "name": "WinmaxGulf"
-    },
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "AED",
-      "availability": "https://schema.org/InStock"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "250"
-    }
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": "https://winmaxgulf.com/pdlc#product",
+        "name": "PDLC Smart Film",
+        "description": "Premium switchable privacy glass film for instant transparency control. Switch between transparent and opaque states with a button press.",
+        "brand": {
+          "@type": "Brand",
+          "name": "WinmaxGulf"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "WinmaxGulf"
+        },
+        "category": "Smart Glass Technology",
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "AED",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "WinmaxGulf"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "250",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://winmaxgulf.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "PDLC Smart Glass",
+            "item": "https://winmaxgulf.com/pdlc"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does PDLC smart glass work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When power is ON, the glass becomes fully transparent. When power is OFF, the glass becomes milky white opaque, blocking visibility completely while still allowing light to pass through."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the control options for PDLC smart film?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "PDLC smart film can be controlled via motion sensors, smartphone apps, remote controls, dimmer switches, WiFi switches, and voice assistants like Alexa, Google Home, and Siri. It is also certified with Crestron and Lutron systems."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where can PDLC smart glass be used?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "PDLC smart glass is perfect for offices (boardrooms, meeting rooms), residential spaces (bedrooms, bathrooms), healthcare facilities (patient rooms), and retail environments (display windows)."
+            }
+          }
+        ]
+      }
+    ]
   };
 
   return (

@@ -123,23 +123,85 @@ const LEDDisplay = () => {
 
   const ledSchema = {
     "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "LED Display Systems",
-    "description": "Professional LED display installation for indoor and outdoor applications in Dubai and UAE",
-    "brand": {
-      "@type": "Brand",
-      "name": "WinmaxGulf"
-    },
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "AED",
-      "availability": "https://schema.org/InStock"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "180"
-    }
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": "https://winmaxgulf.com/led-display#product",
+        "name": "LED Display Systems",
+        "description": "Professional LED display installation for indoor and outdoor applications. High brightness, ultra HD resolution, weather-resistant options available.",
+        "brand": {
+          "@type": "Brand",
+          "name": "WinmaxGulf"
+        },
+        "category": "Digital Signage",
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "AED",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "WinmaxGulf"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "180",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://winmaxgulf.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "LED Display",
+            "item": "https://winmaxgulf.com/led-display"
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "LED Display Types",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Large Outdoor LED Screen" },
+          { "@type": "ListItem", "position": 2, "name": "Indoor LED Video Wall" },
+          { "@type": "ListItem", "position": 3, "name": "Flexible LED Screen" },
+          { "@type": "ListItem", "position": 4, "name": "Transparent LED Screen" },
+          { "@type": "ListItem", "position": 5, "name": "Fine Pitch LED Display" },
+          { "@type": "ListItem", "position": 6, "name": "Rental LED Screen" },
+          { "@type": "ListItem", "position": 7, "name": "Stadium LED Display" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What pixel pitch LED display do I need?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For close viewing (under 3 meters), choose P1.5-P2.5. For outdoor advertising and larger viewing distances, P4-P10 is suitable. Our team can help you choose the right specification for your needs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are your LED displays weatherproof?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, our outdoor LED displays are IP65/IP66 rated, fully protected against dust and water. They operate in temperatures from -20°C to +50°C."
+            }
+          }
+        ]
+      }
+    ]
   };
 
   return (

@@ -82,22 +82,90 @@ const DJClubSolutions = () => {
 
   const djSchema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "DJ Club Solutions",
-    "description": "Complete turnkey DJ club and entertainment system installations in Dubai and UAE",
-    "provider": {
-      "@type": "Organization",
-      "name": "WinmaxGulf"
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "United Arab Emirates"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "70"
-    }
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://winmaxgulf.com/dj-club-solutions#service",
+        "name": "DJ Club Solutions",
+        "description": "Complete turnkey DJ club and entertainment system installations including sound, lighting, visual effects, and DJ equipment.",
+        "provider": {
+          "@type": "Organization",
+          "name": "WinmaxGulf",
+          "url": "https://winmaxgulf.com"
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "United Arab Emirates" },
+          { "@type": "Country", "name": "Saudi Arabia" },
+          { "@type": "Country", "name": "Qatar" }
+        ],
+        "serviceType": "Entertainment System Installation",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "70",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://winmaxgulf.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "DJ Club Solutions",
+            "item": "https://winmaxgulf.com/dj-club-solutions"
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "DJ Club Services",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Professional Sound Systems" },
+          { "@type": "ListItem", "position": 2, "name": "Dynamic Lighting Systems" },
+          { "@type": "ListItem", "position": 3, "name": "Visual Effects & Projections" },
+          { "@type": "ListItem", "position": 4, "name": "DJ Booth & Equipment" },
+          { "@type": "ListItem", "position": 5, "name": "Special Effects Systems" },
+          { "@type": "ListItem", "position": 6, "name": "Rigging & Installation" }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "DJ Club Installation Process",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Consultation & Design",
+            "text": "We understand your vision and create detailed 3D visualizations of your space."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Equipment Selection",
+            "text": "Our experts recommend the best equipment from leading global brands."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Installation & Setup",
+            "text": "Professional installation by certified technicians with proper safety protocols."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Testing & Handover",
+            "text": "Comprehensive system testing, staff training, and ongoing support."
+          }
+        ]
+      }
+    ]
   };
 
   return (
