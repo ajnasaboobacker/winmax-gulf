@@ -174,175 +174,133 @@ const LandingPage = () => {
       <div className="min-h-screen bg-background">
         {/* Header */}
         <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-          <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-            <img src={winmaxLogo} alt="WinmaxGulf" className="h-10" />
-            <div className="hidden md:flex items-center gap-4 text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-primary" />
-                <span>+971 4 227 5789</span>
-              </div>
-            </div>
+          <div className="container mx-auto px-4 py-3 sm:py-4 flex items-center justify-between">
+            <img src={winmaxLogo} alt="WinmaxGulf" className="h-8 sm:h-10" />
+            <a 
+              href="tel:+97142275789" 
+              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+            >
+              <Phone className="w-4 h-4 text-primary" />
+              <span className="hidden sm:inline">+971 4 227 5789</span>
+              <span className="sm:hidden text-sm">Call Us</span>
+            </a>
           </div>
         </header>
 
-        <main className="container mx-auto px-4 py-12 lg:py-20">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            {/* Left Column - Value Proposition */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-sm font-medium rounded-full">
-                  Free Consultation
-                </span>
-                <h1 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-                  Transform Your Space with{' '}
-                  <span className="text-primary">Smart Technology</span>
-                </h1>
-                <p className="text-lg text-muted-foreground">
-                  Get expert advice on PDLC smart glass, LED displays, and complete DJ club solutions. 
-                  Serving UAE with premium installations since 2010.
-                </p>
-              </div>
-
-              {/* Benefits */}
-              <div className="space-y-4">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-4 p-4 bg-card rounded-lg border border-border">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                      <benefit.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <span className="text-foreground font-medium">{benefit.text}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Contact Info */}
-              <div className="p-6 bg-card rounded-xl border border-border space-y-4">
-                <h3 className="font-semibold text-foreground">Need immediate assistance?</h3>
-                <div className="space-y-3">
-                  <a href="tel:+97142275789" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
-                    <Phone className="w-5 h-5 text-primary" />
-                    <span>+971 4 227 5789</span>
-                  </a>
-                  <a href="mailto:info@winmaxgulf.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
-                    <Mail className="w-5 h-5 text-primary" />
-                    <span>info@winmaxgulf.com</span>
-                  </a>
-                  <div className="flex items-start gap-3 text-muted-foreground">
-                    <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Office 301, Al Saaha Offices, Souk Al Bahar, Downtown Dubai, UAE</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Form */}
-            <div className="bg-card rounded-2xl border border-border p-6 lg:p-8 shadow-xl">
-              <div className="space-y-6">
+        <main className="container mx-auto px-4 py-6 sm:py-12 lg:py-20">
+          {/* Mobile: Form first, Desktop: Side by side */}
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-20 items-start">
+            
+            {/* Form - Shows first on mobile */}
+            <div className="order-1 lg:order-2 bg-card rounded-2xl border border-border p-5 sm:p-6 lg:p-8 shadow-xl w-full">
+              <div className="space-y-5 sm:space-y-6">
                 <div className="text-center space-y-2">
-                  <h2 className="text-2xl font-bold text-foreground">Get Your Free Quote</h2>
-                  <p className="text-muted-foreground">Fill out the form and we'll get back to you within 24 hours</p>
+                  <h2 className="text-xl sm:text-2xl font-bold text-foreground">Get Your Free Quote</h2>
+                  <p className="text-sm sm:text-base text-muted-foreground">Fill out the form and we'll get back to you within 24 hours</p>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="first_name">First Name *</Label>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div className="space-y-1.5 sm:space-y-2">
+                      <Label htmlFor="first_name" className="text-sm">First Name *</Label>
                       <Input
                         id="first_name"
                         placeholder="John"
                         {...register('first_name')}
-                        className={errors.first_name ? 'border-destructive' : ''}
+                        className={`h-11 sm:h-10 text-base sm:text-sm ${errors.first_name ? 'border-destructive' : ''}`}
                       />
                       {errors.first_name && (
-                        <p className="text-sm text-destructive">{errors.first_name.message}</p>
+                        <p className="text-xs text-destructive">{errors.first_name.message}</p>
                       )}
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="last_name">Last Name *</Label>
+                    <div className="space-y-1.5 sm:space-y-2">
+                      <Label htmlFor="last_name" className="text-sm">Last Name *</Label>
                       <Input
                         id="last_name"
                         placeholder="Doe"
                         {...register('last_name')}
-                        className={errors.last_name ? 'border-destructive' : ''}
+                        className={`h-11 sm:h-10 text-base sm:text-sm ${errors.last_name ? 'border-destructive' : ''}`}
                       />
                       {errors.last_name && (
-                        <p className="text-sm text-destructive">{errors.last_name.message}</p>
+                        <p className="text-xs text-destructive">{errors.last_name.message}</p>
                       )}
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email Address *</Label>
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <Label htmlFor="email" className="text-sm">Email Address *</Label>
                     <Input
                       id="email"
                       type="email"
                       placeholder="john@example.com"
                       {...register('email')}
-                      className={errors.email ? 'border-destructive' : ''}
+                      className={`h-11 sm:h-10 text-base sm:text-sm ${errors.email ? 'border-destructive' : ''}`}
                     />
                     {errors.email && (
-                      <p className="text-sm text-destructive">{errors.email.message}</p>
+                      <p className="text-xs text-destructive">{errors.email.message}</p>
                     )}
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number *</Label>
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <Label htmlFor="phone" className="text-sm">Phone Number *</Label>
                     <Input
                       id="phone"
                       type="tel"
                       placeholder="+971 50 123 4567"
                       {...register('phone')}
-                      className={errors.phone ? 'border-destructive' : ''}
+                      className={`h-11 sm:h-10 text-base sm:text-sm ${errors.phone ? 'border-destructive' : ''}`}
                     />
                     {errors.phone && (
-                      <p className="text-sm text-destructive">{errors.phone.message}</p>
+                      <p className="text-xs text-destructive">{errors.phone.message}</p>
                     )}
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="company">Company (Optional)</Label>
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <Label htmlFor="company" className="text-sm">Company (Optional)</Label>
                     <Input
                       id="company"
                       placeholder="Your Company Name"
                       {...register('company')}
+                      className="h-11 sm:h-10 text-base sm:text-sm"
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="service_interest">Service Interest *</Label>
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <Label htmlFor="service_interest" className="text-sm">Service Interest *</Label>
                     <Select
                       value={serviceInterest}
                       onValueChange={(value) => setValue('service_interest', value as LeadFormData['service_interest'])}
                     >
-                      <SelectTrigger className={errors.service_interest ? 'border-destructive' : ''}>
+                      <SelectTrigger className={`h-11 sm:h-10 text-base sm:text-sm ${errors.service_interest ? 'border-destructive' : ''}`}>
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
                       <SelectContent>
                         {serviceOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
+                          <SelectItem key={option.value} value={option.value} className="text-base sm:text-sm">
                             {option.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
                     {errors.service_interest && (
-                      <p className="text-sm text-destructive">{errors.service_interest.message}</p>
+                      <p className="text-xs text-destructive">{errors.service_interest.message}</p>
                     )}
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message (Optional)</Label>
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <Label htmlFor="message" className="text-sm">Message (Optional)</Label>
                     <Textarea
                       id="message"
                       placeholder="Tell us about your project requirements..."
-                      rows={4}
+                      rows={3}
                       {...register('message')}
+                      className="text-base sm:text-sm resize-none"
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full h-12 text-lg font-semibold"
+                    className="w-full h-12 sm:h-12 text-base sm:text-lg font-semibold"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -355,19 +313,70 @@ const LandingPage = () => {
                     )}
                   </Button>
 
-                  <p className="text-xs text-muted-foreground text-center">
+                  <p className="text-xs text-muted-foreground text-center px-2">
                     By submitting this form, you agree to our privacy policy. 
                     We respect your privacy and will never share your information.
                   </p>
                 </form>
               </div>
             </div>
+
+            {/* Value Proposition - Shows second on mobile */}
+            <div className="order-2 lg:order-1 space-y-6 sm:space-y-8">
+              <div className="space-y-3 sm:space-y-4">
+                <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-xs sm:text-sm font-medium rounded-full">
+                  Free Consultation
+                </span>
+                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+                  Transform Your Space with{' '}
+                  <span className="text-primary">Smart Technology</span>
+                </h1>
+                <p className="text-base sm:text-lg text-muted-foreground">
+                  Get expert advice on PDLC smart glass, LED displays, and complete DJ club solutions. 
+                  Serving UAE with premium installations since 2010.
+                </p>
+              </div>
+
+              {/* Benefits - Horizontal scroll on mobile, stacked on larger screens */}
+              <div className="flex gap-3 overflow-x-auto pb-2 sm:pb-0 sm:flex-col sm:gap-4 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
+                {benefits.map((benefit, index) => (
+                  <div 
+                    key={index} 
+                    className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-card rounded-lg border border-border flex-shrink-0 min-w-[200px] sm:min-w-0"
+                  >
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                      <benefit.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                    </div>
+                    <span className="text-sm sm:text-base text-foreground font-medium">{benefit.text}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Contact Info */}
+              <div className="p-4 sm:p-6 bg-card rounded-xl border border-border space-y-3 sm:space-y-4">
+                <h3 className="font-semibold text-foreground text-sm sm:text-base">Need immediate assistance?</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-1 gap-2 sm:gap-3">
+                  <a href="tel:+97142275789" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors p-2 -m-2 rounded-lg active:bg-primary/10">
+                    <Phone className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="text-sm sm:text-base">+971 4 227 5789</span>
+                  </a>
+                  <a href="mailto:info@winmaxgulf.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors p-2 -m-2 rounded-lg active:bg-primary/10">
+                    <Mail className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="text-sm sm:text-base">info@winmaxgulf.com</span>
+                  </a>
+                  <div className="flex items-start gap-3 text-muted-foreground p-2 -m-2">
+                    <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-sm sm:text-base">Office 301, Al Saaha Offices, Souk Al Bahar, Downtown Dubai, UAE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </main>
 
         {/* Footer */}
-        <footer className="border-t border-border py-8 bg-card/50">
-          <div className="container mx-auto px-4 text-center text-muted-foreground text-sm">
+        <footer className="border-t border-border py-6 sm:py-8 bg-card/50">
+          <div className="container mx-auto px-4 text-center text-muted-foreground text-xs sm:text-sm">
             <p>© {new Date().getFullYear()} WinmaxGulf. All rights reserved.</p>
             <p className="mt-2">Dubai, UAE | +971 4 227 5789 | info@winmaxgulf.com</p>
           </div>
