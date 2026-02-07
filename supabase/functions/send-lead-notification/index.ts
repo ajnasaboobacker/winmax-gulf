@@ -1,5 +1,4 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.95.3";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -96,9 +95,10 @@ const handler = async (req: Request): Promise<Response> => {
     const results = {
       email: false,
       whatsapp: false,
+      errors: [] as string[],
     };
 
-    // Send email notification if RESEND_API_KEY is configured
+    // Send email notification using Resend default domain
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
     const notificationEmail = Deno.env.get("NOTIFICATION_EMAIL");
 
@@ -111,7 +111,7 @@ const handler = async (req: Request): Promise<Response> => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "WinmaxGulf Leads <leads@winmaxgulf.com>",
+            from: "WinmaxGulf Leads <onboarding@resend.dev>",
             to: [notificationEmail],
             subject: `New Lead: ${lead.first_name} ${lead.last_name} - ${serviceLabels[lead.service_interest]}`,
             text: formatLeadForEmail(lead),
@@ -124,33 +124,53 @@ const handler = async (req: Request): Promise<Response> => {
         } else {
           const errorText = await emailResponse.text();
           console.error("Email send failed:", errorText);
+          results.errors.push(`Email failed: ${errorText}`);
         }
       } catch (emailError) {
         console.error("Email notification error:", emailError);
+        results.errors.push(`Email error: ${emailError}`);
       }
     } else {
       console.log("Email notification skipped: RESEND_API_KEY or NOTIFICATION_EMAIL not configured");
     }
 
-    // Send WhatsApp notification if configured
+    // Send WhatsApp notification via Whapi.cloud
+    const whapiToken = Deno.env.get("WHAPI_TOKEN");
     const whatsappNumber = Deno.env.get("WHATSAPP_NOTIFICATION_NUMBER");
     
-    if (whatsappNumber) {
-      // Generate WhatsApp click-to-chat link with pre-filled message
-      const whatsappMessage = formatLeadForWhatsApp(lead);
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-      
-      // Log the WhatsApp URL for manual sending or webhook integration
-      console.log("WhatsApp notification URL:", whatsappUrl);
-      results.whatsapp = true;
-      
-      // If you have a WhatsApp Business API configured, you can send directly:
-      // const whatsappApiKey = Deno.env.get("WHATSAPP_API_KEY");
-      // if (whatsappApiKey) {
-      //   // Send via WhatsApp Business API
-      // }
+    if (whapiToken && whatsappNumber) {
+      try {
+        const whatsappMessage = formatLeadForWhatsApp(lead);
+        
+        // Format phone number for Whapi (remove + if present, add @s.whatsapp.net)
+        const formattedNumber = whatsappNumber.replace(/^\+/, "");
+        
+        const whapiResponse = await fetch("https://gate.whapi.cloud/messages/text", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${whapiToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            to: formattedNumber,
+            body: whatsappMessage,
+          }),
+        });
+
+        if (whapiResponse.ok) {
+          results.whatsapp = true;
+          console.log("WhatsApp notification sent successfully via Whapi");
+        } else {
+          const errorText = await whapiResponse.text();
+          console.error("WhatsApp send failed:", errorText);
+          results.errors.push(`WhatsApp failed: ${errorText}`);
+        }
+      } catch (whatsappError) {
+        console.error("WhatsApp notification error:", whatsappError);
+        results.errors.push(`WhatsApp error: ${whatsappError}`);
+      }
     } else {
-      console.log("WhatsApp notification skipped: WHATSAPP_NOTIFICATION_NUMBER not configured");
+      console.log("WhatsApp notification skipped: WHAPI_TOKEN or WHATSAPP_NOTIFICATION_NUMBER not configured");
     }
 
     return new Response(
