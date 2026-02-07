@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import BlogDashboard from "./pages/admin/BlogDashboard";
 import BlogPosts from "./pages/admin/BlogPosts";
+import PostEditor from "./pages/admin/PostEditor";
 import BlogCategories from "./pages/admin/BlogCategories";
 import BlogTags from "./pages/admin/BlogTags";
 import BlogUsers from "./pages/admin/BlogUsers";
@@ -54,6 +55,8 @@ const App = () => (
               >
                 <Route index element={<BlogDashboard />} />
                 <Route path="posts" element={<BlogPosts />} />
+                <Route path="posts/new" element={<PostEditor />} />
+                <Route path="posts/:id" element={<PostEditor />} />
                 <Route path="categories" element={<BlogCategories />} />
                 <Route path="tags" element={<BlogTags />} />
                 <Route path="users" element={<ProtectedRoute requiredRole="admin"><BlogUsers /></ProtectedRoute>} />
