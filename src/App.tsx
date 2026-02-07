@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import PDLC from "./pages/PDLC";
 import LEDDisplay from "./pages/LEDDisplay";
 import DJClubSolutions from "./pages/DJClubSolutions";
+import LandingPage from "./pages/LandingPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/pdlc" element={<PDLC />} />
             <Route path="/led-display" element={<LEDDisplay />} />
             <Route path="/dj-club-solutions" element={<DJClubSolutions />} />
+            <Route path="/lp" element={<LandingPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

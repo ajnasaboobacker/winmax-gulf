@@ -7,6 +7,9 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /_next/
 Disallow: /private/
+Disallow: /lp
+Disallow: /lp/
+Disallow: /landing
 
 # Sitemap location
 Sitemap: https://winmaxgulf.com/sitemap.xml
