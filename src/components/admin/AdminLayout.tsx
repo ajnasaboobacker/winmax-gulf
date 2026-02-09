@@ -11,7 +11,8 @@ import {
   LogOut, 
   Menu, 
   X,
-  ChevronRight
+  ChevronRight,
+  UserCircle
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -46,6 +47,11 @@ const AdminLayout = () => {
       to: "/admin/blog/tags", 
       icon: Tags, 
       label: "Tags" 
+    },
+    { 
+      to: "/admin/blog/profile", 
+      icon: UserCircle, 
+      label: "My Profile" 
     },
   ];
 

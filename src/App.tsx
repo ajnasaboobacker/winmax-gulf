@@ -23,6 +23,7 @@ import PostEditor from "./pages/admin/PostEditor";
 import BlogCategories from "./pages/admin/BlogCategories";
 import BlogTags from "./pages/admin/BlogTags";
 import BlogUsers from "./pages/admin/BlogUsers";
+import AuthorProfile from "./pages/admin/AuthorProfile";
 
 const queryClient = new QueryClient();
 
@@ -67,6 +68,7 @@ const App = () => (
                 <Route path="posts/:id" element={<PostEditor />} />
                 <Route path="categories" element={<BlogCategories />} />
                 <Route path="tags" element={<BlogTags />} />
+                <Route path="profile" element={<AuthorProfile />} />
                 <Route path="users" element={<ProtectedRoute requiredRole="admin"><BlogUsers /></ProtectedRoute>} />
               </Route>
               
