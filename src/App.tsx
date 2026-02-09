@@ -13,6 +13,8 @@ import PDLC from "./pages/PDLC";
 import LEDDisplay from "./pages/LEDDisplay";
 import DJClubSolutions from "./pages/DJClubSolutions";
 import LandingPage from "./pages/LandingPage";
+import Blog from "./pages/Blog";
+import BlogPostPage from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import BlogDashboard from "./pages/admin/BlogDashboard";
@@ -40,6 +42,12 @@ const App = () => (
               <Route path="/led-display" element={<LEDDisplay />} />
               <Route path="/dj-club-solutions" element={<DJClubSolutions />} />
               <Route path="/lp" element={<LandingPage />} />
+              
+              {/* Blog routes */}
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
+              
+              {/* Admin login (public) */}
               
               {/* Admin login (public) */}
               <Route path="/admin/login" element={<AdminLogin />} />
