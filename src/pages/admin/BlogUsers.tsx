@@ -47,7 +47,8 @@ import {
   Eye,
   Mail,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  KeyRound
 } from "lucide-react";
 import { format } from "date-fns";
 
@@ -124,7 +125,12 @@ const BlogUsers = () => {
     role: "author",
   });
   const [createError, setCreateError] = useState<string | null>(null);
-
+  
+  // Reset password state
+  const [isResetPasswordOpen, setIsResetPasswordOpen] = useState(false);
+  const [resetPasswordUser, setResetPasswordUser] = useState<UserWithRoles | null>(null);
+  const [newPassword, setNewPassword] = useState("");
+  const [resetError, setResetError] = useState<string | null>(null);
   // Fetch all user roles with profiles
   const { data: usersWithRoles, isLoading } = useQuery({
     queryKey: ["blog-users"],
@@ -275,6 +281,42 @@ const BlogUsers = () => {
     },
     onError: (error: Error) => {
       setCreateError(error.message);
+    },
+  });
+
+  // Reset password mutation
+  const resetPasswordMutation = useMutation({
+    mutationFn: async ({ userId, password }: { userId: string; password: string }) => {
+      if (password.length < 8) {
+        throw new Error("Password must be at least 8 characters");
+      }
+      const { data, error } = await supabase.functions.invoke("reset-user-password", {
+        body: { user_id: userId, new_password: password },
+      });
+      if (error) {
+        let errorMessage = "Failed to reset password";
+        try {
+          if ('context' in error && (error as any).context?.body) {
+            const body = await (error as any).context.body.getReader().read();
+            const text = new TextDecoder().decode(body.value);
+            const parsed = JSON.parse(text);
+            if (parsed.error) errorMessage = parsed.error;
+          }
+        } catch (e) { /* fallback */ }
+        throw new Error(errorMessage);
+      }
+      if (data?.error) throw new Error(data.error);
+      return data;
+    },
+    onSuccess: () => {
+      toast({ title: "Password reset", description: "User password has been reset successfully." });
+      setIsResetPasswordOpen(false);
+      setResetPasswordUser(null);
+      setNewPassword("");
+      setResetError(null);
+    },
+    onError: (error: Error) => {
+      setResetError(error.message);
     },
   });
 
@@ -438,6 +480,18 @@ const BlogUsers = () => {
                             Add Role
                           </DropdownMenuItem>
                         )}
+                        <DropdownMenuItem 
+                          onClick={() => {
+                            setResetPasswordUser(user);
+                            setNewPassword("");
+                            setResetError(null);
+                            setIsResetPasswordOpen(true);
+                          }}
+                          className="gap-2 cursor-pointer"
+                        >
+                          <KeyRound className="h-4 w-4" />
+                          Reset Password
+                        </DropdownMenuItem>
                         {user.roles.map((role) => (
                           <DropdownMenuItem 
                             key={role.id}
@@ -743,6 +797,60 @@ const BlogUsers = () => {
             >
               {createUserMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
               Create User
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Reset Password Dialog */}
+      <Dialog open={isResetPasswordOpen} onOpenChange={(open) => {
+        setIsResetPasswordOpen(open);
+        if (!open) {
+          setResetPasswordUser(null);
+          setNewPassword("");
+          setResetError(null);
+        }
+      }}>
+        <DialogContent className="bg-slate-800 border-slate-700">
+          <DialogHeader>
+            <DialogTitle className="text-white">Reset Password</DialogTitle>
+            <DialogDescription className="text-slate-400">
+              Set a new password for {resetPasswordUser?.profile?.display_name || "this user"}.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            {resetError && (
+              <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
+                <AlertCircle className="h-4 w-4 shrink-0" />
+                {resetError}
+              </div>
+            )}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300">New Password</label>
+              <Input
+                type="password"
+                placeholder="••••••••"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="bg-slate-700 border-slate-600"
+              />
+              <p className="text-xs text-slate-500">Minimum 8 characters</p>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsResetPasswordOpen(false)}>
+              Cancel
+            </Button>
+            <Button 
+              onClick={() => {
+                if (resetPasswordUser) {
+                  resetPasswordMutation.mutate({ userId: resetPasswordUser.user_id, password: newPassword });
+                }
+              }}
+              disabled={resetPasswordMutation.isPending || newPassword.length < 8}
+            >
+              {resetPasswordMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+              Reset Password
             </Button>
           </DialogFooter>
         </DialogContent>
