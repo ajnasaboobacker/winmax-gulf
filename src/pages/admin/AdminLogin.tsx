@@ -8,16 +8,17 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader2, Lock, Mail, AlertCircle, CheckCircle, UserPlus } from "lucide-react";
+import { Loader2, Lock, Mail, AlertCircle, CheckCircle, UserPlus, User } from "lucide-react";
 import { z } from "zod";
 
 const loginSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
+  identifier: z.string().min(1, "Please enter your email or username"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
 const signupSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
+  username: z.string().min(3, "Username must be at least 3 characters").regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores"),
   password: z.string().min(8, "Password must be at least 8 characters"),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
@@ -26,7 +27,9 @@ const signupSchema = z.object({
 });
 
 const AdminLogin = () => {
+  const [identifier, setIdentifier] = useState("");
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -49,7 +52,7 @@ const AdminLogin = () => {
 
   const validateLoginForm = () => {
     try {
-      loginSchema.parse({ email, password });
+      loginSchema.parse({ identifier, password });
       setValidationErrors({});
       return true;
     } catch (err) {
@@ -68,7 +71,7 @@ const AdminLogin = () => {
 
   const validateSignupForm = () => {
     try {
-      signupSchema.parse({ email, password, confirmPassword });
+      signupSchema.parse({ email, username, password, confirmPassword });
       setValidationErrors({});
       return true;
     } catch (err) {
@@ -95,7 +98,7 @@ const AdminLogin = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await signIn(email, password);
+      const { error } = await signIn(identifier, password);
       
       if (error) {
         setError(error.message);
@@ -128,10 +131,24 @@ const AdminLogin = () => {
       if (error) {
         setError(error.message);
       } else if (data.user) {
+        // Create profile with username
+        const { error: profileError } = await supabase
+          .from("profiles")
+          .insert({
+            user_id: data.user.id,
+            display_name: username,
+            username: username.toLowerCase(),
+          });
+
+        if (profileError) {
+          console.error("Error creating profile:", profileError);
+        }
+
         setSuccess(
           "Account created! Please check your email to verify your account, then contact an administrator to assign your role."
         );
         setEmail("");
+        setUsername("");
         setPassword("");
         setConfirmPassword("");
       }
@@ -146,6 +163,9 @@ const AdminLogin = () => {
     setError(null);
     setSuccess(null);
     setValidationErrors({});
+    setIdentifier("");
+    setEmail("");
+    setUsername("");
     setPassword("");
     setConfirmPassword("");
   };
@@ -192,21 +212,21 @@ const AdminLogin = () => {
                   )}
 
                   <div className="space-y-2">
-                    <Label htmlFor="login-email" className="text-slate-200">Email</Label>
+                    <Label htmlFor="login-identifier" className="text-slate-200">Email or Username</Label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                      <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                       <Input
-                        id="login-email"
-                        type="email"
-                        placeholder="admin@example.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        id="login-identifier"
+                        type="text"
+                        placeholder="admin@example.com or username"
+                        value={identifier}
+                        onChange={(e) => setIdentifier(e.target.value)}
                         className="pl-10 bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-500 focus:border-primary"
                         disabled={isSubmitting}
                       />
                     </div>
-                    {validationErrors.email && (
-                      <p className="text-sm text-destructive">{validationErrors.email}</p>
+                    {validationErrors.identifier && (
+                      <p className="text-sm text-destructive">{validationErrors.identifier}</p>
                     )}
                   </div>
 
@@ -274,6 +294,25 @@ const AdminLogin = () => {
                     </div>
                     {validationErrors.email && (
                       <p className="text-sm text-destructive">{validationErrors.email}</p>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="signup-username" className="text-slate-200">Username</Label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                      <Input
+                        id="signup-username"
+                        type="text"
+                        placeholder="johndoe"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        className="pl-10 bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-500 focus:border-primary"
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                    {validationErrors.username && (
+                      <p className="text-sm text-destructive">{validationErrors.username}</p>
                     )}
                   </div>
 

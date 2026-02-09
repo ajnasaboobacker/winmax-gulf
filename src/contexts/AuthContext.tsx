@@ -9,7 +9,7 @@ interface AuthContextType {
   session: Session | null;
   userRole: UserRole;
   isLoading: boolean;
-  signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
+  signIn: (identifier: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   hasRole: (role: UserRole) => boolean;
   hasAnyBlogRole: () => boolean;
@@ -24,6 +24,9 @@ export const useAuth = () => {
   }
   return context;
 };
+
+// Helper to check if a string looks like an email
+const isEmail = (str: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -90,7 +93,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => subscription.unsubscribe();
   }, []);
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (identifier: string, password: string) => {
+    let email = identifier;
+
+    // If identifier is not an email, look up the email by username
+    if (!isEmail(identifier)) {
+      try {
+        const { data, error } = await supabase.functions.invoke("lookup-email-by-username", {
+          body: { username: identifier.toLowerCase() },
+        });
+
+        if (error || !data?.email) {
+          return { error: new Error("Username not found") };
+        }
+
+        email = data.email;
+      } catch (err) {
+        return { error: new Error("Failed to look up username") };
+      }
+    }
+
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
