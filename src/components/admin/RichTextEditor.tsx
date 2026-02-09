@@ -18,10 +18,12 @@ import {
   Undo,
   Redo,
   Code,
-  Minus
+  Minus,
+  Eye,
+  Edit3
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -34,6 +36,7 @@ interface RichTextEditorProps {
 const RichTextEditor = ({ content, onChange, placeholder = "Start writing..." }: RichTextEditorProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+  const [isPreview, setIsPreview] = useState(false);
 
   const editor = useEditor({
     extensions: [
@@ -168,6 +171,33 @@ const RichTextEditor = ({ content, onChange, placeholder = "Start writing..." }:
     <div className="border border-slate-600 rounded-lg overflow-hidden bg-slate-800">
       {/* Toolbar */}
       <div className="flex flex-wrap gap-1 p-2 border-b border-slate-600 bg-slate-700/50">
+        {/* Preview Toggle */}
+        <Button
+          type="button"
+          variant={isPreview ? "default" : "ghost"}
+          size="sm"
+          onClick={() => setIsPreview(!isPreview)}
+          title={isPreview ? "Edit Mode" : "Preview Mode"}
+          className={cn(
+            "h-8 px-3 gap-1.5 mr-2",
+            isPreview && "bg-primary text-primary-foreground"
+          )}
+        >
+          {isPreview ? (
+            <>
+              <Edit3 className="h-4 w-4" />
+              <span className="text-xs">Edit</span>
+            </>
+          ) : (
+            <>
+              <Eye className="h-4 w-4" />
+              <span className="text-xs">Preview</span>
+            </>
+          )}
+        </Button>
+
+        <div className="w-px h-6 bg-slate-600 mx-1 self-center" />
+
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleBold().run()}
           isActive={editor.isActive("bold")}
@@ -278,8 +308,25 @@ const RichTextEditor = ({ content, onChange, placeholder = "Start writing..." }:
         </ToolbarButton>
       </div>
 
-      {/* Editor */}
-      <EditorContent editor={editor} className="text-white" />
+      {/* Editor or Preview */}
+      {isPreview ? (
+        <div 
+          className="prose prose-invert prose-lg max-w-none min-h-[300px] p-4
+            prose-headings:text-foreground prose-headings:font-bold
+            prose-p:text-muted-foreground prose-p:leading-relaxed
+            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+            prose-strong:text-foreground
+            prose-blockquote:border-primary prose-blockquote:text-muted-foreground
+            prose-code:text-primary prose-code:bg-muted prose-code:px-1 prose-code:rounded
+            prose-pre:bg-card prose-pre:border prose-pre:border-border
+            prose-img:rounded-lg prose-img:mx-auto
+            prose-ul:text-muted-foreground prose-ol:text-muted-foreground
+            prose-li:marker:text-primary"
+          dangerouslySetInnerHTML={{ __html: editor.getHTML() }}
+        />
+      ) : (
+        <EditorContent editor={editor} className="text-white" />
+      )}
 
       {/* Hidden file input */}
       <input
