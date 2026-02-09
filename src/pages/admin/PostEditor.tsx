@@ -46,6 +46,14 @@ interface Tag {
   slug: string;
 }
 
+interface Author {
+  id: string;
+  user_id: string;
+  display_name: string;
+  avatar_url: string | null;
+  bio: string | null;
+}
+
 const PostEditor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -66,11 +74,12 @@ const PostEditor = () => {
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
 
-  // Categories & Tags
+  // Categories, Tags & Author
   const [categories, setCategories] = useState<Category[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [currentAuthor, setCurrentAuthor] = useState<Author | null>(null);
 
   // UI state
   const [isLoading, setIsLoading] = useState(false);
@@ -78,7 +87,7 @@ const PostEditor = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
 
-  // Fetch categories and tags
+  // Fetch categories, tags, and current author profile
   useEffect(() => {
     const fetchData = async () => {
       const [catRes, tagRes] = await Promise.all([
@@ -88,10 +97,23 @@ const PostEditor = () => {
 
       if (catRes.data) setCategories(catRes.data);
       if (tagRes.data) setTags(tagRes.data);
+
+      // Fetch current user's author profile
+      if (user?.id) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("id, user_id, display_name, avatar_url, bio")
+          .eq("user_id", user.id)
+          .maybeSingle();
+        
+        if (profile) {
+          setCurrentAuthor(profile);
+        }
+      }
     };
 
     fetchData();
-  }, []);
+  }, [user?.id]);
 
   // Fetch existing post if editing
   useEffect(() => {
@@ -472,6 +494,38 @@ const PostEditor = () => {
                     />
                   </div>
                 </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Author Info */}
+          <Card className="bg-slate-800 border-slate-700">
+            <CardHeader>
+              <CardTitle className="text-white">Author</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {currentAuthor ? (
+                <div className="flex items-center gap-3">
+                  {currentAuthor.avatar_url ? (
+                    <img
+                      src={currentAuthor.avatar_url}
+                      alt={currentAuthor.display_name}
+                      className="w-10 h-10 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold">
+                      {currentAuthor.display_name.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                  <div>
+                    <p className="text-white font-medium">{currentAuthor.display_name}</p>
+                    {currentAuthor.bio && (
+                      <p className="text-slate-400 text-sm line-clamp-1">{currentAuthor.bio}</p>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <p className="text-sm text-slate-400">No author profile found. Create one in user settings.</p>
               )}
             </CardContent>
           </Card>
