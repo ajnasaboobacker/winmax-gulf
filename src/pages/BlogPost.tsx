@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
@@ -37,7 +37,6 @@ interface Tag {
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
 
   const { data: post, isLoading, error } = useQuery({
     queryKey: ["blog-post", slug],
@@ -189,10 +188,12 @@ const BlogPost = () => {
             <p className="text-muted-foreground mb-8">
               The article you're looking for doesn't exist or has been removed.
             </p>
-            <Button onClick={() => navigate("/blog")} variant="default">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
-            </Button>
+            <Link to="/blog">
+              <Button variant="default">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Blog
+              </Button>
+            </Link>
           </div>
         </div>
         <Footer />

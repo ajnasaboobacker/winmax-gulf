@@ -95,6 +95,10 @@ const Header = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-winmax-orange transition-all duration-300 group-hover:w-full"></span>
               </Link>
             )}
+            <Link to="/blog" className="relative text-white/90 hover:text-winmax-orange transition-all duration-300 group" onClick={() => trackNavigation('Blog', 'header')}>
+              Blog
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-winmax-orange transition-all duration-300 group-hover:w-full"></span>
+            </Link>
           </nav>
 
           {/* CTA Button */}
@@ -217,6 +221,16 @@ const Header = () => {
                   Contact
                 </Link>
               )}
+              <Link 
+                to="/blog" 
+                className="text-white/90 hover:text-winmax-orange transition-colors py-2"
+                onClick={() => {
+                  trackNavigation('Blog', 'mobile_header');
+                  setIsMenuOpen(false);
+                }}
+              >
+                Blog
+              </Link>
               <Button 
                 size="lg"
                 className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light text-white font-semibold px-6 py-3 text-base hover:opacity-90 transition-all duration-300 mt-4 w-full rounded-lg"
