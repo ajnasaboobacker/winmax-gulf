@@ -221,14 +221,31 @@ const BlogUsers = () => {
     },
   });
 
+  // Validate email format
+  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
   // Create user mutation
   const createUserMutation = useMutation({
     mutationFn: async (form: CreateUserForm) => {
+      // Client-side validation
+      if (!isValidEmail(form.email)) {
+        throw new Error("Please enter a valid email address (e.g., user@example.com)");
+      }
+      if (form.password.length < 8) {
+        throw new Error("Password must be at least 8 characters");
+      }
+      if (form.username.length < 3) {
+        throw new Error("Username must be at least 3 characters");
+      }
+      if (!/^[a-zA-Z0-9_]+$/.test(form.username)) {
+        throw new Error("Username can only contain letters, numbers, and underscores");
+      }
+
       const { data, error } = await supabase.functions.invoke("create-user", {
         body: form,
       });
       
-      if (error) throw new Error(error.message);
+      if (error) throw new Error(error.message || "Failed to create user");
       if (data?.error) throw new Error(data.error);
       
       return data;
