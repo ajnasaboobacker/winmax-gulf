@@ -1,1 +1,10 @@
 project_id = "jtbdxrpxhzhnwuhhatvz"
+
+[functions.create-user]
+verify_jwt = false
+
+[functions.lookup-user-by-email]
+verify_jwt = false
+
+[functions.lookup-email-by-username]
+verify_jwt = false
