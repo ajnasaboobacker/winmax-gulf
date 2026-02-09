@@ -44,7 +44,10 @@ import {
   Search,
   Crown,
   Edit,
-  Eye
+  Eye,
+  Mail,
+  CheckCircle2,
+  AlertCircle
 } from "lucide-react";
 import { format } from "date-fns";
 
@@ -71,6 +74,12 @@ interface UserWithRoles {
   roles: UserRole[];
 }
 
+interface LookedUpUser {
+  user_id: string;
+  email: string;
+  created_at: string;
+}
+
 const ROLE_COLORS: Record<AppRole, string> = {
   admin: "bg-red-500/20 text-red-400 border-red-500/30",
   editor: "bg-blue-500/20 text-blue-400 border-blue-500/30",
@@ -90,7 +99,10 @@ const BlogUsers = () => {
   const [isAddUserOpen, setIsAddUserOpen] = useState(false);
   const [isAddRoleOpen, setIsAddRoleOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<UserWithRoles | null>(null);
-  const [newUserId, setNewUserId] = useState("");
+  const [emailInput, setEmailInput] = useState("");
+  const [lookedUpUser, setLookedUpUser] = useState<LookedUpUser | null>(null);
+  const [lookupError, setLookupError] = useState<string | null>(null);
+  const [isLookingUp, setIsLookingUp] = useState(false);
   const [newRole, setNewRole] = useState<AppRole>("author");
 
   // Fetch all user roles with profiles
@@ -150,7 +162,9 @@ const BlogUsers = () => {
       toast({ title: "Role added", description: "User role has been added successfully." });
       setIsAddUserOpen(false);
       setIsAddRoleOpen(false);
-      setNewUserId("");
+      setEmailInput("");
+      setLookedUpUser(null);
+      setLookupError(null);
       setSelectedUser(null);
     },
     onError: (error: Error) => {
@@ -375,27 +389,99 @@ const BlogUsers = () => {
       </div>
 
       {/* Add User Role Dialog */}
-      <Dialog open={isAddUserOpen} onOpenChange={setIsAddUserOpen}>
+      <Dialog open={isAddUserOpen} onOpenChange={(open) => {
+        setIsAddUserOpen(open);
+        if (!open) {
+          setEmailInput("");
+          setLookedUpUser(null);
+          setLookupError(null);
+        }
+      }}>
         <DialogContent className="bg-slate-800 border-slate-700">
           <DialogHeader>
             <DialogTitle className="text-white">Add User Role</DialogTitle>
             <DialogDescription className="text-slate-400">
-              Enter the user ID and select a role to assign. Users must have an account first.
+              Look up a user by email and assign a role. The user must have an account first.
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
+            {/* Email Lookup */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">User ID</label>
-              <Input
-                placeholder="e.g., 123e4567-e89b-12d3-a456-426614174000"
-                value={newUserId}
-                onChange={(e) => setNewUserId(e.target.value)}
-                className="bg-slate-700 border-slate-600 font-mono text-sm"
-              />
-              <p className="text-xs text-slate-500">
-                The user's UUID from the authentication system.
-              </p>
+              <label className="text-sm font-medium text-slate-300">User Email</label>
+              <div className="flex gap-2">
+                <div className="relative flex-1">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                  <Input
+                    type="email"
+                    placeholder="user@example.com"
+                    value={emailInput}
+                    onChange={(e) => {
+                      setEmailInput(e.target.value);
+                      setLookedUpUser(null);
+                      setLookupError(null);
+                    }}
+                    className="bg-slate-700 border-slate-600 pl-10"
+                  />
+                </div>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={async () => {
+                    if (!emailInput.trim()) return;
+                    setIsLookingUp(true);
+                    setLookupError(null);
+                    setLookedUpUser(null);
+                    
+                    try {
+                      const { data: { session } } = await supabase.auth.getSession();
+                      const response = await supabase.functions.invoke("lookup-user-by-email", {
+                        body: { email: emailInput.trim() },
+                      });
+                      
+                      if (response.error) {
+                        setLookupError(response.error.message || "Failed to look up user");
+                      } else if (response.data?.error) {
+                        setLookupError(response.data.error);
+                      } else {
+                        setLookedUpUser(response.data as LookedUpUser);
+                      }
+                    } catch (err) {
+                      setLookupError("Failed to look up user");
+                    } finally {
+                      setIsLookingUp(false);
+                    }
+                  }}
+                  disabled={!emailInput.trim() || isLookingUp}
+                >
+                  {isLookingUp ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Search className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
+              
+              {/* Lookup Result */}
+              {lookupError && (
+                <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
+                  <AlertCircle className="h-4 w-4 shrink-0" />
+                  {lookupError}
+                </div>
+              )}
+              
+              {lookedUpUser && (
+                <div className="flex items-center gap-3 p-3 bg-green-500/10 border border-green-500/30 rounded-lg">
+                  <CheckCircle2 className="h-5 w-5 text-green-400 shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm text-green-400 font-medium">User found!</p>
+                    <p className="text-xs text-slate-400 truncate">{lookedUpUser.email}</p>
+                    <p className="text-xs text-slate-500 font-mono">{lookedUpUser.user_id.slice(0, 8)}...</p>
+                  </div>
+                </div>
+              )}
             </div>
+            
+            {/* Role Selection */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-300">Role</label>
               <Select value={newRole} onValueChange={(v) => setNewRole(v as AppRole)}>
@@ -415,8 +501,12 @@ const BlogUsers = () => {
               Cancel
             </Button>
             <Button 
-              onClick={() => addRoleMutation.mutate({ userId: newUserId, role: newRole })}
-              disabled={!newUserId.trim() || addRoleMutation.isPending}
+              onClick={() => {
+                if (lookedUpUser) {
+                  addRoleMutation.mutate({ userId: lookedUpUser.user_id, role: newRole });
+                }
+              }}
+              disabled={!lookedUpUser || addRoleMutation.isPending}
             >
               {addRoleMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
               Add Role
