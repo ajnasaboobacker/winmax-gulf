@@ -47,7 +47,9 @@ const RichTextEditor = ({ content, onChange, placeholder = "Start writing..." }:
           class: "rounded-lg max-w-full h-auto",
         },
       }),
-      Link.configure({
+      Link.extend({
+        inclusive: false,
+      }).configure({
         openOnClick: false,
         HTMLAttributes: {
           class: "text-primary underline cursor-pointer",
@@ -57,6 +59,7 @@ const RichTextEditor = ({ content, onChange, placeholder = "Start writing..." }:
         placeholder,
       }),
     ],
+    immediatelyRender: false,
     content,
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
