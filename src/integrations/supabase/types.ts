@@ -250,6 +250,7 @@ export type Database = {
           social_twitter: string | null
           updated_at: string
           user_id: string
+          username: string | null
           website_url: string | null
         }
         Insert: {
@@ -262,6 +263,7 @@ export type Database = {
           social_twitter?: string | null
           updated_at?: string
           user_id: string
+          username?: string | null
           website_url?: string | null
         }
         Update: {
@@ -274,6 +276,7 @@ export type Database = {
           social_twitter?: string | null
           updated_at?: string
           user_id?: string
+          username?: string | null
           website_url?: string | null
         }
         Relationships: []
@@ -304,6 +307,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_user_id_by_username: { Args: { _username: string }; Returns: string }
       has_any_blog_role: { Args: { _user_id: string }; Returns: boolean }
       has_role: {
         Args: {
