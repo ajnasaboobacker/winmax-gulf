@@ -34,20 +34,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [userRole, setUserRole] = useState<UserRole>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchUserRole = async (userId: string) => {
+  const fetchUserRole = async (userId: string): Promise<UserRole> => {
     try {
-      const { data, error } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", userId)
-        .maybeSingle();
-
-      if (error) {
-        console.error("Error fetching user role:", error);
-        return null;
+      // Use security-definer functions to bypass RLS on user_roles
+      const roles: Array<"admin" | "editor" | "author"> = ["admin", "editor", "author"];
+      for (const role of roles) {
+        const { data } = await supabase.rpc("has_role", { _user_id: userId, _role: role });
+        if (data) return role;
       }
-
-      return data?.role as UserRole;
+      return null;
     } catch (error) {
       console.error("Error fetching user role:", error);
       return null;

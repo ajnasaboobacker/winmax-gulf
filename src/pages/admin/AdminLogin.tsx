@@ -76,13 +76,10 @@ const AdminLogin = () => {
         setTimeout(async () => {
           const { data: { session } } = await supabase.auth.getSession();
           if (session?.user) {
-            const { data: roleData } = await supabase
-              .from("user_roles")
-              .select("role")
-              .eq("user_id", session.user.id)
-              .maybeSingle();
+            const { data: hasRole } = await supabase
+              .rpc("has_any_blog_role", { _user_id: session.user.id });
             
-            if (!roleData) {
+            if (!hasRole) {
               setError("Your account does not have permission to access the admin panel. Contact an administrator.");
               await supabase.auth.signOut();
               setIsSubmitting(false);
