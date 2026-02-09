@@ -105,9 +105,15 @@ Deno.serve(async (req) => {
 
     if (profileError) {
       console.error("Error creating profile:", profileError);
+      // Clean up: delete the auth user since profile creation failed
+      await supabaseAdmin.auth.admin.deleteUser(newUser.user.id);
+      return new Response(
+        JSON.stringify({ error: "Failed to create user profile: " + profileError.message }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
-    // Assign role if provided
+    // Assign role - this is required, not optional
     if (role && ["admin", "editor", "author"].includes(role)) {
       const { error: roleError } = await supabaseAdmin
         .from("user_roles")
@@ -118,7 +124,22 @@ Deno.serve(async (req) => {
 
       if (roleError) {
         console.error("Error assigning role:", roleError);
+        // Clean up: delete the auth user and profile since role assignment failed
+        await supabaseAdmin.from("profiles").delete().eq("user_id", newUser.user.id);
+        await supabaseAdmin.auth.admin.deleteUser(newUser.user.id);
+        return new Response(
+          JSON.stringify({ error: "Failed to assign role: " + roleError.message }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
       }
+    } else {
+      // Role is required - clean up and return error
+      await supabaseAdmin.from("profiles").delete().eq("user_id", newUser.user.id);
+      await supabaseAdmin.auth.admin.deleteUser(newUser.user.id);
+      return new Response(
+        JSON.stringify({ error: "A valid role (admin, editor, or author) is required" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
     return new Response(
