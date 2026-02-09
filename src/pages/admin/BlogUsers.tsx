@@ -64,6 +64,7 @@ interface Profile {
   id: string;
   user_id: string;
   display_name: string;
+  username?: string;
   avatar_url: string | null;
   bio: string | null;
 }
@@ -78,6 +79,14 @@ interface LookedUpUser {
   user_id: string;
   email: string;
   created_at: string;
+}
+
+interface CreateUserForm {
+  email: string;
+  password: string;
+  username: string;
+  displayName: string;
+  role: AppRole;
 }
 
 const ROLE_COLORS: Record<AppRole, string> = {
@@ -97,6 +106,7 @@ const BlogUsers = () => {
   const queryClient = useQueryClient();
   const [searchQuery, setSearchQuery] = useState("");
   const [isAddUserOpen, setIsAddUserOpen] = useState(false);
+  const [isCreateUserOpen, setIsCreateUserOpen] = useState(false);
   const [isAddRoleOpen, setIsAddRoleOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<UserWithRoles | null>(null);
   const [emailInput, setEmailInput] = useState("");
@@ -104,6 +114,16 @@ const BlogUsers = () => {
   const [lookupError, setLookupError] = useState<string | null>(null);
   const [isLookingUp, setIsLookingUp] = useState(false);
   const [newRole, setNewRole] = useState<AppRole>("author");
+  
+  // Create user form state
+  const [createForm, setCreateForm] = useState<CreateUserForm>({
+    email: "",
+    password: "",
+    username: "",
+    displayName: "",
+    role: "author",
+  });
+  const [createError, setCreateError] = useState<string | null>(null);
 
   // Fetch all user roles with profiles
   const { data: usersWithRoles, isLoading } = useQuery({
@@ -201,11 +221,36 @@ const BlogUsers = () => {
     },
   });
 
+  // Create user mutation
+  const createUserMutation = useMutation({
+    mutationFn: async (form: CreateUserForm) => {
+      const { data, error } = await supabase.functions.invoke("create-user", {
+        body: form,
+      });
+      
+      if (error) throw new Error(error.message);
+      if (data?.error) throw new Error(data.error);
+      
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["blog-users"] });
+      toast({ title: "User created", description: "New user has been created successfully." });
+      setIsCreateUserOpen(false);
+      setCreateForm({ email: "", password: "", username: "", displayName: "", role: "author" });
+      setCreateError(null);
+    },
+    onError: (error: Error) => {
+      setCreateError(error.message);
+    },
+  });
+
   const filteredUsers = usersWithRoles?.filter(user => {
     if (!searchQuery) return true;
     const search = searchQuery.toLowerCase();
     return (
       user.profile?.display_name?.toLowerCase().includes(search) ||
+      user.profile?.username?.toLowerCase().includes(search) ||
       user.user_id.toLowerCase().includes(search) ||
       user.roles.some(r => r.role.toLowerCase().includes(search))
     );
@@ -237,10 +282,16 @@ const BlogUsers = () => {
           <h1 className="text-3xl font-bold text-white">User Management</h1>
           <p className="text-slate-400 mt-1">Manage blog authors and their roles</p>
         </div>
-        <Button onClick={() => setIsAddUserOpen(true)} className="gap-2">
-          <UserPlus className="h-4 w-4" />
-          Add User Role
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={() => setIsCreateUserOpen(true)} className="gap-2">
+            <UserPlus className="h-4 w-4" />
+            Create User
+          </Button>
+          <Button onClick={() => setIsAddUserOpen(true)} variant="outline" className="gap-2">
+            <Shield className="h-4 w-4" />
+            Add Role
+          </Button>
+        </div>
       </div>
 
       {/* Search */}
@@ -555,6 +606,110 @@ const BlogUsers = () => {
             >
               {addRoleMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
               Add Role
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Create User Dialog */}
+      <Dialog open={isCreateUserOpen} onOpenChange={(open) => {
+        setIsCreateUserOpen(open);
+        if (!open) {
+          setCreateForm({ email: "", password: "", username: "", displayName: "", role: "author" });
+          setCreateError(null);
+        }
+      }}>
+        <DialogContent className="bg-slate-800 border-slate-700">
+          <DialogHeader>
+            <DialogTitle className="text-white">Create New User</DialogTitle>
+            <DialogDescription className="text-slate-400">
+              Create a new user account with a role assigned.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            {createError && (
+              <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
+                <AlertCircle className="h-4 w-4 shrink-0" />
+                {createError}
+              </div>
+            )}
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Email</label>
+                <Input
+                  type="email"
+                  placeholder="user@example.com"
+                  value={createForm.email}
+                  onChange={(e) => setCreateForm({ ...createForm, email: e.target.value })}
+                  className="bg-slate-700 border-slate-600"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Username</label>
+                <Input
+                  type="text"
+                  placeholder="johndoe"
+                  value={createForm.username}
+                  onChange={(e) => setCreateForm({ ...createForm, username: e.target.value })}
+                  className="bg-slate-700 border-slate-600"
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300">Display Name</label>
+              <Input
+                type="text"
+                placeholder="John Doe"
+                value={createForm.displayName}
+                onChange={(e) => setCreateForm({ ...createForm, displayName: e.target.value })}
+                className="bg-slate-700 border-slate-600"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300">Password</label>
+              <Input
+                type="password"
+                placeholder="••••••••"
+                value={createForm.password}
+                onChange={(e) => setCreateForm({ ...createForm, password: e.target.value })}
+                className="bg-slate-700 border-slate-600"
+              />
+              <p className="text-xs text-slate-500">Minimum 8 characters</p>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300">Role</label>
+              <Select value={createForm.role} onValueChange={(v) => setCreateForm({ ...createForm, role: v as AppRole })}>
+                <SelectTrigger className="bg-slate-700 border-slate-600">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-slate-800 border-slate-700">
+                  <SelectItem value="admin">Admin - Full access</SelectItem>
+                  <SelectItem value="editor">Editor - Edit all posts</SelectItem>
+                  <SelectItem value="author">Author - Own posts only</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsCreateUserOpen(false)}>
+              Cancel
+            </Button>
+            <Button 
+              onClick={() => createUserMutation.mutate(createForm)}
+              disabled={
+                createUserMutation.isPending || 
+                !createForm.email || 
+                !createForm.password || 
+                !createForm.username || 
+                !createForm.displayName
+              }
+            >
+              {createUserMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+              Create User
             </Button>
           </DialogFooter>
         </DialogContent>
