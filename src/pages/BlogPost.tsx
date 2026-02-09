@@ -35,6 +35,16 @@ interface Tag {
   slug: string;
 }
 
+interface Author {
+  id: string;
+  display_name: string;
+  avatar_url: string | null;
+  bio: string | null;
+  website_url: string | null;
+  social_twitter: string | null;
+  social_linkedin: string | null;
+}
+
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -100,6 +110,22 @@ const BlogPost = () => {
       return data as Tag[] || [];
     },
     enabled: !!post?.id,
+  });
+
+  // Fetch author profile
+  const { data: author } = useQuery({
+    queryKey: ["post-author", post?.author_id],
+    queryFn: async () => {
+      if (!post?.author_id) return null;
+      const { data } = await supabase
+        .from("profiles")
+        .select("id, display_name, avatar_url, bio, website_url, social_twitter, social_linkedin")
+        .eq("user_id", post.author_id)
+        .maybeSingle();
+      
+      return data as Author | null;
+    },
+    enabled: !!post?.author_id,
   });
 
   const { data: relatedPosts } = useQuery({
@@ -264,8 +290,25 @@ const BlogPost = () => {
               {post.title}
             </h1>
 
-            {/* Meta Info */}
+            {/* Author & Meta Info */}
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
+              {author && (
+                <div className="flex items-center gap-2">
+                  {author.avatar_url ? (
+                    <img
+                      src={author.avatar_url}
+                      alt={author.display_name}
+                      className="w-8 h-8 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold text-sm">
+                      {author.display_name.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                  <span className="text-foreground font-medium">{author.display_name}</span>
+                </div>
+              )}
+              {author && <span className="text-muted-foreground/50">•</span>}
               {post.published_at && (
                 <span className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
@@ -315,6 +358,65 @@ const BlogPost = () => {
                       #{tag.name}
                     </Badge>
                   ))}
+                </div>
+              </div>
+            )}
+
+            {/* Author Bio Section */}
+            {author && (
+              <div className="border-t border-border pt-6 mb-8">
+                <div className="flex items-start gap-4 p-6 bg-card rounded-lg border border-border">
+                  {author.avatar_url ? (
+                    <img
+                      src={author.avatar_url}
+                      alt={author.display_name}
+                      className="w-16 h-16 rounded-full object-cover flex-shrink-0"
+                    />
+                  ) : (
+                    <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xl flex-shrink-0">
+                      {author.display_name.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-foreground mb-1">
+                      Written by {author.display_name}
+                    </h3>
+                    {author.bio && (
+                      <p className="text-muted-foreground text-sm mb-3">{author.bio}</p>
+                    )}
+                    <div className="flex gap-3">
+                      {author.website_url && (
+                        <a
+                          href={author.website_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline text-sm"
+                        >
+                          Website
+                        </a>
+                      )}
+                      {author.social_twitter && (
+                        <a
+                          href={`https://twitter.com/${author.social_twitter}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline text-sm"
+                        >
+                          Twitter
+                        </a>
+                      )}
+                      {author.social_linkedin && (
+                        <a
+                          href={author.social_linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline text-sm"
+                        >
+                          LinkedIn
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
