@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
@@ -37,6 +37,11 @@ interface Tag {
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate("/blog");
+  };
 
   const { data: post, isLoading, error } = useQuery({
     queryKey: ["blog-post", slug],
@@ -235,13 +240,13 @@ const BlogPost = () => {
         <article className="pt-32 pb-16 px-4">
           <div className="container mx-auto max-w-4xl">
             {/* Back Link */}
-            <Link
-              to="/blog"
-              className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors mb-8"
+            <button
+              onClick={handleBackClick}
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors py-2 mb-8 cursor-pointer"
             >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
-            </Link>
+              <ArrowLeft className="h-4 w-4" />
+              <span>Back to Blog</span>
+            </button>
 
             {/* Categories */}
             {categories && categories.length > 0 && (
