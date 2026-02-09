@@ -15,6 +15,11 @@ Deno.serve(async (req) => {
     const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
+    // Create admin client for privileged operations
+    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
+      auth: { autoRefreshToken: false, persistSession: false }
+    });
+
     // Verify the requesting user
     const authHeader = req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) {
@@ -24,15 +29,10 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Create client with user's auth context to validate the token
-    const supabaseUser = createClient(supabaseUrl, supabaseAnonKey, {
-      global: { headers: { Authorization: authHeader } }
-    });
+    const token = authHeader.replace("Bearer ", "");
+    const { data: { user: requestingUser }, error: userError } = await supabaseAdmin.auth.getUser(token);
 
-    // Use getUser to validate the session - this verifies the token
-    const { data: userData, error: userError } = await supabaseUser.auth.getUser();
-
-    if (userError || !userData?.user) {
+    if (userError || !requestingUser) {
       console.error("Auth error:", userError);
       return new Response(
         JSON.stringify({ error: "Invalid token" }),
@@ -40,12 +40,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    const userId = userData.user.id;
-
-    // Create admin client for privileged operations
-    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
-      auth: { autoRefreshToken: false, persistSession: false }
-    });
+    const userId = requestingUser.id;
 
     // Check if requesting user is admin
     const { data: roleData } = await supabaseAdmin
