@@ -70,6 +70,25 @@ const AdminLogin = () => {
       
       if (error) {
         setError(error.message);
+      } else {
+        // Login succeeded, but check if user will be redirected
+        // Give the auth state a moment to update, then check role
+        setTimeout(async () => {
+          const { data: { session } } = await supabase.auth.getSession();
+          if (session?.user) {
+            const { data: roleData } = await supabase
+              .from("user_roles")
+              .select("role")
+              .eq("user_id", session.user.id)
+              .maybeSingle();
+            
+            if (!roleData) {
+              setError("Your account does not have permission to access the admin panel. Contact an administrator.");
+              await supabase.auth.signOut();
+              setIsSubmitting(false);
+            }
+          }
+        }, 1000);
       }
     } catch (err) {
       setError("An unexpected error occurred. Please try again.");
