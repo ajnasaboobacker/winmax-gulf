@@ -245,7 +245,23 @@ const BlogUsers = () => {
         body: form,
       });
       
-      if (error) throw new Error(error.message || "Failed to create user");
+      if (error) {
+        // Try to extract the actual error message from the response
+        let errorMessage = "Failed to create user";
+        try {
+          if (error.message) errorMessage = error.message;
+          // For FunctionsHttpError, the context contains the response
+          if ('context' in error && (error as any).context?.body) {
+            const body = await (error as any).context.body.getReader().read();
+            const text = new TextDecoder().decode(body.value);
+            const parsed = JSON.parse(text);
+            if (parsed.error) errorMessage = parsed.error;
+          }
+        } catch (e) {
+          console.error("Error parsing edge function response:", e);
+        }
+        throw new Error(errorMessage);
+      }
       if (data?.error) throw new Error(data.error);
       
       return data;
