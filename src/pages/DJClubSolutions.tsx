@@ -9,6 +9,7 @@ import EnhancedScrollAnimation from "@/components/EnhancedScrollAnimations";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import Interactive3DCard from "@/components/Interactive3DCard";
 import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import djBanner from "@/assets/dj-banner.jpg";
 import djClub from "@/assets/dj-club.jpg";
 
@@ -180,6 +181,7 @@ const DJClubSolutions = () => {
       />
       <div className="min-h-screen">
         <Header />
+        <Breadcrumbs items={[{ label: "DJ Club Solutions" }]} />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

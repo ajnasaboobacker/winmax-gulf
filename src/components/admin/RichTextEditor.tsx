@@ -25,6 +25,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useCallback, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import DOMPurify from "dompurify";
 import { useToast } from "@/hooks/use-toast";
 
 interface RichTextEditorProps {
@@ -322,7 +323,7 @@ const RichTextEditor = ({ content, onChange, placeholder = "Start writing..." }:
             prose-img:rounded-lg prose-img:mx-auto
             prose-ul:text-muted-foreground prose-ol:text-muted-foreground
             prose-li:marker:text-primary"
-          dangerouslySetInnerHTML={{ __html: editor.getHTML() }}
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(editor.getHTML()) }}
         />
       ) : (
         <EditorContent editor={editor} className="text-white" />

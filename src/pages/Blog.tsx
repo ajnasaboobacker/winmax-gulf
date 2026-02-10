@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -100,6 +101,7 @@ const Blog = () => {
       />
       <div className="min-h-screen bg-background">
         <Header />
+        <Breadcrumbs items={[{ label: "Blog" }]} />
         
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-card to-background">
