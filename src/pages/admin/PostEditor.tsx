@@ -14,13 +14,15 @@ import { Badge } from "@/components/ui/badge";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import SEOScorePanel from "@/components/admin/SEOScorePanel";
 import ImageUpload from "@/components/admin/ImageUpload";
+import { Switch } from "@/components/ui/switch";
 import { 
   ArrowLeft, 
   Save, 
   Send, 
   Loader2, 
   Calendar,
-  X 
+  X,
+  AlertTriangle 
 } from "lucide-react";
 import { z } from "zod";
 
@@ -32,6 +34,7 @@ const postSchema = z.object({
   meta_title: z.string().max(60, "Meta title should be under 60 characters").optional(),
   meta_description: z.string().max(160, "Meta description should be under 160 characters").optional(),
   focus_keyword: z.string().max(100, "Focus keyword too long").optional(),
+  canonical_url: z.string().max(500, "Canonical URL too long").url("Must be a valid URL").optional().or(z.literal("")),
 });
 
 type PostStatus = "draft" | "published" | "scheduled" | "archived";
@@ -76,6 +79,8 @@ const PostEditor = () => {
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
   const [focusKeyword, setFocusKeyword] = useState("");
+  const [canonicalUrl, setCanonicalUrl] = useState("");
+  const [noIndex, setNoIndex] = useState(false);
 
   // Categories, Tags & Author
   const [categories, setCategories] = useState<Category[]>([]);
@@ -148,6 +153,8 @@ const PostEditor = () => {
         setMetaTitle(post.meta_title || "");
         setMetaDescription(post.meta_description || "");
         setFocusKeyword((post as any).focus_keyword || "");
+        setCanonicalUrl((post as any).canonical_url || "");
+        setNoIndex((post as any).no_index || false);
 
         // Fetch post categories
         const { data: postCats } = await supabase
@@ -214,6 +221,7 @@ const PostEditor = () => {
         meta_title: metaTitle || undefined,
         meta_description: metaDescription || undefined,
         focus_keyword: focusKeyword || undefined,
+        canonical_url: canonicalUrl || undefined,
       });
       setErrors({});
       return true;
@@ -251,6 +259,8 @@ const PostEditor = () => {
         meta_title: metaTitle || null,
         meta_description: metaDescription || null,
         focus_keyword: focusKeyword || null,
+        canonical_url: canonicalUrl || null,
+        no_index: noIndex,
         author_id: user?.id,
       };
 
@@ -320,7 +330,7 @@ const PostEditor = () => {
     } finally {
       setIsSaving(false);
     }
-  }, [title, slug, excerpt, content, featuredImage, status, scheduledFor, metaTitle, metaDescription, focusKeyword, user, id, isEditing, selectedCategories, selectedTags, navigate, toast]);
+  }, [title, slug, excerpt, content, featuredImage, status, scheduledFor, metaTitle, metaDescription, focusKeyword, canonicalUrl, noIndex, user, id, isEditing, selectedCategories, selectedTags, navigate, toast]);
 
   if (isLoading) {
     return (
@@ -476,6 +486,40 @@ const PostEditor = () => {
                 />
                 <p className="text-xs text-slate-400">{metaDescription.length}/160 characters</p>
               </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="canonical-url" className="text-slate-200">Canonical URL</Label>
+                <Input
+                  id="canonical-url"
+                  value={canonicalUrl}
+                  onChange={(e) => setCanonicalUrl(e.target.value)}
+                  placeholder="https://example.com/original-article (leave blank for default)"
+                  className="bg-slate-700/50 border-slate-600 text-white"
+                  maxLength={500}
+                />
+                <p className="text-xs text-slate-400">
+                  Override the default canonical URL. Leave blank to use https://winmaxgulf.com/blog/{slug}
+                </p>
+                {errors.canonical_url && <p className="text-sm text-destructive">{errors.canonical_url}</p>}
+              </div>
+
+              <div className="flex items-center justify-between rounded-lg border border-slate-600 p-4">
+                <div className="space-y-0.5">
+                  <Label htmlFor="no-index" className="text-slate-200">Noindex / Nofollow</Label>
+                  <p className="text-xs text-slate-400">Hide this post from search engine results</p>
+                </div>
+                <Switch
+                  id="no-index"
+                  checked={noIndex}
+                  onCheckedChange={setNoIndex}
+                />
+              </div>
+              {noIndex && (
+                <div className="flex items-center gap-2 text-amber-400 text-sm bg-amber-400/10 rounded-md p-3">
+                  <AlertTriangle className="h-4 w-4 flex-shrink-0" />
+                  <span>This post will be hidden from search engines. Make sure this is intentional.</span>
+                </div>
+              )}
 
               <SEOScorePanel
                 title={title}
