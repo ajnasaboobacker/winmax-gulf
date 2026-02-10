@@ -27,6 +27,63 @@ function getFirstParagraph(html: string): string {
   return match ? stripHtml(match[1]) : stripHtml(html).slice(0, 300);
 }
 
+/**
+ * Generate keyword variants: plurals (add/remove trailing s/es),
+ * and common suffix swaps so "smart glass" also matches "smart glasses".
+ */
+function getKeywordVariants(keyword: string): string[] {
+  const kw = keyword.toLowerCase().trim();
+  if (!kw) return [];
+
+  const variants = new Set<string>([kw]);
+  const words = kw.split(/\s+/);
+
+  // Generate variants by modifying the last word (most common for plurals)
+  const lastWord = words[words.length - 1];
+  const prefix = words.slice(0, -1).join(" ");
+  const join = (w: string) => (prefix ? `${prefix} ${w}` : w);
+
+  // Add 's'
+  variants.add(join(lastWord + "s"));
+  // Add 'es'
+  variants.add(join(lastWord + "es"));
+  // Remove trailing 's'
+  if (lastWord.endsWith("s") && lastWord.length > 2) {
+    variants.add(join(lastWord.slice(0, -1)));
+  }
+  // Remove trailing 'es'
+  if (lastWord.endsWith("es") && lastWord.length > 3) {
+    variants.add(join(lastWord.slice(0, -2)));
+  }
+  // 'ies' <-> 'y'
+  if (lastWord.endsWith("ies")) {
+    variants.add(join(lastWord.slice(0, -3) + "y"));
+  }
+  if (lastWord.endsWith("y") && !lastWord.endsWith("ay") && !lastWord.endsWith("ey") && !lastWord.endsWith("oy") && !lastWord.endsWith("uy")) {
+    variants.add(join(lastWord.slice(0, -1) + "ies"));
+  }
+
+  return Array.from(variants);
+}
+
+function countVariantOccurrences(text: string, variants: string[]): number {
+  const lower = text.toLowerCase();
+  let total = 0;
+  for (const v of variants) {
+    let idx = 0;
+    while ((idx = lower.indexOf(v, idx)) !== -1) {
+      total++;
+      idx += v.length;
+    }
+  }
+  return total;
+}
+
+function textIncludesVariant(text: string, variants: string[]): boolean {
+  const lower = text.toLowerCase();
+  return variants.some((v) => lower.includes(v));
+}
+
 interface Check {
   label: string;
   passed: boolean;
@@ -44,34 +101,36 @@ const SEOScorePanel = ({
   const plainContent = useMemo(() => stripHtml(content), [content]);
   const wordCount = useMemo(() => countWords(content), [content]);
 
+  const variants = useMemo(() => getKeywordVariants(focusKeyword), [focusKeyword]);
+  const slugVariants = useMemo(() => variants.map(v => v.replace(/\s+/g, "-")), [variants]);
+
   const checks = useMemo<Check[]>(() => {
-    const kw = focusKeyword.toLowerCase().trim();
-    const hasKw = kw.length > 0;
+    const hasKw = variants.length > 0 && focusKeyword.trim().length > 0;
 
     return [
       {
         label: "Focus keyword in title",
-        passed: hasKw && title.toLowerCase().includes(kw),
+        passed: hasKw && textIncludesVariant(title, variants),
       },
       {
         label: "Focus keyword in slug",
-        passed: hasKw && slug.toLowerCase().includes(kw.replace(/\s+/g, "-")),
+        passed: hasKw && textIncludesVariant(slug, slugVariants),
       },
       {
         label: "Focus keyword in meta title",
-        passed: hasKw && metaTitle.toLowerCase().includes(kw),
+        passed: hasKw && textIncludesVariant(metaTitle, variants),
       },
       {
         label: "Focus keyword in meta description",
-        passed: hasKw && metaDescription.toLowerCase().includes(kw),
+        passed: hasKw && textIncludesVariant(metaDescription, variants),
       },
       {
         label: "Focus keyword in excerpt",
-        passed: hasKw && excerpt.toLowerCase().includes(kw),
+        passed: hasKw && textIncludesVariant(excerpt, variants),
       },
       {
         label: "Focus keyword in first paragraph",
-        passed: hasKw && getFirstParagraph(content).toLowerCase().includes(kw),
+        passed: hasKw && textIncludesVariant(getFirstParagraph(content), variants),
       },
       {
         label: "Meta title length (50–60 chars)",
@@ -90,25 +149,17 @@ const SEOScorePanel = ({
         passed: excerpt.trim().length > 0,
       },
     ];
-  }, [focusKeyword, title, slug, metaTitle, metaDescription, excerpt, content, wordCount]);
+  }, [focusKeyword, variants, slugVariants, title, slug, metaTitle, metaDescription, excerpt, content, wordCount]);
 
   const score = useMemo(() => {
     if (checks.length === 0) return 0;
     return Math.round((checks.filter((c) => c.passed).length / checks.length) * 100);
   }, [checks]);
 
-  // Keyword density
+  // Keyword density (counts all variants)
   const { occurrences, density } = useMemo(() => {
-    const kw = focusKeyword.toLowerCase().trim();
-    if (!kw || wordCount === 0) return { occurrences: 0, density: 0 };
-
-    let count = 0;
-    let idx = 0;
-    const lower = plainContent.toLowerCase();
-    while ((idx = lower.indexOf(kw, idx)) !== -1) {
-      count++;
-      idx += kw.length;
-    }
+    if (!focusKeyword.trim() || wordCount === 0) return { occurrences: 0, density: 0 };
+    const count = countVariantOccurrences(plainContent, variants);
     return { occurrences: count, density: (count / wordCount) * 100 };
   }, [focusKeyword, plainContent, wordCount]);
 
@@ -169,7 +220,7 @@ const SEOScorePanel = ({
         <span className="text-sm font-medium text-slate-200">Keyword Density</span>
         <div className="flex items-center gap-2 text-sm">
           <span className="text-slate-300">
-            "{focusKeyword}" appears <strong>{occurrences}</strong> time{occurrences !== 1 && "s"} ({density.toFixed(2)}%)
+            "{focusKeyword}" {variants.length > 1 && "+ variants"} appears <strong>{occurrences}</strong> time{occurrences !== 1 && "s"} ({density.toFixed(2)}%)
           </span>
         </div>
         <div className="flex items-center gap-2 text-xs">
