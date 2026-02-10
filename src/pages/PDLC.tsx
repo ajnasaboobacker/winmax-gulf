@@ -9,6 +9,7 @@ import EnhancedScrollAnimation from "@/components/EnhancedScrollAnimations";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import Interactive3DCard from "@/components/Interactive3DCard";
 import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import heroImage from "@/assets/hero-smart-glass.jpg";
 import bedroomImage from "@/assets/bedroom-room.jpg";
 import conferenceImage from "@/assets/conference-room.jpg";
@@ -181,6 +182,7 @@ const PDLC = () => {
       />
       <div className="min-h-screen">
         <Header />
+        <Breadcrumbs items={[{ label: "PDLC Smart Glass" }]} />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

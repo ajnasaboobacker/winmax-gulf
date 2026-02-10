@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Home, ArrowLeft } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 const NotFound = () => {
   const location = useLocation();
@@ -14,6 +15,12 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
+    <>
+    <SEOHead
+      title="Page Not Found - WinmaxGulf"
+      description="The page you are looking for does not exist."
+      noIndex={true}
+    />
     <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mx-auto text-center">
@@ -47,6 +54,7 @@ const NotFound = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

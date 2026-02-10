@@ -2,6 +2,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -9,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, Share2, Facebook, Twitter, Linkedin } from "lucide-react";
 import { format } from "date-fns";
+import DOMPurify from "dompurify";
 
 interface BlogPost {
   id: string;
@@ -266,6 +268,7 @@ const BlogPost = () => {
       />
       <div className="min-h-screen bg-background">
         <Header />
+        <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
         
         <article className="pt-32 pb-16 px-4">
           <div className="container mx-auto max-w-4xl">
@@ -349,7 +352,7 @@ const BlogPost = () => {
                 prose-img:rounded-lg prose-img:mx-auto
                 prose-ul:text-muted-foreground prose-ol:text-muted-foreground
                 prose-li:marker:text-primary"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
             />
 
             {/* Tags */}

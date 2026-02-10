@@ -6,7 +6,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://winmaxgulf.com/</loc>
-    <lastmod>2025-12-22</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://winmaxgulf.com/"/>
@@ -21,7 +21,7 @@
   <!-- PDLC Smart Glass Page -->
   <url>
     <loc>https://winmaxgulf.com/pdlc</loc>
-    <lastmod>2025-12-22</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://winmaxgulf.com/pdlc"/>
@@ -40,7 +40,7 @@
   <!-- LED Display Page -->
   <url>
     <loc>https://winmaxgulf.com/led-display</loc>
-    <lastmod>2025-12-22</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://winmaxgulf.com/led-display"/>
@@ -59,7 +59,7 @@
   <!-- DJ Club Solutions Page -->
   <url>
     <loc>https://winmaxgulf.com/dj-club-solutions</loc>
-    <lastmod>2025-12-22</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://winmaxgulf.com/dj-club-solutions"/>
@@ -74,18 +74,27 @@
       <image:caption>Professional DJ booth and club lighting installation</image:caption>
     </image:image>
   </url>
+
+  <!-- Blog -->
+  <url>
+    <loc>https://winmaxgulf.com/blog</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://winmaxgulf.com/blog"/>
+  </url>
   
   <!-- AI/LLM Resources -->
   <url>
     <loc>https://winmaxgulf.com/llms.txt</loc>
-    <lastmod>2025-12-22</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://winmaxgulf.com/llms-full.txt</loc>
-    <lastmod>2025-12-22</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

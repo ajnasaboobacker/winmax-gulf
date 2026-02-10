@@ -9,6 +9,7 @@ import EnhancedScrollAnimation from "@/components/EnhancedScrollAnimations";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import Interactive3DCard from "@/components/Interactive3DCard";
 import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import ledBanner from "@/assets/led-banner.jpg";
 import ledDisplay from "@/assets/led-display.jpg";
 
@@ -216,6 +217,7 @@ const LEDDisplay = () => {
       />
       <div className="min-h-screen">
         <Header />
+        <Breadcrumbs items={[{ label: "LED Display" }]} />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
