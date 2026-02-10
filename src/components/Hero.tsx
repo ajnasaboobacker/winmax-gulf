@@ -4,15 +4,8 @@ import { ArrowRight, Play } from "lucide-react";
 import heroImage from "@/assets/hero-smart-technology.jpg";
 import ledImage from "@/assets/led-display.jpg";
 import djImage from "@/assets/dj-club.jpg";
-import { LazyImage } from "@/components/LazyImage";
-import ScrollAnimation from "./ScrollAnimations";
-import { MicroInteractionButton } from "./Microinteractions";
 import ParticleBackground from "./ParticleBackground";
-import FloatingElements from "./FloatingElements";
-import AnimatedGradientBackground from "./AnimatedGradientBackground";
 import EnhancedScrollAnimation from "./EnhancedScrollAnimations";
-import GlassmorphismCard from "./GlassmorphismCard";
-import Interactive3DCard from "./Interactive3DCard";
 import DemoSelectionModal from "./DemoSelectionModal";
 import { trackCTAClick, trackButtonClick, trackOutboundLink, trackModalOpen } from "@/hooks/useGATracking";
 

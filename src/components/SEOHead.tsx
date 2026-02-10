@@ -27,7 +27,7 @@ const SEOHead = ({
   structuredData,
   pageType = 'website',
   publishedTime,
-  modifiedTime = "2025-12-22",
+  modifiedTime = "2026-02-10",
   author = "WinmaxGulf",
   noIndex = false
 }: SEOHeadProps) => {

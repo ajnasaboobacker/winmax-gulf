@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import AnimatedIcon from "./AnimatedIcon";
-import { MicroInteractionButton } from "./Microinteractions";
 import winmaxLogo from "@/assets/winmax-logo-new.png";
 import { trackNavigation, trackCTAClick, trackOutboundLink } from "@/hooks/useGATracking";
 

@@ -49,8 +49,6 @@ const App = () => (
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               
               {/* Admin login (public) */}
-              
-              {/* Admin login (public) */}
               <Route path="/admin/login" element={<AdminLogin />} />
               
               {/* Protected admin routes */}
