@@ -44,6 +44,7 @@ export type Database = {
       blog_posts: {
         Row: {
           author_id: string
+          canonical_url: string | null
           content: string
           created_at: string | null
           excerpt: string | null
@@ -52,6 +53,7 @@ export type Database = {
           id: string
           meta_description: string | null
           meta_title: string | null
+          no_index: boolean | null
           published_at: string | null
           scheduled_for: string | null
           slug: string
@@ -61,6 +63,7 @@ export type Database = {
         }
         Insert: {
           author_id: string
+          canonical_url?: string | null
           content?: string
           created_at?: string | null
           excerpt?: string | null
@@ -69,6 +72,7 @@ export type Database = {
           id?: string
           meta_description?: string | null
           meta_title?: string | null
+          no_index?: boolean | null
           published_at?: string | null
           scheduled_for?: string | null
           slug: string
@@ -78,6 +82,7 @@ export type Database = {
         }
         Update: {
           author_id?: string
+          canonical_url?: string | null
           content?: string
           created_at?: string | null
           excerpt?: string | null
@@ -86,6 +91,7 @@ export type Database = {
           id?: string
           meta_description?: string | null
           meta_title?: string | null
+          no_index?: boolean | null
           published_at?: string | null
           scheduled_for?: string | null
           slug?: string

@@ -20,6 +20,8 @@ interface BlogPost {
   published_at: string | null;
   meta_title: string | null;
   meta_description: string | null;
+  canonical_url: string | null;
+  no_index: boolean;
   author_id: string;
 }
 
@@ -258,6 +260,8 @@ const BlogPost = () => {
         description={post.meta_description || post.excerpt || ""}
         keywords={tags?.map(t => t.name).join(", ") || ""}
         ogImage={post.featured_image_url || undefined}
+        canonicalUrl={post.canonical_url || undefined}
+        noIndex={post.no_index || false}
         structuredData={articleSchema}
       />
       <div className="min-h-screen bg-background">
