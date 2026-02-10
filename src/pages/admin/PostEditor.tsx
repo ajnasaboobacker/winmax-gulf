@@ -12,6 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import RichTextEditor from "@/components/admin/RichTextEditor";
+import SEOScorePanel from "@/components/admin/SEOScorePanel";
 import ImageUpload from "@/components/admin/ImageUpload";
 import { 
   ArrowLeft, 
@@ -30,6 +31,7 @@ const postSchema = z.object({
   content: z.string().min(1, "Content is required"),
   meta_title: z.string().max(60, "Meta title should be under 60 characters").optional(),
   meta_description: z.string().max(160, "Meta description should be under 160 characters").optional(),
+  focus_keyword: z.string().max(100, "Focus keyword too long").optional(),
 });
 
 type PostStatus = "draft" | "published" | "scheduled" | "archived";
@@ -73,6 +75,7 @@ const PostEditor = () => {
   const [scheduledFor, setScheduledFor] = useState("");
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
+  const [focusKeyword, setFocusKeyword] = useState("");
 
   // Categories, Tags & Author
   const [categories, setCategories] = useState<Category[]>([]);
@@ -144,6 +147,7 @@ const PostEditor = () => {
         setScheduledFor(post.scheduled_for ? post.scheduled_for.slice(0, 16) : "");
         setMetaTitle(post.meta_title || "");
         setMetaDescription(post.meta_description || "");
+        setFocusKeyword((post as any).focus_keyword || "");
 
         // Fetch post categories
         const { data: postCats } = await supabase
@@ -209,6 +213,7 @@ const PostEditor = () => {
         content,
         meta_title: metaTitle || undefined,
         meta_description: metaDescription || undefined,
+        focus_keyword: focusKeyword || undefined,
       });
       setErrors({});
       return true;
@@ -245,6 +250,7 @@ const PostEditor = () => {
         published_at: saveStatus === "published" ? new Date().toISOString() : null,
         meta_title: metaTitle || null,
         meta_description: metaDescription || null,
+        focus_keyword: focusKeyword || null,
         author_id: user?.id,
       };
 
@@ -314,7 +320,7 @@ const PostEditor = () => {
     } finally {
       setIsSaving(false);
     }
-  }, [title, slug, excerpt, content, featuredImage, status, scheduledFor, metaTitle, metaDescription, user, id, isEditing, selectedCategories, selectedTags, navigate, toast]);
+  }, [title, slug, excerpt, content, featuredImage, status, scheduledFor, metaTitle, metaDescription, focusKeyword, user, id, isEditing, selectedCategories, selectedTags, navigate, toast]);
 
   if (isLoading) {
     return (
@@ -433,6 +439,19 @@ const PostEditor = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
+                <Label htmlFor="focus-keyword" className="text-slate-200">Focus Keyword</Label>
+                <Input
+                  id="focus-keyword"
+                  value={focusKeyword}
+                  onChange={(e) => setFocusKeyword(e.target.value)}
+                  placeholder='e.g. "PDLC smart film UAE"'
+                  className="bg-slate-700/50 border-slate-600 text-white"
+                  maxLength={100}
+                />
+                <p className="text-xs text-slate-400">The main keyword you want this post to rank for</p>
+              </div>
+
+              <div className="space-y-2">
                 <Label htmlFor="meta-title" className="text-slate-200">Meta Title</Label>
                 <Input
                   id="meta-title"
@@ -457,6 +476,16 @@ const PostEditor = () => {
                 />
                 <p className="text-xs text-slate-400">{metaDescription.length}/160 characters</p>
               </div>
+
+              <SEOScorePanel
+                title={title}
+                slug={slug}
+                content={content}
+                excerpt={excerpt}
+                metaTitle={metaTitle}
+                metaDescription={metaDescription}
+                focusKeyword={focusKeyword}
+              />
             </CardContent>
           </Card>
         </div>

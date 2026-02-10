@@ -48,6 +48,7 @@ export type Database = {
           created_at: string | null
           excerpt: string | null
           featured_image_url: string | null
+          focus_keyword: string | null
           id: string
           meta_description: string | null
           meta_title: string | null
@@ -64,6 +65,7 @@ export type Database = {
           created_at?: string | null
           excerpt?: string | null
           featured_image_url?: string | null
+          focus_keyword?: string | null
           id?: string
           meta_description?: string | null
           meta_title?: string | null
@@ -80,6 +82,7 @@ export type Database = {
           created_at?: string | null
           excerpt?: string | null
           featured_image_url?: string | null
+          focus_keyword?: string | null
           id?: string
           meta_description?: string | null
           meta_title?: string | null
