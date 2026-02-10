@@ -1,49 +1,63 @@
 
-# Add Canonical URL and Robots Noindex/Nofollow to Blog Editor
 
-## Overview
-Add two new advanced SEO fields to the blog post editor: a custom canonical URL input and a noindex/nofollow toggle. These give you fine-grained control over how search engines index each post.
+# Scheduled Auto-Publish + Internal Linking Suggestions
 
-## What You'll Get
+## Feature 1: Scheduled Post Auto-Publish
 
-**1. Canonical URL Field**
-- A text input where you can optionally set a custom canonical URL for the post (e.g., if the content was originally published elsewhere).
-- If left blank, the system automatically uses the default `https://winmaxgulf.com/blog/{slug}` -- no action needed for most posts.
-- Appears in the SEO Settings card below the existing meta description field.
+A backend function that runs on a schedule (every minute via pg_cron) to automatically publish posts whose `status = 'scheduled'` and `scheduled_for <= now()`.
 
-**2. Robots Noindex/Nofollow Toggle**
-- A switch/checkbox that lets you mark a post as "noindex, nofollow" -- telling search engines not to index or follow links on that page.
-- Useful for test posts, thin content, or duplicate pages you want to keep live but hidden from search results.
-- A small warning label will appear when enabled so you don't accidentally leave it on.
+### How It Works
+- A new edge function `publish-scheduled-posts` queries for due scheduled posts and updates them to `status = 'published'` with `published_at = now()`.
+- A pg_cron job calls this function every minute automatically.
+- No user action needed -- posts go live at the scheduled time.
 
-## How It Works on the Public Page
-- The `BlogPost.tsx` page will pass the new `canonicalUrl` and `noIndex` values to the existing `SEOHead` component, which already supports both props -- so no changes needed to SEOHead itself.
+### Technical Details
+
+**New Edge Function: `supabase/functions/publish-scheduled-posts/index.ts`**
+- Uses the Supabase service role key to bypass RLS
+- Queries `blog_posts` where `status = 'scheduled'` AND `scheduled_for <= now()`
+- Updates matching posts: sets `status = 'published'` and `published_at = now()`
+- Returns a count of published posts for logging
+
+**Config update: `supabase/config.toml`**
+- Add `[functions.publish-scheduled-posts]` with `verify_jwt = false`
+
+**pg_cron job (SQL insert, not migration)**
+- Calls the edge function every minute via `net.http_post`
+- Requires `pg_cron` and `pg_net` extensions to be enabled
 
 ---
 
-## Technical Details
+## Feature 2: Internal Linking Suggestions
 
-### Database Migration
-Add two columns to `blog_posts`:
+A new panel in the post editor sidebar that suggests other published blog posts to link to, based on the current post's focus keyword.
 
-```sql
-ALTER TABLE public.blog_posts ADD COLUMN canonical_url text DEFAULT null;
-ALTER TABLE public.blog_posts ADD COLUMN no_index boolean DEFAULT false;
-```
+### How It Works
+- When a focus keyword is entered, the system searches all other published posts for matches in their title, excerpt, or content
+- Displays up to 5 matching posts with their title, slug, and a "Copy Link" button
+- Editors can quickly copy the URL and paste it into their content as an internal link
+- Runs entirely client-side using existing Supabase queries -- no new backend needed
 
-### Changes to `src/pages/admin/PostEditor.tsx`
-- Add `canonicalUrl` and `noIndex` state variables
-- Load/save the new fields from/to the database
-- Add a "Canonical URL" input field and a "Noindex / Nofollow" switch inside the SEO Settings card, below the existing meta description
-- Add validation: canonical URL must be a valid URL if provided (max 500 chars)
+### Technical Details
 
-### Changes to `src/pages/BlogPost.tsx`
-- Include `canonical_url` and `no_index` in the BlogPost interface
-- Pass `canonicalUrl` and `noIndex` props to the `SEOHead` component (which already handles them)
+**New Component: `src/components/admin/InternalLinkSuggestions.tsx`**
+- Accepts `focusKeyword` and `currentPostId` as props
+- Queries `blog_posts` where `status = 'published'` and `id != currentPostId`
+- Filters results client-side checking if title, excerpt, or stripped content contains any keyword variant (reuses the plural/variant logic)
+- Shows up to 5 suggestions with post title, URL path, and a copy button
+- Displays a "No suggestions" message when no matches are found
+
+**Edit: `src/pages/admin/PostEditor.tsx`**
+- Import and render `InternalLinkSuggestions` in the sidebar, below the Tags card
+- Pass `focusKeyword` and the current post `id` as props
 
 ### Files Changed
+
 | File | Action |
 |---|---|
-| Database migration | Add `canonical_url` and `no_index` columns |
-| `src/pages/admin/PostEditor.tsx` | Edit -- add canonical URL input, noindex toggle, state, and save logic |
-| `src/pages/BlogPost.tsx` | Edit -- pass new fields to SEOHead |
+| `supabase/functions/publish-scheduled-posts/index.ts` | Create -- auto-publish edge function |
+| `supabase/config.toml` | Edit -- add function config |
+| pg_cron SQL | Insert via SQL tool (not migration) |
+| `src/components/admin/InternalLinkSuggestions.tsx` | Create -- link suggestion panel |
+| `src/pages/admin/PostEditor.tsx` | Edit -- add InternalLinkSuggestions to sidebar |
+
