@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import SEOScorePanel from "@/components/admin/SEOScorePanel";
+import InternalLinkSuggestions from "@/components/admin/InternalLinkSuggestions";
 import ImageUpload from "@/components/admin/ImageUpload";
 import { Switch } from "@/components/ui/switch";
 import { 
@@ -668,6 +669,9 @@ const PostEditor = () => {
               )}
             </CardContent>
           </Card>
+
+          {/* Internal Link Suggestions */}
+          <InternalLinkSuggestions focusKeyword={focusKeyword} currentPostId={id} />
         </div>
       </div>
     </div>
