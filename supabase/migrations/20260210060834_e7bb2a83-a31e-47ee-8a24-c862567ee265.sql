@@ -1,0 +1,1 @@
+ALTER TABLE public.blog_posts ADD COLUMN focus_keyword text DEFAULT null;
