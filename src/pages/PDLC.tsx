@@ -178,6 +178,7 @@ const PDLC = () => {
         keywords="PDLC smart film UAE, switchable glass Dubai, smart privacy glass, electronic glass UAE, PDLC film installation Dubai, privacy glass Abu Dhabi, smart glass technology UAE"
         ogTitle="PDLC Smart Film UAE | Switchable Privacy Glass Solutions"
         ogDescription="Premium PDLC smart film installation in Dubai. Instant privacy control with energy-efficient switchable glass technology. 500+ installations across UAE."
+        ogImage="/og-pdlc.jpg"
         structuredData={pdlcSchema}
       />
       <div className="min-h-screen">

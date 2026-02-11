@@ -177,6 +177,7 @@ const DJClubSolutions = () => {
         keywords="DJ club solutions Dubai, nightclub setup UAE, DJ equipment Dubai, entertainment systems UAE, club lighting Dubai, sound system installation UAE"
         ogTitle="DJ Club Solutions UAE | Turnkey Entertainment Systems"
         ogDescription="Complete DJ club solutions in Dubai. Professional sound, lighting, and entertainment systems. Turnkey installations for nightclubs & venues across UAE."
+        ogImage="/og-dj-club.jpg"
         structuredData={djSchema}
       />
       <div className="min-h-screen">
