@@ -213,6 +213,7 @@ const LEDDisplay = () => {
         keywords="LED display Dubai, LED video wall UAE, outdoor LED screen, indoor LED display, LED billboard Dubai, LED screen rental UAE, digital signage Dubai"
         ogTitle="LED Display Systems UAE | Professional Installation Dubai"
         ogDescription="Professional LED display systems in Dubai. Ultra HD resolution, weather-resistant outdoor displays, custom configurations. Expert installation & 24/7 support."
+        ogImage="/og-led-display.jpg"
         structuredData={ledSchema}
       />
       <div className="min-h-screen">
