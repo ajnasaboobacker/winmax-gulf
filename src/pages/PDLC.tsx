@@ -3,49 +3,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
-import TechnicalResources from "@/components/TechnicalResources";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { 
+import {
   FileText, Cpu, Database, Microscope,
   ArrowRight, Zap, Smartphone, Eye, Home, Building2, Sun, Shield, CheckCircle2, Layers, Wind
 } from "lucide-react";
-import heroImage from "@/assets/hero-smart-glass.jpg";
-import conferenceImage from "@/assets/conference-room.jpg";
+import heroImage from "@/assets/banners/hero-smart-glass.jpg";
+import conferenceImage from "@/assets/images/conference-room.jpg";
+import ServiceBrochureCTA from "@/components/ServiceBrochureCTA";
 
 // ...Existing Code Verticals...
 
-const pdlcResources = [
-  {
-    title: "Optical Performance Standard",
-    type: "Whitepaper",
-    size: "2.4 MB",
-    description: "In-depth analysis of PDLC haze metrics, Visible Light Transmission (VLT), and clearing consistency across large-scale glass panels.",
-    icon: Microscope
-  },
-  {
-    title: "Installation Lifecycle Guide",
-    type: "Technical Guide",
-    size: "4.1 MB",
-    description: "Full engineering walkthrough of glazing requirements, power supply specifications, and wiring protocols for multi-zone installations.",
-    icon: Cpu
-  },
-  {
-    title: "Commercial Energy Audit",
-    type: "Case Study",
-    size: "1.8 MB",
-    description: "Comparative study on HVAC load reduction and solar heat gain coefficients when using Smart Glass vs. motorized shading in UAE.",
-    icon: FileText
-  },
-  {
-    title: "API Integration Manual",
-    type: "Spec Sheet",
-    size: "1.2 MB",
-    description: "Control protocols and integration logic for connecting PDLC controllers with KNX, Crestron, and Building Management Systems (BMS).",
-    icon: Database
-  }
-];
 
 const pdlcVerticals = [
   {
@@ -68,7 +38,7 @@ const pdlcVerticals = [
       { label: "Switch Speed", value: "< 0.1 sec" },
       { label: "UV Block", value: "99.9%" },
       { label: "Power Draw", value: "< 5W/m²" },
-      { label: "Lifespan", value: "25+ Years" },
+      { label: "Lifespan", value: "10+ Years" },
     ],
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",
     imageCaption: "Smart Glass Villa — Instant privacy at the touch of a button",
@@ -167,7 +137,7 @@ const engineeringCards = [
   { label: "UV Protection", value: "99.9", unit: "%", detail: "Blocks near-total UV to protect occupants and interior furnishings." },
   { label: "Transition Time", value: "< 0.1", unit: "sec", detail: "Liquid crystal response is effectively instantaneous." },
   { label: "Power Draw", value: "< 5", unit: "W/m²", detail: "Lower energy consumption than a standard LED bulb per square metre." },
-  { label: "Service Life", value: "25+", unit: "Years", detail: "Tested for long-term UAE climate operation under extreme heat and UV." },
+  { label: "Service Life", value: "10+", unit: "Years", detail: "Tested for long-term UAE climate operation under extreme heat and UV." },
 ];
 
 // ─── Showcase ─────────────────────────────────────────────────────────────────
@@ -223,7 +193,7 @@ const pdlcSchema = {
     {
       "@type": "Product",
       "name": "PDLC Smart Glass & Switchable Film",
-      "image": "https://winmaxgulf.com/assets/hero-smart-glass.jpg",
+      "image": "https://winmaxgulf.com/assets/banners/hero-smart-glass.jpg",
       "description": "Premium switchable privacy glass and PDLC film for residential and commercial architectural installations in Dubai.",
       "brand": {
         "@type": "Brand",
@@ -461,52 +431,13 @@ const PDLC = () => {
           </div>
         </section>
 
-        <TechnicalResources resources={pdlcResources} />
-        {/* ── CTA ───────────────────────────────────────────────────────── */}
-        <section className="py-32 relative overflow-hidden">
-          <motion.div animate={{ rotate: 360 }} transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-            className="absolute right-[-5%] md:right-[2%] bottom-[5%] hidden md:block z-0 pointer-events-none opacity-20">
-            <div className="relative w-96 h-96">
-              <div className="absolute inset-0 border-[2px] border-white/30 rounded-full border-dashed" />
-              <div className="absolute inset-8 border-[1.5px] border-winmax-orange/40 rounded-full" />
-              <div className="absolute inset-16 border-[1px] border-white/20 rounded-full border-dashed" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-winmax-orange/10 rounded-full border border-winmax-orange/40" />
-            </div>
-          </motion.div>
-
-          <div className="container mx-auto px-6 lg:px-12 relative z-10">
-            <Reveal direction="up">
-              <div className="max-w-6xl mx-auto rounded-[3rem] p-12 md:p-20 border border-white/10 bg-[#080808] relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-winmax-orange/5 blur-[180px] -translate-y-1/2 translate-x-1/3" />
-                <div className="relative z-10 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12">
-                  <div className="flex-1">
-                    <span className="inline-block text-winmax-orange font-mono text-[10px] uppercase tracking-[0.5em] mb-8 px-5 py-2 border border-winmax-orange/20 rounded-full">Upgrade Your Glass</span>
-                    <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[0.9] mb-6">
-                      ELEVATE YOUR<br />
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/60 to-white/90">SPACE.</span>
-                    </h2>
-                    <p className="text-lg text-muted-foreground font-light leading-relaxed max-w-lg">
-                      From a single bathroom panel to a full office partition installation — our team will survey, specify, and install PDLC smart glass tailored to your environment.
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-6 lg:items-end">
-                    <button className="group px-10 py-5 bg-winmax-orange text-black font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:opacity-90 flex items-center gap-3 rounded-xl shadow-[0_0_40px_rgba(255,102,0,0.3)] hover:shadow-[0_0_60px_rgba(255,102,0,0.5)]"
-                      onClick={() => window.open("https://wa.me/+971504171875?text=Hello, I am interested in your PDLC Smart Glass solutions.")}>
-                      <span>Get a Free Survey</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    </button>
-                    <div className="flex flex-col items-end text-right border-t border-white/10 pt-6">
-                      <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-muted-foreground mb-1">Direct Line</span>
-                      <a href="tel:+971504171875" className="text-xl font-bold hover:text-winmax-orange transition-colors duration-300">+971 50 417 1875</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-white/10" />
-                <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-white/10" />
-              </div>
-            </Reveal>
-          </div>
-        </section>
+        <ServiceBrochureCTA
+          badge="PDLC Smart Glass"
+          headline={<>ELEVATE YOUR<br /><span className="text-winmax-orange">SPACE.</span></>}
+          subtext="From a single bathroom panel to a full office partition — our team will survey, specify, and install PDLC smart glass tailored to your environment across the UAE."
+          whatsappMessage="Hello, I am interested in your PDLC Smart Glass solutions and would like a free survey."
+          brochureFile="/brochures/pdlc-smart-glass.pdf"
+        />
 
         <Footer />
       </div>

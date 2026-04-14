@@ -246,22 +246,6 @@ const About = () => {
 
 
 
-        {/* ── FINAL CTA: TECHNICAL COLLABORATION ── */}
-        <div className="mt-16 border-t border-white/5 pt-12">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
-            <h3 className="text-3xl font-bold max-w-lg leading-tight text-center md:text-left">
-              Begin a technical consultation for your project today.
-            </h3>
-            <div className="flex gap-4">
-              <button className="px-10 py-5 bg-winmax-orange text-black font-bold uppercase tracking-widest text-xs rounded-xl hover:bg-white transition-colors duration-500">
-                Inquire Now
-              </button>
-              <button className="px-10 py-5 bg-white/5 text-white border border-white/10 font-bold uppercase tracking-widest text-xs rounded-xl hover:bg-white/10 transition-all">
-                Download Brochure
-              </button>
-            </div>
-          </div>
-        </div>
 
       </div>
     </section>

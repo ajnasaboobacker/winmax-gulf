@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
-import heroImage from "@/assets/hero-smart-technology.jpg";
-import ledImage from "@/assets/led-display.png";
-import djImage from "@/assets/DJ-hero-Banner.jpg";
-import solarImage from "@/assets/solar-solutions-banner.png";
-import collabImage from "@/assets/collaboration-av-banner.png";
-import automationImage from "@/assets/smart-automation-banner.png";
+import heroImage from "@/assets/banners/hero-smart-technology.jpg";
+import ledImage from "@/assets/images/led-display.png";
+import djImage from "@/assets/banners/DJ-hero-Banner.jpg";
+import solarImage from "@/assets/banners/solar-solutions-banner.png";
+import collabImage from "@/assets/banners/collaboration-av-banner.png";
+import automationImage from "@/assets/banners/smart-automation-banner.png";
 import ParticleBackground from "./ParticleBackground";
 import EnhancedScrollAnimation from "./EnhancedScrollAnimations";
 import DemoSelectionModal from "./DemoSelectionModal";
@@ -88,7 +88,8 @@ const Hero = () => {
 
         <div className="w-full px-8 md:px-16 lg:px-24 relative z-30">
           <EnhancedScrollAnimation animation="bounceIn" delay={200}>
-            <div className="w-full mx-auto py-20 lg:py-32 overflow-visible">
+            <div className="max-w-3xl py-20 lg:py-32">
+
               {/* Badge */}
               <div className="inline-flex items-center px-5 py-2 rounded-full mb-6 bg-black/40 backdrop-blur-md border border-winmax-orange/30 shadow-lg">
                 <span className="text-[10px] uppercase font-mono tracking-widest font-bold text-winmax-orange shadow-black drop-shadow-md">✨ Innovative Technology Solutions</span>
@@ -96,7 +97,7 @@ const Hero = () => {
 
               {/* Main Heading */}
               <EnhancedScrollAnimation animation="slideInRotate" delay={400}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-[0.95] tracking-tighter text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)] max-w-4xl">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-[0.95] tracking-tighter text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]">
                   WinmaxGulf — Smart <br />
                   <span className="text-winmax-orange drop-shadow-[0_0_15px_rgba(255,90,0,0.4)]">Technology Solutions</span> UAE.
                 </h1>
@@ -104,12 +105,12 @@ const Hero = () => {
 
               {/* Subheading in Protective Glass */}
               <EnhancedScrollAnimation animation="fadeInUp" delay={600}>
-                <div className="max-w-4xl p-6 md:p-8 rounded-3xl bg-black/50 backdrop-blur-3xl border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] mb-10 relative overflow-hidden group">
+                <div className="p-6 md:p-8 rounded-3xl bg-black/50 backdrop-blur-3xl border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] mb-10 relative overflow-hidden group">
                   <div className="absolute top-0 left-0 w-1.5 h-full bg-winmax-orange transition-all duration-300 group-hover:w-2.5" />
                   <h2 className="text-base md:text-lg text-white mb-4 leading-relaxed font-semibold tracking-tight drop-shadow-lg">
                     Leading UAE provider of <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">PDLC smart glass</a>, <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">LED display systems</a>, professional <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">DJ solutions</a>, sustainable <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">PV solar energy</a>, <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">collaboration AV</a>, and integrated <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">smart automation</a> architecture.
                   </h2>
-                  <p className="text-sm md:text-base text-white/70 leading-relaxed font-light tracking-wide text-justify md:text-left">
+                  <p className="text-sm md:text-base text-white/70 leading-relaxed font-light tracking-wide text-left">
                     Enhance privacy, visual communication, and energy independence with our innovative <strong>smart technology solutions</strong> in the <strong>UAE</strong>. We deliver complete end-to-end services including <a href="/#process" className="text-winmax-orange hover:underline">technical consultation</a>, custom design, professional installation, and maintenance. Our <a href="/#about" className="text-winmax-orange hover:underline">expert engineering team</a> has completed over 1,000 successful technical installations bridging physical architecture and digital innovation.
                   </p>
                 </div>
@@ -148,6 +149,7 @@ const Hero = () => {
                   </Button>
                 </div>
               </EnhancedScrollAnimation>
+
             </div>
           </EnhancedScrollAnimation>
         </div>

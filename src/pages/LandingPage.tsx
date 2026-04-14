@@ -18,7 +18,7 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { trackFormSubmission } from '@/hooks/useGATracking';
 import SEOHead from '@/components/SEOHead';
-import winmaxLogo from '@/assets/winmax-logo-white.png';
+import winmaxLogo from '@/assets/logos/winmax-logo-white.png';
 import { CheckCircle, Phone, Mail, MapPin, Loader2, Shield, Award, Clock, ArrowRight, ChevronRight, Globe, Zap } from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import AntigravityCard from '@/components/AntigravityCard';

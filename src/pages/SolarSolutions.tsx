@@ -12,7 +12,8 @@ import {
   ArrowRight, Sun, Zap, Battery, Car,
   Shield, Link2, Radio, Building2, Droplets
 } from "lucide-react";
-import heroImage from "@/assets/solar-solutions-banner.png";
+import heroImage from "@/assets/banners/solar-solutions-banner.png";
+import ServiceBrochureCTA from "@/components/ServiceBrochureCTA";
 
 // --- Page Resources ---
 
@@ -193,7 +194,7 @@ const SolarSolutions = () => {
     {
       "@type": "Product",
       "name": "PV Solar Energy Systems & Storage",
-      "image": "https://winmaxgulf.com/assets/solar-solutions-banner.png",
+      "image": "https://winmaxgulf.com/assets/banners/solar-solutions-banner.png",
       "description": "Commercial and residential PV solar energy systems, hybrid inverters, and high-density lithium storage by Magnizon.",
       "brand": {
         "@type": "Brand",
@@ -544,87 +545,13 @@ const SolarSolutions = () => {
         </section>
 
         <TechnicalResources resources={solarResources} />
-        {/* --- CTA --- */}
-        <section className="py-32 relative overflow-hidden">
-
-          {/* Background Animated Assets (Visible on large screens) */}
-
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute right-[-5%] md:right-[2%] bottom-[5%] hidden md:block z-0 pointer-events-none drop-shadow-[0_0_20px_rgba(255,102,0,0.1)] opacity-20"
-          >
-            <div className="relative w-96 h-96">
-              <div className="absolute inset-0 border-[2px] border-white/30 rounded-full border-dashed" />
-              <div className="absolute inset-8 border-[3px] border-winmax-orange/60 rounded-full shadow-[inset_0_0_30px_rgba(255,102,0,0.2)]" />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-16 border-[4px] border-white/20 rounded-full"
-              />
-              {/* Orbital node */}
-              <div className="absolute -top-4 left-1/2 w-8 h-8 bg-winmax-orange rounded-full shadow-[0_0_50px_#ff6600] flex justify-center items-center">
-                <div className="w-3 h-3 bg-white rounded-full animate-ping" />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Main CTA Container */}
-          <div className="container mx-auto px-6 lg:px-12 relative z-10">
-            <Reveal direction="up">
-              <div className="max-w-7xl mx-auto rounded-[3rem] p-12 md:p-20 border border-white/10 bg-[#050505] relative overflow-hidden group flex flex-col lg:flex-row items-center justify-between gap-16">
-
-                {/* Background effects */}
-                <div className="absolute inset-0 bg-gradient-to-r from-winmax-orange/5 to-transparent opacity-50" />
-                <div className="absolute -top-40 -right-40 w-96 h-96 bg-winmax-orange/10 blur-[120px] rounded-full pointer-events-none group-hover:scale-110 transition-transform duration-1000" />
-
-                {/* Corner accents */}
-                <div className="absolute top-8 left-8 w-8 h-8 border-t-2 border-l-2 border-white/10 group-hover:border-winmax-orange/50 transition-colors" />
-                <div className="absolute bottom-8 right-8 w-8 h-8 border-b-2 border-r-2 border-white/10 group-hover:border-winmax-orange/50 transition-colors" />
-
-                <div className="relative z-10 w-full lg:w-3/5 text-left">
-                  <div className="inline-flex items-center gap-3 px-6 py-2 bg-winmax-orange/10 border border-winmax-orange/20 rounded-full mb-8">
-                    <Sun className="w-3.5 h-3.5 text-winmax-orange" />
-                    <span className="text-winmax-orange font-mono text-[10px] uppercase tracking-[0.5em] font-bold">
-                      Free Site Assessment
-                    </span>
-                  </div>
-
-                  <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-8">
-                    ZERO GRID<br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/70 to-white/30">RELIANCE.</span>
-                  </h2>
-
-                  <p className="text-lg md:text-xl text-muted-foreground font-light max-w-xl leading-relaxed">
-                    Transition to complete energy independence. Our engineers will assess your site and design a system optimised for your specific architectural footprint and consumption profile.
-                  </p>
-                </div>
-
-                <div className="relative z-10 w-full lg:w-2/5 flex flex-col gap-6">
-                  <button
-                    className="group/btn relative w-full px-10 py-8 bg-winmax-orange text-white font-bold uppercase tracking-[0.2em] text-sm overflow-hidden transition-all duration-500 hover:bg-white hover:text-black flex items-center justify-between rounded-3xl shadow-2xl"
-                    onClick={() => window.open('https://wa.me/+971504171875?text=Hello, I am interested in a solar energy site assessment.')}
-                  >
-                    <span>Request Assessment</span>
-                    <div className="w-12 h-12 bg-black/20 rounded-full flex items-center justify-center group-hover/btn:bg-black/10 transition-colors">
-                      <ArrowRight className="w-5 h-5 group-hover/btn:-rotate-45 transition-transform duration-500" />
-                    </div>
-                  </button>
-
-                  <div className="flex items-center justify-between p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl hover:bg-white/10 transition-colors">
-                    <div>
-                      <span className="block text-[10px] uppercase tracking-[0.3em] font-mono text-muted-foreground mb-2">Direct Engineering Line</span>
-                      <a href="tel:+971504171875" className="text-2xl font-bold text-white tracking-tight">
-                        +971 50 417 1875
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </Reveal>
-          </div>
-        </section>
+        <ServiceBrochureCTA 
+          headline={<>ZERO GRID<br /><span className="text-white/40">RELIANCE.</span></>}
+          subtext="Transition to complete energy independence. Our engineers will assess your site and design a system optimised for your specific architectural footprint and consumption profile."
+          badge="Free Site Assessment"
+          whatsappMessage="Hello, I am interested in a solar energy site assessment."
+          brochureFile="/brochures/solar-solutions.pdf"
+        />
 
         <Footer />
       </div>

@@ -3,9 +3,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Play, Film, Zap, Music } from "lucide-react";
 import VideoDemoModal from "./VideoDemoModal";
-import pdlcImage from "@/assets/hero-smart-glass.jpg";
-import ledImage from "@/assets/led-display.png";
-import djImage from "@/assets/dj-club.jpg";
+import pdlcImage from "@/assets/banners/hero-smart-glass.jpg";
+import ledImage from "@/assets/images/led-display.png";
+import djImage from "@/assets/images/dj-club.jpg";
 
 interface DemoSelectionModalProps {
   isOpen: boolean;

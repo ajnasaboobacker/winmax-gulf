@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import winmaxLogo from "@/assets/winmax-logo-new.png";
+import winmaxLogo from "@/assets/logos/winmax-logo-new.png";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {

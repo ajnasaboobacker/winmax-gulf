@@ -17,7 +17,8 @@ import Reveal from "@/components/Reveal";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import heroImage from "@/assets/collaboration-av-banner.png";
+import heroImage from "@/assets/banners/collaboration-av-banner.png";
+import ServiceBrochureCTA from "@/components/ServiceBrochureCTA";
 
 // ─── Product Categories ────────────────────────────────────────────────────────
 
@@ -528,79 +529,13 @@ const CollaborationAV = () => {
           </div>
         </section>
 
-        {/* ── CTA ───────────────────────────────────────────────────────── */}
-        <section className="py-32 relative overflow-hidden">
-          {/* Background Orbital Ring */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute right-[-5%] md:right-[2%] bottom-[5%] hidden md:block z-0 pointer-events-none opacity-20"
-          >
-            <div className="relative w-96 h-96">
-              <div className="absolute inset-0 border-[2px] border-white/30 rounded-full border-dashed" />
-              <div className="absolute inset-8 border-[1.5px] border-winmax-orange/40 rounded-full" />
-              <div className="absolute inset-16 border-[1px] border-white/20 rounded-full border-dashed" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-winmax-orange/10 rounded-full border border-winmax-orange/40" />
-            </div>
-          </motion.div>
-
-          <div className="container mx-auto px-6 lg:px-12 relative z-10">
-            <Reveal direction="up">
-              <div className="max-w-6xl mx-auto rounded-[3rem] p-12 md:p-20 border border-white/10 bg-[#080808] relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-winmax-orange/5 blur-[180px] -translate-y-1/2 translate-x-1/3" />
-
-                <div className="relative z-10 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12">
-                  <div className="flex-1">
-                    <span className="inline-block text-winmax-orange font-mono text-[10px] uppercase tracking-[0.5em] mb-8 px-5 py-2 border border-winmax-orange/20 rounded-full">
-                      Upgrade Your Workplace
-                    </span>
-                    <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[0.9] mb-6">
-                      READY TO BUILD
-                      <br />
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/60 to-white/90">
-                        YOUR SMART OFFICE?
-                      </span>
-                    </h2>
-                    <p className="text-lg text-muted-foreground font-light leading-relaxed max-w-lg">
-                      From a single meeting pod to a full office AV infrastructure — our
-                      engineers will design, supply, install, and support your entire
-                      collaboration stack across Dubai and Abu Dhabi.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col gap-6 lg:items-end">
-                    <button
-                      className="group px-10 py-5 bg-winmax-orange text-black font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:opacity-90 flex items-center gap-3 rounded-xl shadow-[0_0_40px_rgba(255,102,0,0.3)] hover:shadow-[0_0_60px_rgba(255,102,0,0.5)]"
-                      onClick={() =>
-                        window.open(
-                          "https://wa.me/+971504171875?text=Hello, I am interested in your Collaboration & AV solutions for my office."
-                        )
-                      }
-                    >
-                      <span>Request a Consultation</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                    </button>
-
-                    <div className="flex flex-col items-end text-right border-t border-white/10 pt-6">
-                      <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-muted-foreground mb-1">
-                        Direct Engineering Line
-                      </span>
-                      <a
-                        href="tel:+971504171875"
-                        className="text-xl font-bold hover:text-winmax-orange transition-colors duration-300"
-                      >
-                        +971 50 417 1875
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-white/10" />
-                <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-white/10" />
-              </div>
-            </Reveal>
-          </div>
-        </section>
+        <ServiceBrochureCTA 
+          headline={<>READY TO BUILD<br /><span className="text-white/40">YOUR SMART OFFICE?</span></>}
+          subtext="From a single meeting pod to a full office AV infrastructure — our engineers will design, supply, install, and support your entire collaboration stack across Dubai and Abu Dhabi."
+          badge="Upgrade Your Workplace"
+          whatsappMessage="Hello, I am interested in your Collaboration & AV solutions for my office."
+          brochureFile="/brochures/collaboration-av.pdf"
+        />
 
         <Footer />
       </div>
