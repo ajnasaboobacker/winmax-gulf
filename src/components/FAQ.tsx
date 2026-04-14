@@ -4,57 +4,52 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import EnhancedScrollAnimation from "./EnhancedScrollAnimations";
-import GlassmorphismCard from "./GlassmorphismCard";
-import AnimatedGradientBackground from "./AnimatedGradientBackground";
 import { useEffect } from "react";
+import Reveal from "./Reveal";
+import { Plus } from "lucide-react";
+import AntigravityCard from "./AntigravityCard";
+
+const faqs = [
+  {
+    id: "01",
+    question: "What is PDLC Smart Glass and how does it work?",
+    answer: "PDLC (Polymer Dispersed Liquid Crystal) Smart Glass is an advanced architectural technology that transitions between transparent and opaque states. When an electrical current is applied, the liquid crystals align to make the glass clear. When powered off, they scatter light, instantly providing 100% visual privacy."
+  },
+  {
+    id: "02",
+    question: "Where does Winmax Gulf provide installation services?",
+    answer: "Winmax Gulf provides enterprise-grade installation services across the entire UAE, with primary operations running in Dubai and Abu Dhabi. We deploy specialized engineering teams for corporate offices, luxury residential properties, and major retail centers."
+  },
+  {
+    id: "03",
+    question: "Are your outdoor LED Display Systems weather resistant?",
+    answer: "Yes, our outdoor LED Video Walls feature IP65-rated weather resistance, making them fully protected against the extreme heat, dust, and humidity typical of the GCC climate. They reliably maintain peak brightness (up to 8000+ nits) in direct Middle Eastern sunlight."
+  },
+  {
+    id: "04",
+    question: "Do you integrate with existing Smart Home systems?",
+    answer: "Absolutely. Our smart automation frameworks are designed for seamless integration. We natively support major building automation platforms like Crestron, Lutron, Control4, and KNX, allowing you to manage PDLC privacy glass and dynamic lighting from a single centralized interface."
+  },
+  {
+    id: "05",
+    question: "Do you supply solar energy storage solutions for residential villas?",
+    answer: "Yes, Winmax Gulf provides high-efficiency photovoltaic (PV) systems specifically engineered for residential and commercial energy independence. Our solutions include high-density lithium-ion storage batteries and smart hybrid inverters that allow you to manage and store solar power for 24/7 reliability across the UAE."
+  },
+  {
+    id: "06",
+    question: "What AV solutions do you offer for corporate meeting pods?",
+    answer: "We specialize in 'Collaboration AV' for modern workspaces, including 4K video conferencing integrations, beamforming microphone arrays, and wireless BYOD (Bring Your Own Device) sharing within acoustic meeting pods. Our systems are certified for high-fidelity use with Microsoft Teams, Zoom, and unified communications platforms."
+  },
+  {
+    id: "07",
+    question: "What warranty and after-sales support is included?",
+    answer: "Every Winmax Gulf installation includes comprehensive technical support and an industry-leading warranty. We provide dedicated on-site maintenance assistance and proactive system diagnostics to ensure your digital architecture operates flawlessly year-round."
+  }
+];
 
 const FAQ = () => {
-  const faqs = [
-    {
-      question: "What is PDLC smart film and how does it work?",
-      answer: "PDLC (Polymer Dispersed Liquid Crystal) smart film is an advanced switchable privacy glass technology that instantly changes from transparent to opaque at the touch of a button. When powered ON, the film becomes clear allowing full visibility. When powered OFF, it turns milky white providing complete privacy while still allowing light diffusion. It's perfect for offices, homes, hospitals, and commercial spaces throughout Dubai and UAE."
-    },
-    {
-      question: "How long does it take to install PDLC smart film in Dubai?",
-      answer: "Installation time depends on the size and complexity of the project. Typically, a standard office or home installation takes 1-3 days. Our professional installation team in Dubai handles everything from initial assessment to final testing and training. We ensure minimal disruption to your daily operations with efficient project management and experienced technicians."
-    },
-    {
-      question: "What types of LED display systems do you offer in UAE?",
-      answer: "We offer comprehensive LED display solutions including indoor LED video walls, outdoor LED billboards, transparent LED screens, flexible LED displays, rental LED screens, and fine pitch LED displays. Our systems are suitable for retail stores, corporate offices, events, stadiums, and advertising applications across Dubai, Abu Dhabi, and the wider UAE. All displays feature ultra-HD resolution, weather resistance, and remote content management."
-    },
-    {
-      question: "Do you provide maintenance and support after installation?",
-      answer: "Yes, we provide comprehensive after-sales support including regular maintenance, 24/7 technical assistance, remote troubleshooting, and on-site repair services. Our maintenance packages ensure your smart technology systems continue to perform optimally. We also offer training for your team to operate and maintain the systems effectively."
-    },
-    {
-      question: "Can PDLC smart film be integrated with home automation systems?",
-      answer: "Absolutely! PDLC smart film is fully compatible with leading home automation systems including Crestron, Lutron, Amazon Alexa, Google Home, and Apple HomeKit. You can control your smart glass via smartphone apps, voice commands, motion sensors, timers, or wall switches. Our expert team ensures seamless integration with your existing smart home or office automation infrastructure in Dubai and UAE."
-    },
-    {
-      question: "What is the cost of LED display installation in Dubai?",
-      answer: "LED display costs vary based on size, resolution, indoor/outdoor requirements, and installation complexity. We provide customized quotes after understanding your specific needs. Factors include screen dimensions, pixel pitch, mounting requirements, and content management systems. Contact us for a free consultation and detailed quotation tailored to your project requirements in Dubai or anywhere in the UAE."
-    },
-    {
-      question: "How energy-efficient is PDLC smart film compared to traditional blinds?",
-      answer: "PDLC smart film is highly energy-efficient, reducing heat transfer by up to 30% and blocking 99% of harmful UV rays. This significantly lowers air conditioning costs in Dubai's hot climate. Unlike traditional blinds, smart film maintains natural light diffusion even in opaque mode, reducing artificial lighting needs. The low-power operation (typically 5W per square meter) makes it an eco-friendly and cost-effective solution."
-    },
-    {
-      question: "What services are included in your DJ club solutions?",
-      answer: "Our complete turnkey DJ club solutions include professional sound systems, dynamic lighting installations, LED video walls, DJ booths, mixing equipment, special effects (fog, lasers, CO2 cannons), rigging and installation, 3D visualization and design, system integration, staff training, and ongoing technical support. We handle everything from concept to completion for nightclubs, bars, event venues, and entertainment spaces across UAE."
-    },
-    {
-      question: "Which areas in UAE do you service?",
-      answer: "We service all major areas across the United Arab Emirates including Dubai (Dubai Marina, Downtown Dubai, Business Bay, Jumeirah, DIFC), Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, and Umm Al Quwain. Our installation teams are available throughout UAE for residential, commercial, and industrial projects. We provide free on-site consultations and assessments anywhere in the Emirates."
-    },
-    {
-      question: "How do I get started with a smart technology project?",
-      answer: "Getting started is easy! Contact us via WhatsApp (+971527200466), phone, or our website contact form. We'll schedule a free consultation to understand your requirements, provide a site assessment, create a customized solution proposal with 3D visualizations, deliver a detailed quotation, and plan the installation timeline. Our expert team guides you through every step from concept to completion."
-    }
-  ];
-
   useEffect(() => {
-    // Add FAQ schema to page
+    // Injecting AI SEO Schema directly for search context
     const faqSchema = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -76,62 +71,87 @@ const FAQ = () => {
 
     return () => {
       const existingScript = document.getElementById('faq-schema');
-      if (existingScript) {
-        existingScript.remove();
-      }
+      if (existingScript) existingScript.remove();
     };
   }, []);
 
   return (
-    <section id="faq" className="relative py-20 overflow-hidden">
-      <AnimatedGradientBackground variant="section" className="z-0" />
+    <section id="faq" className="py-40 bg-[#0a0a0a] relative overflow-hidden">
+      {/* Antigravity Deep Field Elements */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-winmax-orange/10 blur-[150px] rounded-full" />
+      </div>
       
-      <div className="container mx-auto px-6 lg:px-8 relative z-10">
-        <EnhancedScrollAnimation animation="bounceIn" className="text-center mb-16">
-          <GlassmorphismCard intensity="medium" glow className="inline-flex items-center px-6 py-3 rounded-full mb-6">
-            <span className="text-sm font-medium text-winmax-orange">❓ Frequently Asked Questions</span>
-          </GlassmorphismCard>
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-24 items-start">
           
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Common Questions About <span className="text-winmax-orange">Smart Technology Solutions</span> in UAE
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get answers to frequently asked questions about PDLC smart film, LED displays, DJ club solutions, installation processes, pricing, and our services across Dubai and UAE.
-          </p>
-        </EnhancedScrollAnimation>
+          <div className="lg:sticky lg:top-32">
+            <Reveal delay={0.2}>
+              <div className="flex items-center gap-6 mb-8">
+                <div className="w-16 h-px bg-winmax-orange shadow-[0_0_10px_rgba(255,90,0,0.5)]" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-winmax-orange">Knowledge Base</span>
+              </div>
+            </Reveal>
+            
+            <Reveal delay={0.4}>
+              <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-12 leading-none drop-shadow-md">
+                Technical <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-winmax-orange to-white/70">Intelligence.</span>
+              </h2>
+            </Reveal>
+            
+            <Reveal delay={0.6}>
+              <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed mb-16 max-w-lg">
+                Common inquiries regarding operational parameters, architectural integration logistics, and system durability across the UAE.
+              </p>
+            </Reveal>
 
-        <EnhancedScrollAnimation animation="fadeInUp" delay={200}>
-          <GlassmorphismCard intensity="light" className="max-w-4xl mx-auto p-8">
-            <Accordion type="single" collapsible className="w-full">
+            <Reveal delay={0.8}>
+                <AntigravityCard tiltIntensity={3}>
+                    <div 
+                        className="group relative p-10 glass-heavy cursor-pointer transition-technical hover:border-winmax-orange/40"
+                        onClick={() => window.open('https://wa.me/+971527200466', '_blank')}
+                    >
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-winmax-orange block mb-6">Direct Consultation</span>
+                        <div className="flex items-center justify-between">
+                            <span className="text-2xl font-bold text-white group-hover:text-winmax-orange transition-colors duration-500">Discuss Custom Specs</span>
+                            <div className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center group-hover:bg-winmax-orange group-hover:border-winmax-orange transition-all duration-500">
+                                <Plus className="w-5 h-5 text-white group-hover:rotate-45 transition-transform duration-500" />
+                            </div>
+                        </div>
+                    </div>
+                </AntigravityCard>
+            </Reveal>
+          </div>
+
+          {/* AI Optimized Extractable FAQ Content */}
+          <div className="lg:mt-0 relative z-20 perspective-1000">
+            <Accordion type="single" collapsible className="space-y-6">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-b border-border/50">
-                  <AccordionTrigger className="text-left hover:text-winmax-orange transition-colors py-4">
-                    <span className="font-semibold text-lg">{faq.question}</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed pb-4">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
+                <Reveal key={index} delay={0.2 + index * 0.1}>
+                  <AccordionItem 
+                    value={`item-${index}`} 
+                    className="border border-white/10 glass-heavy rounded-xl px-10 transition-all duration-500 data-[state=open]:border-winmax-orange/30 data-[state=open]:shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
+                  >
+                    <AccordionTrigger className="hover:no-underline py-10 text-left group transition-colors">
+                      <div className="flex gap-8 items-start pr-8">
+                        <span className="font-mono text-[10px] font-bold text-winmax-orange/60 mt-1.5">{faq.id}</span>
+                        <strong className="text-xl md:text-2xl font-bold text-white group-data-[state=open]:text-winmax-orange tracking-tight transition-colors duration-300 drop-shadow-sm">
+                          {faq.question}
+                        </strong>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-lg text-white/70 font-light leading-relaxed pb-12 pt-2 border-t border-white/5">
+                      <div className="pl-14">
+                        {faq.answer}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Reveal>
               ))}
             </Accordion>
-          </GlassmorphismCard>
-        </EnhancedScrollAnimation>
-
-        <EnhancedScrollAnimation animation="fadeInUp" delay={400}>
-          <div className="text-center mt-12">
-            <p className="text-lg text-muted-foreground mb-6">
-              Still have questions? Our expert team is here to help!
-            </p>
-            <a
-              href="https://wa.me/+971527200466?text=Hello%20I%20have%20questions%20about%20your%20services"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-winmax-orange to-winmax-orange-light text-white rounded-full font-semibold hover:opacity-90 transition-all duration-300 shadow-glow hover:shadow-neon"
-            >
-              Contact Us on WhatsApp
-            </a>
           </div>
-        </EnhancedScrollAnimation>
+        </div>
       </div>
     </section>
   );

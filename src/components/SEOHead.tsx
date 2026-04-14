@@ -18,8 +18,8 @@ interface SEOHeadProps {
 
 const SEOHead = ({
   title = "WinmaxGulf - Smart Technology Solutions UAE",
-  description = "Leading UAE provider of PDLC smart film, LED displays & DJ solutions. 500+ successful installations in Dubai.",
-  keywords = "PDLC smart film UAE, LED displays Dubai, DJ club solutions, smart glass technology, interactive displays, privacy glass, electronic switchable glass, digital signage UAE",
+  description = "Leading UAE provider of PDLC smart glass, LED displays, Specialized AV & DJ Club Engineering, solar systems, AV, and smart automation. Over 1,000 successful technical installations.",
+  keywords = "PDLC smart glass UAE, LED display systems Dubai, Specialized AV & DJ Club Engineering, sustainable solar PV UAE, collaboration AV systems, integrated smart building automation, switchable glass technology",
   ogTitle,
   ogDescription,
   ogImage = "/favicon.png",
@@ -37,7 +37,7 @@ const SEOHead = ({
     const currentPath = window.location.pathname;
     const fullCanonicalUrl = canonicalUrl || `${baseUrl}${currentPath === '/' ? '' : currentPath}`;
     const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
-    
+
     // Update document title
     document.title = title;
 
@@ -48,7 +48,7 @@ const SEOHead = ({
     updateMetaTag('robots', noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
     updateMetaTag('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
     updateMetaTag('bingbot', 'index, follow');
-    
+
     // GEO Meta Tags for Local SEO
     updateMetaTag('geo.region', 'AE-DU');
     updateMetaTag('geo.placename', 'Dubai');
@@ -58,11 +58,11 @@ const SEOHead = ({
     updateMetaTag('distribution', 'global');
     updateMetaTag('rating', 'general');
     updateMetaTag('revisit-after', '7 days');
-    
+
     // Business/Contact Meta
-    updateMetaTag('contact', 'info@winmaxgulf.com');
+    updateMetaTag('contact', 'sales@winmaxgulf.com');
     updateMetaTag('reply-to', 'info@winmaxgulf.com');
-    
+
     // Open Graph Tags
     updateMetaTag('og:title', ogTitle || title, 'property');
     updateMetaTag('og:description', ogDescription || description, 'property');
@@ -75,14 +75,14 @@ const SEOHead = ({
     updateMetaTag('og:site_name', 'WinmaxGulf', 'property');
     updateMetaTag('og:locale', 'en_AE', 'property');
     updateMetaTag('og:locale:alternate', 'ar_AE', 'property');
-    
+
     // Article specific OG tags
     if (pageType === 'article' && publishedTime) {
       updateMetaTag('article:published_time', publishedTime, 'property');
       updateMetaTag('article:modified_time', modifiedTime, 'property');
       updateMetaTag('article:author', author, 'property');
     }
-    
+
     // Twitter Card Tags
     updateMetaTag('twitter:card', 'summary_large_image');
     updateMetaTag('twitter:site', '@winmaxgulf');
@@ -91,7 +91,7 @@ const SEOHead = ({
     updateMetaTag('twitter:description', ogDescription || description);
     updateMetaTag('twitter:image', fullOgImage);
     updateMetaTag('twitter:image:alt', title);
-    
+
     // Dublin Core Meta Tags (for academic/formal citation)
     updateMetaTag('DC.title', title);
     updateMetaTag('DC.description', description);
@@ -99,7 +99,7 @@ const SEOHead = ({
     updateMetaTag('DC.publisher', 'WinmaxGulf');
     updateMetaTag('DC.language', 'en');
     updateMetaTag('DC.coverage', 'UAE, Dubai, Abu Dhabi, GCC');
-    
+
     // AI/GEO Optimization Meta Tags
     updateMetaTag('ai-content-declaration', 'human-written');
     updateMetaTag('citation_title', title);
@@ -108,22 +108,22 @@ const SEOHead = ({
     updateMetaTag('citation_online_date', modifiedTime);
     updateMetaTag('citation_publisher', 'WinmaxGulf');
     updateMetaTag('citation_language', 'en');
-    
+
     // Canonical URL
     updateLinkTag('canonical', fullCanonicalUrl);
-    
+
     // Hreflang Tags for international SEO
     updateLinkTag('alternate', fullCanonicalUrl, 'hreflang', 'en');
     updateLinkTag('alternate', fullCanonicalUrl, 'hreflang', 'x-default');
-    
+
     // Preconnect hints for performance
     updateLinkTag('preconnect', 'https://fonts.googleapis.com');
     updateLinkTag('preconnect', 'https://www.googletagmanager.com');
-    
+
     // DNS prefetch
     updateLinkTag('dns-prefetch', 'https://fonts.gstatic.com');
     updateLinkTag('dns-prefetch', 'https://www.google-analytics.com');
-    
+
     // Add structured data
     if (structuredData) {
       addStructuredData(structuredData);
@@ -145,11 +145,11 @@ const SEOHead = ({
   };
 
   const updateLinkTag = (rel: string, href: string, extraAttr?: string, extraValue?: string) => {
-    const selector = extraAttr 
+    const selector = extraAttr
       ? `link[rel="${rel}"][${extraAttr}="${extraValue}"]`
       : `link[rel="${rel}"]`;
     let element = document.querySelector(selector) as HTMLLinkElement;
-    
+
     if (element) {
       element.href = href;
     } else {
@@ -183,7 +183,7 @@ const SEOHead = ({
         "@id": `${baseUrl}/#organization`,
         "name": "WinmaxGulf",
         "alternateName": ["Winmax Gulf", "WinMax Gulf", "Winmax Gulf LLC"],
-        "description": "Leading UAE provider of PDLC smart film, LED display systems, and DJ club solutions with 500+ successful installations",
+        "description": "Leading UAE provider of PDLC smart glass, LED display systems, DJ club solutions, sustainable solar, collaboration AV, and integrated smart automation with over 1,000 successful technical installations",
         "url": baseUrl,
         "logo": {
           "@type": "ImageObject",
@@ -192,8 +192,8 @@ const SEOHead = ({
           "height": 512
         },
         "image": logoUrl,
-        "telephone": "+971527200466",
-        "email": "info@winmaxgulf.com",
+        "telephone": "+971 4 271 3101",
+        "email": ["sales@winmaxgulf.com", "info@winmaxgulf.com"],
         "priceRange": "$$-$$$",
         "foundingDate": "2015",
         "slogan": "Smart Technology Solutions UAE",
@@ -202,6 +202,9 @@ const SEOHead = ({
           "LED Display Systems",
           "Smart Film Technology",
           "DJ Club Solutions",
+          "Solar Energy PV Systems",
+          "Collaboration AV",
+          "Smart Building Automation",
           "Digital Signage",
           "Privacy Glass"
         ],
@@ -239,7 +242,7 @@ const SEOHead = ({
         "contactPoint": [
           {
             "@type": "ContactPoint",
-            "telephone": "+971527200466",
+            "telephone": "+971 4 271 3101",
             "contactType": "sales",
             "areaServed": ["AE", "SA", "QA", "BH", "KW", "OM"],
             "availableLanguage": ["en", "ar"],
@@ -252,6 +255,13 @@ const SEOHead = ({
           },
           {
             "@type": "ContactPoint",
+            "email": "sales@winmaxgulf.com",
+            "contactType": "sales",
+            "areaServed": "AE",
+            "availableLanguage": ["en", "ar"]
+          },
+          {
+            "@type": "ContactPoint",
             "email": "info@winmaxgulf.com",
             "contactType": "customer support",
             "areaServed": "AE",
@@ -260,6 +270,7 @@ const SEOHead = ({
         ],
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "#301, 3rd Floor, NBQ Building, BurJuman",
           "addressCountry": "AE",
           "addressRegion": "Dubai",
           "addressLocality": "Dubai",
@@ -280,7 +291,7 @@ const SEOHead = ({
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.9",
-          "reviewCount": "500",
+          "reviewCount": "1000",
           "bestRating": "5",
           "worstRating": "1"
         },
@@ -292,7 +303,7 @@ const SEOHead = ({
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "PDLC Smart Film Installation",
+                "name": "PDLC Smart Glass Solutions",
                 "description": "Switchable privacy glass and smart film solutions for offices, homes, and commercial spaces in Dubai and UAE",
                 "url": `${baseUrl}/pdlc`,
                 "areaServed": "United Arab Emirates",
@@ -314,9 +325,42 @@ const SEOHead = ({
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "DJ Club Solutions",
-                "description": "Complete turnkey entertainment systems with professional sound, lighting, and DJ equipment for clubs and venues",
+                "name": "Specialized AV & DJ Club Engineering",
+                "description": "Complete turnkey entertainment systems with professional sound, lighting, and specialized AV equipment for clubs and venues",
                 "url": `${baseUrl}/dj-club-solutions`,
+                "areaServed": "United Arab Emirates",
+                "provider": { "@id": `${baseUrl}/#organization` }
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Solar Energy Solutions",
+                "description": "Sustainable PV solar energy infrastructure and PV energy storage for residential and commercial projects",
+                "url": `${baseUrl}/solar-solutions`,
+                "areaServed": "United Arab Emirates",
+                "provider": { "@id": `${baseUrl}/#organization` }
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Collaboration AV",
+                "description": "Unified communications, smart boardrooms, and hybrid meeting technology for enterprise efficiency",
+                "url": `${baseUrl}/collaboration-av`,
+                "areaServed": "United Arab Emirates",
+                "provider": { "@id": `${baseUrl}/#organization` }
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Smart Automation",
+                "description": "Integrated smart building automation (KNX/BMS) and IoT control systems for modern infrastructure",
+                "url": `${baseUrl}/smart-automation`,
                 "areaServed": "United Arab Emirates",
                 "provider": { "@id": `${baseUrl}/#organization` }
               }
@@ -330,14 +374,14 @@ const SEOHead = ({
         "name": "WinmaxGulf",
         "image": logoUrl,
         "url": baseUrl,
-        "telephone": "+971527200466",
-        "email": "info@winmaxgulf.com",
+        "telephone": "+971 4 271 3101",
+        "email": "sales@winmaxgulf.com",
         "priceRange": "$$-$$$",
         "currenciesAccepted": "AED, USD",
         "paymentAccepted": "Cash, Credit Card, Bank Transfer",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Dubai",
+          "streetAddress": "#301, 3rd Floor, NBQ Building, BurJuman",
           "addressLocality": "Dubai",
           "addressRegion": "Dubai",
           "addressCountry": "AE"
@@ -356,7 +400,7 @@ const SEOHead = ({
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.9",
-          "reviewCount": "500"
+          "reviewCount": "1000"
         }
       },
       {

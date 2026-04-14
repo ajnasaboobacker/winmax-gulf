@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Zap, Cpu, Wifi, Database, Shield, Globe } from "lucide-react";
+import { Zap, Cpu, Wifi, Database, Shield, Globe, type LucideProps } from "lucide-react";
 
 interface FloatingElement {
   id: number;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<LucideProps>;
   x: number;
   y: number;
   scale: number;
@@ -12,15 +12,15 @@ interface FloatingElement {
   opacity: number;
 }
 
+const ICONS = [Zap, Cpu, Wifi, Database, Shield, Globe];
+
 const FloatingElements = () => {
   const [elements, setElements] = useState<FloatingElement[]>([]);
-
-  const icons = [Zap, Cpu, Wifi, Database, Shield, Globe];
 
   useEffect(() => {
     const initialElements: FloatingElement[] = Array.from({ length: 12 }, (_, i) => ({
       id: i,
-      icon: icons[Math.floor(Math.random() * icons.length)],
+      icon: ICONS[Math.floor(Math.random() * ICONS.length)],
       x: Math.random() * 100,
       y: Math.random() * 100,
       scale: Math.random() * 0.5 + 0.5,

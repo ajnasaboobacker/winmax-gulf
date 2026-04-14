@@ -99,27 +99,33 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-# Other AI Crawlers
+# Aggressive Scrapers (Restricted)
 User-agent: CCBot
-Allow: /
-
-User-agent: YouBot
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-User-agent: Diffbot
-Allow: /
+Disallow: /
 
 User-agent: ImagesiftBot
-Allow: /
+Disallow: /
 
 User-agent: omgili
-Allow: /
+Disallow: /
 
 User-agent: omgilibot
-Allow: /
+Disallow: /
+
+User-agent: Cincraw
+Disallow: /
+
+User-agent: ByteSpider
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Sogou web spider
+Disallow: /
+
+User-agent: YouBot
+Disallow: /
 
 # ===========================================
 # LLMs.txt Files Location

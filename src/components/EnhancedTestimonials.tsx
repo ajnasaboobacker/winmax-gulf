@@ -1,114 +1,132 @@
-import { Card } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Quote, Star, Building, MapPin } from "lucide-react";
-import EnhancedScrollAnimation from "./EnhancedScrollAnimations";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Quote, ArrowLeft, ArrowRight, Building2, MapPin } from "lucide-react";
+import Reveal from "./Reveal";
 
 const EnhancedTestimonials = () => {
+  const [current, setCurrent] = useState(0);
+
   const testimonials = [
     {
       name: "Ahmed Al-Mansouri",
-      role: "General Manager",
+      role: "Director of Operations",
       company: "Dubai Corporate Center",
       location: "Dubai, UAE",
-      image: "/placeholder.svg",
-      rating: 5,
-      testimonial: "WinmaxGulf transformed our office spaces with their PDLC smart film technology. The privacy control and energy efficiency have exceeded our expectations. Professional installation and excellent support.",
-      project: "Office Privacy Solutions",
-      projectValue: "AED 150,000"
+      quote: "Winmax Gulf transformed our architectural vision with PDLC technology. The orchestration of privacy and light is unparalleled.",
+      stats: "99% UV Blocked"
     },
     {
       name: "Sarah Johnson",
-      role: "Event Manager", 
+      role: "Project Director",
       company: "Premium Events LLC",
       location: "Abu Dhabi, UAE",
-      image: "/placeholder.svg",
-      rating: 5,
-      testimonial: "Their LED display systems made our events spectacular. The image quality is outstanding and the team's technical expertise is unmatched. Highly recommended for any large-scale events.",
-      project: "LED Display Rental",
-      projectValue: "AED 85,000"
+      quote: "The LED display engineering exceeded our technical standards. A masterclass in high-performance visual integration.",
+      stats: "4K Resolution"
     },
     {
       name: "Omar Hassan",
-      role: "Club Owner",
+      role: "Founder",
       company: "Nightlife Ventures",
-      location: "Dubai, UAE", 
-      image: "/placeholder.svg",
-      rating: 5,
-      testimonial: "Complete DJ club solution delivered on time and within budget. The sound system quality and lighting integration is perfect. Our customers love the immersive experience.",
-      project: "Complete DJ Club Setup",
-      projectValue: "AED 250,000"
+      location: "Dubai, UAE",
+      quote: "A seamless synthesis of sound and visual intelligence. They don't just install; they engineer immersive, professional atmospheres.",
+      stats: "Full Integration"
     }
   ];
 
+  const next = () => setCurrent((c) => (c + 1) % testimonials.length);
+  const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
+
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-muted/20">
+    <section className="py-40 bg-black relative">
       <div className="container mx-auto px-6 lg:px-8">
-        <EnhancedScrollAnimation animation="fadeInUp">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
-              What Our <span className="text-winmax-orange">Clients Say</span>
-            </h2>
-            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
-              Real feedback from satisfied customers across the UAE
-            </p>
-          </div>
-        </EnhancedScrollAnimation>
+        <div className="flex flex-col lg:flex-row gap-24 items-center">
+          
+          {/* Editorial Content */}
+          <div className="w-full lg:w-3/4 relative min-h-[500px] flex flex-col justify-center">
+            <Reveal>
+              <div className="flex items-center gap-4 mb-12">
+                <div className="w-12 h-px bg-winmax-orange" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-winmax-orange">
+                  Strategic Partners
+                </span>
+              </div>
+            </Reveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <EnhancedScrollAnimation 
-              key={index} 
-              animation="slideInRotate" 
-              delay={index * 200}
-            >
-              <Card className="p-8 h-full hover:shadow-2xl transition-all duration-300 border-winmax-orange/20 group relative overflow-hidden">
-                {/* Background Quote */}
-                <Quote className="absolute top-4 right-4 w-12 h-12 text-winmax-orange/10 group-hover:text-winmax-orange/20 transition-colors duration-300" />
-                
-                {/* Rating */}
-                <div className="flex items-center mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                className="relative"
+              >
+                <Quote className="absolute -top-16 -left-8 w-24 h-24 text-white/[0.03]" />
+                <h3 className="text-4xl md:text-7xl font-bold text-white tracking-tight leading-[0.9] mb-16 max-w-4xl">
+                  "{testimonials[current].quote}"
+                </h3>
 
-                {/* Testimonial Text */}
-                <blockquote className="text-foreground/80 mb-6 italic leading-relaxed">
-                  "{testimonial.testimonial}"
-                </blockquote>
-
-                {/* Project Info */}
-                <div className="bg-winmax-orange/10 rounded-lg p-3 mb-6">
-                  <p className="text-sm font-medium text-winmax-orange">{testimonial.project}</p>
-                  <p className="text-xs text-foreground/60">Project Value: {testimonial.projectValue}</p>
-                </div>
-
-                {/* Client Info */}
-                <div className="flex items-center">
-                  <Avatar className="h-12 w-12 mr-4">
-                    <AvatarImage src={testimonial.image} alt={testimonial.name} />
-                    <AvatarFallback className="bg-winmax-orange text-white">
-                      {testimonial.name.split(' ').map(n => n[0]).join('')}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
-                    <p className="text-sm text-foreground/70">{testimonial.role}</p>
-                    <div className="flex items-center text-xs text-foreground/60 mt-1">
-                      <Building className="w-3 h-3 mr-1" />
-                      <span className="mr-2">{testimonial.company}</span>
-                      <MapPin className="w-3 h-3 mr-1" />
-                      <span>{testimonial.location}</span>
+                <div className="flex flex-wrap gap-12 items-center pt-12 border-t border-white/5">
+                  <div>
+                    <p className="text-2xl font-bold text-white tracking-tight">
+                      {testimonials[current].name}
+                    </p>
+                    <div className="flex items-center gap-3 mt-2 text-white/30 text-xs font-bold uppercase tracking-widest leading-none">
+                      <Building2 className="w-3 h-3 text-winmax-orange" />
+                      {testimonials[current].company}
+                      <span className="w-1 h-1 rounded-full bg-white/20" />
+                      <MapPin className="w-3 h-3 text-winmax-orange" />
+                      {testimonials[current].location}
                     </div>
                   </div>
+
+                  <div className="flex-1" />
+
+                  <div className="text-right">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-winmax-orange mb-2">
+                      Technical Metric
+                    </p>
+                    <p className="text-2xl font-bold text-white">
+                      {testimonials[current].stats}
+                    </p>
+                  </div>
                 </div>
-              </Card>
-            </EnhancedScrollAnimation>
-          ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Controls */}
+          <div className="w-full lg:w-1/4 flex flex-row lg:flex-col gap-6 justify-center lg:justify-end">
+            <button
+              onClick={prev}
+              className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-winmax-orange hover:border-winmax-orange transition-technical group"
+            >
+              <ArrowLeft className="w-6 h-6 group-active:-translate-x-1 transition-transform" />
+            </button>
+            <button
+              onClick={next}
+              className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-winmax-orange hover:border-winmax-orange transition-technical group"
+            >
+              <ArrowRight className="w-6 h-6 group-active:translate-x-1 transition-transform" />
+            </button>
+            <div className="hidden lg:block mt-8">
+              <div className="flex gap-2">
+                {testimonials.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`h-1 transition-all duration-500 rounded-full ${
+                      current === i ? 'w-12 bg-winmax-orange' : 'w-4 bg-white/10'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
   );
 };
 
-export default EnhancedTestimonials;
+export default EnhancedTestimonials;

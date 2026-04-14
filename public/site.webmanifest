@@ -4,7 +4,7 @@
   "description": "Leading UAE provider of PDLC smart film, LED displays & DJ club solutions",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A0F1C",
+  "background_color": "#0a0a0a",
   "theme_color": "#FF6B35",
   "icons": [
     {

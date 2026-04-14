@@ -1,159 +1,184 @@
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Monitor, Smartphone, Cpu, Wifi, ArrowRight, Play } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Monitor, Eye, Music, Cpu, Presentation, Sun, ArrowRight, CheckCircle2 } from "lucide-react";
+import Reveal from "./Reveal";
 
 const TechnologyShowcase = () => {
-  const [hoveredTech, setHoveredTech] = useState<number | null>(null);
+  const [activeTech, setActiveTech] = useState(0);
 
   const technologies = [
     {
-      icon: <Monitor className="h-8 w-8" />,
-      title: "PDLC Smart Glass",
-      subtitle: "Privacy on Demand",
-      features: ["Instant Opacity Control", "Energy Efficient", "UV Protection", "Sound Dampening"],
-      gradient: "from-winmax-orange to-winmax-orange-light",
-      bgColor: "bg-winmax-orange/10"
+      icon: <Eye className="h-8 w-8" />,
+      title: "PDLC Smart Glass Solutions",
+      category: "Privacy & Environment Context",
+      description: "Advanced switchable glass film that transitions from frosted to transparent essentially instantly, offering on-demand privacy and glare reduction without compromising natural light.",
+      features: ["Blocks 99% of harmful UV rays", "Reduces HVAC energy consumption", "Retrofit application on existing glass"],
+      specs: [
+        { label: "Switch Speed", value: "<10ms" },
+        { label: "UV Block", value: ">99%" },
+        { label: "Power Draw", value: "4-6 W/m²" }
+      ]
     },
     {
-      icon: <Smartphone className="h-8 w-8" />,
+      icon: <Monitor className="h-8 w-8" />,
       title: "LED Display Systems",
-      subtitle: "Visual Communication",
-      features: ["Ultra HD Resolution", "Weather Resistant", "Remote Control", "Custom Sizes"],
-      gradient: "from-winmax-orange to-winmax-orange-light",
-      bgColor: "bg-winmax-orange/10"
+      category: "High-Fidelity Visuals",
+      description: "Custom-engineered LED video walls designed for both indoor precision and outdoor durability, delivering unrivaled brightness and contrast for commercial advertising.",
+      features: ["Seamless bezel-less configurations", "Front/Rear maintenance designs", "High refresh rates for broadcasting"],
+      specs: [
+        { label: "Pixel Pitch", value: "1.2 - 4mm" },
+        { label: "Brightness", value: "Upto 6000cd" },
+        { label: "Lifespan", value: "100k Hours" }
+      ]
+    },
+    {
+      icon: <Music className="h-8 w-8" />,
+      title: "Specialized AV & DJ Club Engineering",
+      category: "Immersive Audio-Visuals",
+      description: "Turnkey acoustic engineering and intelligent lighting arrays specifically mapped for high-energy hospitality environments and elite night venues.",
+      features: ["Line-array acoustic modeling", "DMX intelligent lighting mapping", "Centralized DJ booth integration"],
+      specs: [
+        { label: "Audio Headroom", value: ">115 dB" },
+        { label: "Sync Latency", value: "<5ms" },
+        { label: "Coverage", value: "360°" }
+      ]
     },
     {
       icon: <Cpu className="h-8 w-8" />,
-      title: "Smart Integration",
-      subtitle: "IoT Connected",
-      features: ["Mobile App Control", "Voice Commands", "Automated Scheduling", "Real-time Monitoring"],
-      gradient: "from-winmax-orange to-winmax-orange-light",
-      bgColor: "bg-winmax-orange/10"
+      title: "Smart Automation",
+      category: "Centralized Intelligence",
+      description: "Robust automation frameworks bridging lighting, climate control, shades, and unified security into a single intuitive smart system.",
+      features: ["Seamless third-party hardware integration", "Voice native and mobile app control", "Automated routine scheduling"],
+      specs: [
+        { label: "Protocols", value: "KNX / Zigbee" },
+        { label: "Security", value: "AES-256" },
+        { label: "Uptime", value: "99.9%" }
+      ]
     },
     {
-      icon: <Wifi className="h-8 w-8" />,
-      title: "Wireless Solutions",
-      subtitle: "Seamless Control",
-      features: ["WiFi Enabled", "Cloud Management", "Multi-device Sync", "Remote Support"],
-      gradient: "from-winmax-orange to-winmax-orange-light",
-      bgColor: "bg-winmax-orange/10"
+      icon: <Presentation className="h-8 w-8" />,
+      title: "Collaboration AV",
+      category: "Enterprise Workspaces",
+      description: "Enterprise-grade presentation hubs and UC systems built to enable frictionless hybrid meetings across local and global team structures.",
+      features: ["Wireless BYOD screen sharing", "Beamforming microphone arrays", "One-touch meeting initiation"],
+      specs: [
+        { label: "Video Quality", value: "Native 4K" },
+        { label: "Audio Range", value: "Up to 8m" },
+        { label: "Compatibility", value: "Universal" }
+      ]
+    },
+    {
+      icon: <Sun className="h-8 w-8" />,
+      title: "Solar Solutions",
+      category: "Commercial & Residential PV",
+      description: "Secure energy independence for 25-30 years with Winmax's comprehensive photovoltaic solutions. Delivering complete grids from precision residential builds up to 1MW+ utility-scale power plants.",
+      features: ["A+ Grade Monocrystalline Panels", "Smart MPPT Hybrid Inverters", "High-Density Lithium-Ion Storage"],
+      specs: [
+        { label: "System Voltage", value: "1000/1500V DC" },
+        { label: "Design Life", value: "25-30 Years" },
+        { label: "Management", value: "SNMP / WebApp" }
+      ]
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-background via-secondary/10 to-background">
-      <div className="container mx-auto px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <Badge className="mb-4 bg-winmax-orange/20 text-winmax-orange border-winmax-orange/30">
-            Technology Innovation
-          </Badge>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
-            Advanced Smart Technology Solutions
-          </h2>
-          <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-6">
-            Discover how our advanced technologies transform residential and commercial spaces with intelligent automation, seamless integration, and cutting-edge innovation. Our smart solutions deliver enhanced privacy control, superior visual communication, and immersive entertainment experiences tailored to your unique requirements.
-          </p>
-          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            From automated PDLC smart glass systems to ultra-high-definition LED displays and complete DJ club installations, we provide comprehensive technology solutions backed by expert installation, training, and ongoing technical support throughout Dubai and the UAE.
-          </p>
-        </div>
+    <section className="py-32 bg-[#050505] relative border-t border-white/5">
+      <div className="container mx-auto px-6 lg:px-16">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
 
-        {/* Technology Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {technologies.map((tech, index) => (
-            <Card 
-              key={index}
-              className={`group cursor-pointer transition-all duration-500 hover:scale-105 border-border/50 hover:border-opacity-70 ${
-                hoveredTech === index ? 'shadow-2xl transform scale-105' : 'hover:shadow-xl'
-              }`}
-              onMouseEnter={() => setHoveredTech(index)}
-              onMouseLeave={() => setHoveredTech(null)}
-            >
-              <CardContent className="p-6 h-full flex flex-col">
-                {/* Tech Icon */}
-                <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${tech.gradient} mb-4 text-white self-start transform transition-all duration-300 ${
-                  hoveredTech === index ? 'scale-110 rotate-6' : 'group-hover:scale-105'
-                }`}>
-                  {tech.icon}
-                </div>
+          <div className="w-full lg:w-1/3">
+            <Reveal>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-px bg-winmax-orange" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-winmax-orange">
+                  Detailed Integration
+                </span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-12">
+                Technical <br />
+                <span className="text-white/40">Specifications.</span>
+              </h2>
+            </Reveal>
 
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-winmax-orange transition-colors">
-                    {tech.title}
-                  </h3>
-                  <h4 className="text-sm text-foreground/70 mb-4 font-medium">
-                    {tech.subtitle}
-                  </h4>
-                  
-                  {/* Features List */}
-                  <ul className="space-y-2 mb-6">
-                    {tech.features.map((feature, idx) => (
-                      <li 
-                        key={idx} 
-                        className={`text-sm text-foreground/80 flex items-center transition-all duration-300 ${
-                          hoveredTech === index ? 'translate-x-2' : ''
-                        }`}
-                        style={{ animationDelay: `${idx * 100}ms` }}
-                      >
-                        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${tech.gradient} mr-3 ${
-                          hoveredTech === index ? 'animate-pulse' : ''
-                        }`}></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Action Button */}
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  className={`w-full justify-between group-hover:bg-gradient-to-r group-hover:${tech.gradient} group-hover:text-white transition-all duration-300`}
+            <div className="flex flex-col gap-3">
+              {technologies.map((tech, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveTech(index)}
+                  className={`w-full group text-left px-6 py-5 rounded-xl transition-all duration-300 flex items-center justify-between ${activeTech === index
+                    ? 'bg-winmax-orange/10 border-winmax-orange border shadow-[0_0_15px_rgba(255,90,0,0.1)]'
+                    : 'bg-[#111] border-transparent border hover:bg-[#1a1a1a]'
+                    }`}
                 >
-                  Learn More
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Interactive Demo Section */}
-        <div className="relative bg-gradient-to-r from-card to-secondary/20 rounded-2xl p-8 border border-border/50">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4 text-foreground">
-              Experience Our Technology Live
-            </h3>
-            <p className="text-foreground/80 mb-6 max-w-2xl mx-auto">
-              Experience live demonstrations of our PDLC smart glass technology, LED display systems, and DJ club solutions. Book a personalized consultation with our technology experts to see how our innovative solutions can transform your residential, commercial, or entertainment space with enhanced functionality, aesthetic appeal, and operational efficiency.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg"
-                className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light hover:scale-105 hover:shadow-lg transition-all duration-300 group"
-                onClick={() => window.open('https://wa.me/+971527200466?text=Hello%20I%20want%20to%20see%20a%20live%20demo%20of%20your%20technology', '_blank')}
-              >
-                Book Live Demo
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
-              </Button>
-              <Button 
-                variant="outline"
-                size="lg"
-                className="border-winmax-orange text-winmax-orange hover:bg-winmax-orange hover:text-white hover:scale-105 transition-all duration-300 group"
-              >
-                <Play className="mr-2 h-5 w-5 group-hover:scale-125 transition-transform duration-300" />
-                Watch Videos
-              </Button>
+                  <div>
+                    <h3 className={`text-lg font-bold tracking-wide transition-colors ${activeTech === index ? 'text-winmax-orange' : 'text-white'
+                      }`}>
+                      {tech.title}
+                    </h3>
+                  </div>
+                  <div className={`${activeTech === index ? 'text-winmax-orange' : 'text-white/20 group-hover:text-white/50'} transition-colors`}>
+                    {tech.icon}
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Floating Background Elements */}
-          <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-r from-winmax-orange/20 to-winmax-orange-light/20 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-r from-winmax-orange/20 to-winmax-orange-light/20 rounded-full animate-bounce-gentle"></div>
+          <div className="w-full lg:w-2/3 mt-10 lg:mt-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTech}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="relative p-10 md:p-14 bg-[#111111] rounded-[2rem] border border-white/5 shadow-2xl flex flex-col justify-between min-h-[600px]"
+              >
+                <div>
+                  <div className="flex items-center gap-4 mb-8">
+                    <span className="px-3 py-1 bg-white/5 rounded-full text-xs font-semibold uppercase tracking-[0.15em] text-white/50">
+                      {technologies[activeTech].category}
+                    </span>
+                  </div>
+
+                  <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+                    {technologies[activeTech].title}
+                  </h3>
+
+                  <p className="text-xl text-white/70 font-light leading-[1.8] max-w-3xl mb-10">
+                    {technologies[activeTech].description}
+                  </p>
+
+                  <div className="mb-12">
+                    <h4 className="text-sm font-bold text-white mb-5 uppercase tracking-wider">Key Capabilities</h4>
+                    <ul className="space-y-4">
+                      {technologies[activeTech].features.map((feat, i) => (
+                        <li key={i} className="flex items-center gap-3 text-white/80">
+                          <CheckCircle2 className="w-5 h-5 text-winmax-orange shrink-0" />
+                          <span className="text-lg">{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-8 pt-10 border-t border-white/5">
+                  {technologies[activeTech].specs.map((spec, idx) => (
+                    <div key={idx}>
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-2">
+                        {spec.label}
+                      </p>
+                      <p className="text-2xl font-bold text-white">
+                        {spec.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

@@ -2,8 +2,9 @@
 # https://winmaxgulf.com/.well-known/security.txt
 
 # Contact for security vulnerabilities
+Contact: mailto:sales@winmaxgulf.com
 Contact: mailto:info@winmaxgulf.com
-Contact: tel:+971527200466
+Contact: tel:+97142713101
 Contact: https://winmaxgulf.com/#contact
 
 # Preferred contact method and languages

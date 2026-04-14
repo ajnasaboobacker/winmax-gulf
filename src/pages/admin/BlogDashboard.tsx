@@ -14,6 +14,14 @@ interface DashboardStats {
   tags: number;
 }
 
+interface RecentPost {
+  id: string;
+  title: string;
+  status: string;
+  created_at: string;
+  published_at: string | null;
+}
+
 const BlogDashboard = () => {
   const { user, userRole } = useAuth();
   const [stats, setStats] = useState<DashboardStats>({
@@ -23,7 +31,7 @@ const BlogDashboard = () => {
     categories: 0,
     tags: 0,
   });
-  const [recentPosts, setRecentPosts] = useState<any[]>([]);
+  const [recentPosts, setRecentPosts] = useState<RecentPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -65,7 +73,7 @@ const BlogDashboard = () => {
         });
 
         setRecentPosts(recent || []);
-      } catch (error) {
+      } catch (error: unknown) {
         console.error("Error fetching dashboard data:", error);
       } finally {
         setIsLoading(false);

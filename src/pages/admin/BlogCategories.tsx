@@ -51,7 +51,7 @@ const BlogCategories = () => {
   const { generateSlug } = useSlug();
   const { toast } = useToast();
 
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     setIsLoading(true);
     try {
       const { data, error } = await supabase
@@ -67,11 +67,11 @@ const BlogCategories = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [toast]);
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [fetchCategories]);
 
   const openCreateDialog = () => {
     setEditingCategory(null);
@@ -129,9 +129,10 @@ const BlogCategories = () => {
 
       setIsDialogOpen(false);
       fetchCategories();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Save error:", error);
-      if (error.code === "23505") {
+      const err = error as { code?: string; message: string };
+      if (err.code === "23505") {
         toast({ title: "Slug already exists", variant: "destructive" });
       } else {
         toast({ title: "Failed to save category", variant: "destructive" });

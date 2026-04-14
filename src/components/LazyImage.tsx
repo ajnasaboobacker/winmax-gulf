@@ -1,6 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { useImageLoader } from '@/hooks/useImageLoader';
-import { ImageSkeleton } from '@/components/LoadingStates';
+import { Skeleton } from "@/components/ui/skeleton";
+
+const ImageSkeleton = ({ className = "" }: { className?: string }) => (
+  <Skeleton className={`rounded-lg ${className}`} />
+);
 
 interface LazyImageProps {
   src: string;

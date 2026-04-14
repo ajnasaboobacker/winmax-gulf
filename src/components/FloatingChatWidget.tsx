@@ -16,13 +16,13 @@ const FloatingChatWidget = () => {
     {
       icon: Phone,
       label: "Call Us",
-      action: () => window.open('tel:+971527200466', '_self'),
+      action: () => window.open('tel:+97142713101', '_self'),
       color: "bg-blue-500 hover:bg-blue-600"
     },
     {
       icon: Mail,
-      label: "Email Us",
-      action: () => window.open('mailto:info@winmaxgulf.com', '_self'),
+      label: "Email Sales",
+      action: () => window.open('mailto:sales@winmaxgulf.com', '_self'),
       color: "bg-purple-500 hover:bg-purple-600"
     }
   ];

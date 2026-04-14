@@ -2,11 +2,9 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Play, Film, Zap, Music } from "lucide-react";
-import PDLCDemoModal from "./PDLCDemoModal";
-import LEDDisplayDemoModal from "./LEDDisplayDemoModal";
-import DJClubDemoModal from "./DJClubDemoModal";
+import VideoDemoModal from "./VideoDemoModal";
 import pdlcImage from "@/assets/hero-smart-glass.jpg";
-import ledImage from "@/assets/led-display.jpg";
+import ledImage from "@/assets/led-display.png";
 import djImage from "@/assets/dj-club.jpg";
 
 interface DemoSelectionModalProps {
@@ -111,20 +109,26 @@ const DemoSelectionModal = ({ isOpen, onClose }: DemoSelectionModalProps) => {
         </DialogContent>
       </Dialog>
 
-      {/* Individual Demo Modals */}
-      <PDLCDemoModal 
+      {/* Unified Demo Modal mapping */}
+      <VideoDemoModal 
         isOpen={selectedDemo === "pdlc"} 
-        onClose={handleCloseDemo} 
+        onClose={handleCloseDemo}
+        title="PDLC Smart Film Demo"
+        videoUrl="https://www.youtube.com/embed/9L3QFnza5qU?autoplay=1&rel=0" // Reusing available good assets or placeholder
       />
       
-      <LEDDisplayDemoModal 
+      <VideoDemoModal 
         isOpen={selectedDemo === "led"} 
-        onClose={handleCloseDemo} 
+        onClose={handleCloseDemo}
+        title="LED Display Systems Demo"
+        videoUrl="https://www.youtube.com/embed/BCo2hqvb_vg?autoplay=1&rel=0"
       />
       
-      <DJClubDemoModal 
+      <VideoDemoModal 
         isOpen={selectedDemo === "dj"} 
-        onClose={handleCloseDemo} 
+        onClose={handleCloseDemo}
+        title="TurnKey DJ Solutions Demo"
+        videoUrl="https://www.youtube.com/embed/9L3QFnza5qU?autoplay=1&rel=0"
       />
     </>
   );

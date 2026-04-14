@@ -40,60 +40,69 @@ const ParticleBackground = ({
     const createParticles = () => {
       particlesRef.current = [];
       for (let i = 0; i < density; i++) {
+        const colorBase = colors[Math.floor(Math.random() * colors.length)];
+        const opacity = Math.random() * 0.4 + 0.1;
+        // Pre-calculate hsla string to avoid replacement in render loop
+        const hslaColor = colorBase.replace('hsl', 'hsla').replace(')', `, ${opacity})`);
+        
         particlesRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1,
-          opacity: Math.random() * 0.5 + 0.1,
-          color: colors[Math.floor(Math.random() * colors.length)]
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          size: Math.random() * 1.5 + 0.5,
+          opacity: opacity,
+          color: hslaColor
         });
       }
     };
 
     const updateParticles = () => {
-      particlesRef.current.forEach(particle => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
+      const { width, height } = canvas;
+      for (let i = 0; i < particlesRef.current.length; i++) {
+        const p = particlesRef.current[i];
+        p.x += p.vx;
+        p.y += p.vy;
 
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
-        // Keep particles in bounds
-        particle.x = Math.max(0, Math.min(canvas.width, particle.x));
-        particle.y = Math.max(0, Math.min(canvas.height, particle.y));
-      });
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+      }
     };
 
     const drawParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const particles = particlesRef.current;
+      const len = particles.length;
       
-      particlesRef.current.forEach(particle => {
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color.replace(')', `, ${particle.opacity})`).replace('hsl', 'hsla');
-        ctx.fill();
-      });
+      // Draw Connections (Optimized loop)
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < len; i++) {
+        const p1 = particles[i];
+        for (let j = i + 1; j < len; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distSq = dx * dx + dy * dy; // Use squared distance to avoid Math.sqrt
 
-      // Draw connections
-      particlesRef.current.forEach((particle, i) => {
-        particlesRef.current.slice(i + 1).forEach(otherParticle => {
-          const distance = Math.sqrt(
-            Math.pow(particle.x - otherParticle.x, 2) + 
-            Math.pow(particle.y - otherParticle.y, 2)
-          );
-
-          if (distance < 100) {
+          if (distSq < 10000) { // 100 * 100
+            const opacity = 0.08 * (1 - Math.sqrt(distSq) / 100);
             ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `hsla(25, 95%, 53%, ${0.1 * (100 - distance) / 100})`;
-            ctx.lineWidth = 0.5;
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `hsla(25, 95%, 53%, ${opacity})`;
             ctx.stroke();
           }
-        });
-      });
+        }
+      }
+
+      // Draw Particles
+      for (let i = 0; i < len; i++) {
+        const p = particles[i];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      }
     };
 
     const animate = () => {

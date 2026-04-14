@@ -60,6 +60,21 @@ interface Author {
   bio: string | null;
 }
 
+interface BlogPost {
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  content: string;
+  featured_image_url: string | null;
+  status: string;
+  scheduled_for: string | null;
+  meta_title: string | null;
+  meta_description: string | null;
+  focus_keyword?: string | null;
+  canonical_url?: string | null;
+  no_index?: boolean;
+}
+
 const PostEditor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -153,9 +168,10 @@ const PostEditor = () => {
         setScheduledFor(post.scheduled_for ? post.scheduled_for.slice(0, 16) : "");
         setMetaTitle(post.meta_title || "");
         setMetaDescription(post.meta_description || "");
-        setFocusKeyword((post as any).focus_keyword || "");
-        setCanonicalUrl((post as any).canonical_url || "");
-        setNoIndex((post as any).no_index || false);
+        const blogPost = post as BlogPost;
+        setFocusKeyword(blogPost.focus_keyword || "");
+        setCanonicalUrl(blogPost.canonical_url || "");
+        setNoIndex(blogPost.no_index || false);
 
         // Fetch post categories
         const { data: postCats } = await supabase
@@ -212,7 +228,7 @@ const PostEditor = () => {
   };
 
   // Validate form
-  const validate = () => {
+  const validate = useCallback(() => {
     try {
       postSchema.parse({
         title,
@@ -238,7 +254,7 @@ const PostEditor = () => {
       }
       return false;
     }
-  };
+  }, [title, slug, excerpt, content, metaTitle, metaDescription, focusKeyword, canonicalUrl]);
 
   // Save post
   const savePost = useCallback(async (publishStatus?: PostStatus) => {
@@ -319,19 +335,20 @@ const PostEditor = () => {
       if (!isEditing) {
         navigate(`/admin/blog/posts/${postId}`);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Save error:", error);
+      const err = error as { code?: string; message: string };
       
-      if (error.code === "23505") {
+      if (err.code === "23505") {
         setErrors({ slug: "This slug is already in use" });
         toast({ title: "Slug already exists", description: "Please choose a different slug.", variant: "destructive" });
       } else {
-        toast({ title: "Failed to save", description: error.message, variant: "destructive" });
+        toast({ title: "Failed to save", description: err.message, variant: "destructive" });
       }
     } finally {
       setIsSaving(false);
     }
-  }, [title, slug, excerpt, content, featuredImage, status, scheduledFor, metaTitle, metaDescription, focusKeyword, canonicalUrl, noIndex, user, id, isEditing, selectedCategories, selectedTags, navigate, toast]);
+  }, [title, slug, excerpt, content, featuredImage, status, scheduledFor, metaTitle, metaDescription, focusKeyword, canonicalUrl, noIndex, user, id, isEditing, selectedCategories, selectedTags, navigate, toast, validate]);
 
   if (isLoading) {
     return (

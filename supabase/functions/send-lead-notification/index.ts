@@ -183,10 +183,11 @@ const handler = async (req: Request): Promise<Response> => {
         headers: { "Content-Type": "application/json", ...corsHeaders },
       }
     );
-  } catch (error: any) {
-    console.error("Lead notification error:", error);
+  } catch (error: unknown) {
+    const err = error as Error;
+    console.error("Lead notification error:", err);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: err.message }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

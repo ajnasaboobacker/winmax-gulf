@@ -111,9 +111,10 @@ const AuthorProfile = () => {
 
       setAvatarUrl(urlData.publicUrl);
       toast({ title: "Avatar uploaded successfully" });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Upload error:", error);
-      toast({ title: "Failed to upload avatar", description: error.message, variant: "destructive" });
+      const err = error as { message: string };
+      toast({ title: "Failed to upload avatar", description: err.message, variant: "destructive" });
     } finally {
       setIsUploading(false);
     }
@@ -183,9 +184,10 @@ const AuthorProfile = () => {
       }
 
       toast({ title: "Profile saved successfully!" });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Save error:", error);
-      toast({ title: "Failed to save profile", description: error.message, variant: "destructive" });
+      const err = error as { message: string };
+      toast({ title: "Failed to save profile", description: err.message, variant: "destructive" });
     } finally {
       setIsSaving(false);
     }

@@ -7,10 +7,10 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Calendar, Clock, Search, User } from "lucide-react";
+import { Calendar, Search, ArrowRight, BookOpen, Clock, Tag } from "lucide-react";
 import { format } from "date-fns";
+import Reveal from "@/components/Reveal";
+import { motion } from "framer-motion";
 
 interface BlogPost {
   id: string;
@@ -81,12 +81,12 @@ const Blog = () => {
   const blogSchema = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "WinmaxGulf Blog",
-    "description": "Latest insights on smart glass technology, LED displays, and entertainment solutions",
+    "name": "Winmax Gulf Blog",
+    "description": "Professional insights and corporate news on smart glass, specialized AV engineering, and solar infrastructure.",
     "url": "https://winmaxgulf.com/blog",
     "publisher": {
       "@type": "Organization",
-      "name": "WinmaxGulf",
+      "name": "Winmax Gulf",
       "logo": "https://winmaxgulf.com/favicon.png"
     }
   };
@@ -94,137 +94,196 @@ const Blog = () => {
   return (
     <>
       <SEOHead
-        title="Blog | WinmaxGulf - Smart Technology Insights"
-        description="Discover the latest insights on PDLC smart glass, LED displays, and DJ club solutions from WinmaxGulf experts."
-        keywords="smart glass blog, LED display insights, PDLC technology articles, AV solutions UAE"
+        title="Blog | Winmax Gulf - Corporate Insights"
+        description="Official blog covering PDLC smart glass solutions, specialized AV engineering, and solar infrastructure in the UAE."
         structuredData={blogSchema}
       />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-winmax-orange/30 font-sans">
         <Header />
-        <Breadcrumbs items={[{ label: "Blog" }]} />
         
-        {/* Hero Section */}
-        <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-card to-background">
-          <div className="container mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              Our <span className="text-primary">Blog</span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Stay updated with the latest insights on smart technology, LED displays, 
-              and entertainment solutions from our expert team.
-            </p>
+        <div className="pt-24 border-b border-white/5">
+           <Breadcrumbs items={[{ label: "Blog" }]} />
+        </div>
+        
+        {/* Architectural Hero */}
+        <section className="pt-40 pb-32 px-8 relative overflow-hidden">
+          {/* Spatial Design Elements */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-winmax-orange/[0.02] blur-[120px]" />
+            <div className="absolute top-1/2 left-0 w-1/4 h-1/2 bg-blue-500/[0.01] blur-[100px]" />
+            <div className="absolute inset-0 antigravity-grid-pattern opacity-[0.03]" />
+          </div>
+
+          <div className="container mx-auto max-w-6xl relative z-10 text-center md:text-left">
+            <Reveal>
+              <div className="flex items-center justify-center md:justify-start gap-4 mb-8">
+                <div className="w-12 h-px bg-winmax-orange" />
+                <span className="technical-text text-winmax-orange">Winmax Gulf Blog</span>
+              </div>
+            </Reveal>
             
-            {/* Search Bar */}
-            <div className="max-w-md mx-auto relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search articles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-card border-border"
-              />
+            <div className="grid lg:grid-cols-2 gap-16 items-end">
+               <div>
+                  <Reveal delay={0.1}>
+                    <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.85] mb-8">
+                       ARCHITECTURAL<br />
+                       <span className="text-white/30">INTELLIGENCE.</span>
+                    </h1>
+                  </Reveal>
+                  <Reveal delay={0.2}>
+                    <p className="text-xl text-white/50 max-w-xl font-light leading-relaxed">
+                      Professional insights, corporate updates, and engineering perspectives on the future of responsive environments.
+                    </p>
+                  </Reveal>
+               </div>
+
+               <div className="flex flex-col md:flex-row gap-6 items-center lg:justify-end">
+                  <Reveal delay={0.3}>
+                    <div className="relative w-full md:w-80 group">
+                      <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-4 w-4 text-white/20 group-focus-within:text-winmax-orange transition-colors" />
+                      <input
+                        type="text"
+                        placeholder="Search blog..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full pl-14 pr-6 py-5 bg-white/[0.03] border border-white/10 rounded-2xl text-white placeholder:text-white/20 font-medium text-sm focus:outline-none focus:border-winmax-orange/40 transition-technical"
+                      />
+                    </div>
+                  </Reveal>
+               </div>
             </div>
           </div>
         </section>
 
-        {/* Categories */}
+        {/* Global Catalog Filter */}
         {categories && categories.length > 0 && (
-          <section className="py-6 px-4 border-b border-border">
-            <div className="container mx-auto">
-              <div className="flex flex-wrap gap-2 justify-center">
-                <Badge
-                  variant={selectedCategory === null ? "default" : "secondary"}
-                  className="cursor-pointer hover:bg-primary/80 transition-colors"
-                  onClick={() => setSelectedCategory(null)}
-                >
-                  All Posts
-                </Badge>
-                {categories.map((category) => (
-                  <Badge
-                    key={category.id}
-                    variant={selectedCategory === category.id ? "default" : "secondary"}
-                    className="cursor-pointer hover:bg-primary/80 transition-colors"
-                    onClick={() => setSelectedCategory(category.id)}
-                  >
-                    {category.name}
-                  </Badge>
-                ))}
-              </div>
+          <section className="pb-12 px-8">
+            <div className="container mx-auto max-w-6xl">
+              <Reveal delay={0.4}>
+                <div className="flex flex-wrap gap-4 items-center justify-center md:justify-start">
+                   <span className="technical-text text-white/20 mr-4 hidden md:block">Filter by Division:</span>
+                   <button
+                     className={`px-6 py-2.5 text-[10px] font-bold uppercase tracking-widest border rounded-xl transition-all duration-500 ${
+                       selectedCategory === null
+                         ? "bg-winmax-orange text-black border-winmax-orange shadow-[0_10px_20px_rgba(255,90,0,0.2)]"
+                         : "bg-white/5 text-white/40 border-white/5 hover:border-white/20 hover:text-white"
+                     }`}
+                     onClick={() => setSelectedCategory(null)}
+                   >
+                     All Articles
+                   </button>
+                   {categories.map((category) => (
+                     <button
+                       key={category.id}
+                       className={`px-6 py-2.5 text-[10px] font-bold uppercase tracking-widest border rounded-xl transition-all duration-500 ${
+                         selectedCategory === category.id
+                           ? "bg-winmax-orange text-black border-winmax-orange shadow-[0_10px_20px_rgba(255,90,0,0.2)]"
+                           : "bg-white/5 text-white/40 border-white/5 hover:border-white/20 hover:text-white"
+                       }`}
+                       onClick={() => setSelectedCategory(category.id)}
+                     >
+                       {category.name}
+                     </button>
+                   ))}
+                </div>
+              </Reveal>
             </div>
           </section>
         )}
 
-        {/* Blog Posts Grid */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto">
+        {/* The Journal Grid */}
+        <section className="py-24 px-8 border-t border-white/5 bg-[#080808]">
+          <div className="container mx-auto max-w-6xl">
             {postsLoading ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {[...Array(6)].map((_, i) => (
-                  <div key={i} className="bg-card rounded-lg overflow-hidden border border-border">
-                    <Skeleton className="w-full h-48" />
-                    <div className="p-6 space-y-3">
-                      <Skeleton className="h-6 w-3/4" />
-                      <Skeleton className="h-4 w-full" />
-                      <Skeleton className="h-4 w-2/3" />
+                  <div key={i} className="bg-white/[0.02] rounded-3xl overflow-hidden border border-white/5 p-2">
+                    <Skeleton className="w-full aspect-[4/3] bg-white/5 rounded-2xl" />
+                    <div className="p-8 space-y-4">
+                      <Skeleton className="h-4 w-1/4 bg-white/5" />
+                      <Skeleton className="h-8 w-full bg-white/5" />
+                      <Skeleton className="h-20 w-full bg-white/5" />
                     </div>
                   </div>
                 ))}
               </div>
             ) : filteredPosts && filteredPosts.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredPosts.map((post) => (
-                  <article
-                    key={post.id}
-                    className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
-                  >
-                    <Link to={`/blog/${post.slug}`}>
-                      <div className="aspect-video overflow-hidden bg-muted">
-                        {post.featured_image_url ? (
-                          <img
-                            src={post.featured_image_url}
-                            alt={post.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                            <span className="text-4xl">📝</span>
-                          </div>
-                        )}
-                      </div>
-                      <div className="p-6">
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                          {post.published_at && (
-                            <span className="flex items-center gap-1">
-                              <Calendar className="h-4 w-4" />
-                              {format(new Date(post.published_at), "MMM d, yyyy")}
-                            </span>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
+                {filteredPosts.map((post, idx) => (
+                  <Reveal key={post.id} delay={idx * 0.1} width="100%" className="h-full">
+                    <article className="group relative flex flex-col h-full bg-[#111] rounded-[2.5rem] p-2 border border-white/5 hover:border-winmax-orange/30 transition-technical hover:shadow-spatial hover:-translate-y-2">
+                      <Link to={`/blog/${post.slug}`} className="flex flex-col h-full">
+                        {/* Featured Visual */}
+                        <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden bg-black isolation-auto shrink-0">
+                          {post.featured_image_url ? (
+                            <img
+                              src={post.featured_image_url}
+                              alt={post.title}
+                              className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-1000 ease-in-out"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-white/[0.02]">
+                              <BookOpen className="w-12 h-12 text-white/10" />
+                            </div>
                           )}
+                          {/* Division Label */}
+                          <div className="absolute top-6 left-6">
+                             <div className="bg-black/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
+                                <span className="technical-text text-[8px] text-white/50">Article</span>
+                             </div>
+                          </div>
                         </div>
-                        <h2 className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                          {post.title}
-                        </h2>
-                        {post.excerpt && (
-                          <p className="text-muted-foreground line-clamp-3">
-                            {post.excerpt}
-                          </p>
-                        )}
-                        <span className="inline-block mt-4 text-primary font-medium group-hover:underline">
-                          Read more →
-                        </span>
-                      </div>
-                    </Link>
-                  </article>
+
+                        {/* Article Content */}
+                        <div className="p-8 pb-10 flex flex-col flex-grow">
+                          <div className="flex items-center gap-4 text-[10px] font-bold text-winmax-orange/60 uppercase tracking-[0.2em] mb-6">
+                            {post.published_at && (
+                              <span className="flex items-center gap-2">
+                                <Calendar className="h-3 w-3" />
+                                {format(new Date(post.published_at), "MM.dd.yyyy")}
+                              </span>
+                            )}
+                            <div className="w-1 h-1 rounded-full bg-white/10" />
+                            <span className="flex items-center gap-2">
+                               <Clock className="h-3 w-3" />
+                               5 min Read
+                            </span>
+                          </div>
+                          
+                          <h2 className="text-2xl font-bold mb-5 text-white group-hover:text-winmax-orange transition-colors line-clamp-2 tracking-tight leading-tight min-h-[4rem]">
+                            {post.title}
+                          </h2>
+                          
+                          {post.excerpt && (
+                            <p className="text-sm text-white/40 font-light leading-relaxed line-clamp-3 mb-8 min-h-[4.5rem]">
+                              {post.excerpt}
+                            </p>
+                          )}
+                          
+                          <div className="mt-auto flex items-center justify-between pt-6 border-t border-white/5">
+                             <span className="text-[10px] font-bold text-white/20 uppercase tracking-[0.3em] group-hover:text-winmax-orange group-hover:tracking-[0.4em] transition-all duration-500">
+                                Read Article
+                             </span>
+                             <div className="w-10 h-10 rounded-full border border-white/5 flex items-center justify-center group-hover:bg-winmax-orange group-hover:border-winmax-orange transition-all duration-500">
+                                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
+                             </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </article>
+                  </Reveal>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16">
-                <div className="text-6xl mb-4">📚</div>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">No posts found</h3>
-                <p className="text-muted-foreground">
+              <div className="text-center py-40 bg-white/[0.01] rounded-[3rem] border border-dashed border-white/10">
+                <div className="w-24 h-24 bg-winmax-orange/5 rounded-3xl border border-winmax-orange/10 flex items-center justify-center mx-auto mb-10">
+                  <BookOpen className="w-10 h-10 text-winmax-orange/20" />
+                </div>
+                <h3 className="text-3xl font-bold tracking-tight mb-4 text-white/80">No Articles Found</h3>
+                <p className="text-white/30 font-light text-lg">
                   {searchQuery
-                    ? "Try adjusting your search terms"
-                    : "Check back soon for new articles!"}
+                    ? "Adjust your search to find more results."
+                    : "The team is currently preparing new content."}
                 </p>
               </div>
             )}

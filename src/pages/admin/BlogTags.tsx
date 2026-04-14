@@ -48,7 +48,7 @@ const BlogTags = () => {
   const { generateSlug } = useSlug();
   const { toast } = useToast();
 
-  const fetchTags = async () => {
+  const fetchTags = useCallback(async () => {
     setIsLoading(true);
     try {
       const { data, error } = await supabase
@@ -64,11 +64,11 @@ const BlogTags = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [toast]);
 
   useEffect(() => {
     fetchTags();
-  }, []);
+  }, [fetchTags]);
 
   const openCreateDialog = () => {
     setEditingTag(null);
@@ -123,9 +123,10 @@ const BlogTags = () => {
 
       setIsDialogOpen(false);
       fetchTags();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Save error:", error);
-      if (error.code === "23505") {
+      const err = error as { code?: string; message: string };
+      if (err.code === "23505") {
         toast({ title: "Slug already exists", variant: "destructive" });
       } else {
         toast({ title: "Failed to save tag", variant: "destructive" });

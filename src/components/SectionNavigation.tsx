@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { Home, Users, Cog, Image, MessageSquare, Phone } from "lucide-react";
 
+const sections = [
+  { id: "home", icon: Home, label: "Home" },
+  { id: "about", icon: Users, label: "About" },
+  { id: "services", icon: Cog, label: "Services" },
+  { id: "gallery", icon: Image, label: "Gallery" },
+  { id: "testimonials", icon: MessageSquare, label: "Reviews" },
+  { id: "contact", icon: Phone, label: "Contact" }
+];
+
 const SectionNavigation = () => {
   const [activeSection, setActiveSection] = useState("home");
-
-  const sections = [
-    { id: "home", icon: Home, label: "Home" },
-    { id: "about", icon: Users, label: "About" },
-    { id: "services", icon: Cog, label: "Services" },
-    { id: "gallery", icon: Image, label: "Gallery" },
-    { id: "testimonials", icon: MessageSquare, label: "Reviews" },
-    { id: "contact", icon: Phone, label: "Contact" }
-  ];
 
   useEffect(() => {
     const observerOptions = {

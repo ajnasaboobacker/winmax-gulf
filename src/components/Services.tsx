@@ -1,294 +1,211 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/card";
 import { LazyImage } from "@/components/LazyImage";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Eye, Monitor, Music, Info } from "lucide-react";
+import { ArrowRight, Eye, Monitor, Music, Cpu, Presentation, Sun, ShieldCheck, Zap } from "lucide-react";
 import pdlcBanner from "@/assets/pdlc-banner.jpg";
 import ledBanner from "@/assets/led-banner.jpg";
-import djBanner from "@/assets/dj-banner.jpg";
-import ScrollAnimation from "./ScrollAnimations";
-import AnimatedIcon from "./AnimatedIcon";
-import { InteractiveCard, MicroInteractionButton } from "./Microinteractions";
-import EnhancedScrollAnimation from "./EnhancedScrollAnimations";
-import GlassmorphismCard from "./GlassmorphismCard";
-import Interactive3DCard from "./Interactive3DCard";
-import AnimatedGradientBackground from "./AnimatedGradientBackground";
-import ServiceDetailModal from "./ServiceDetailModal";
-import PDLCInfoModal from "./PDLCInfoModal";
-import LEDDisplayModal from "./LEDDisplayModal";
-import DJClubModal from "./DJClubModal";
+import djBanner from "@/assets/dj-club.jpg";
+import smartAutomationBanner from "@/assets/smart-automation-banner.png";
+import collaborationBanner from "@/assets/conference-room.jpg";
+import solarBanner from "@/assets/solar-solutions-banner.png";
+import Reveal from "./Reveal";
+import AntigravityCard from "./AntigravityCard";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const Services = () => {
   const navigate = useNavigate();
-  const [selectedService, setSelectedService] = useState<any>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isPDLCInfoOpen, setIsPDLCInfoOpen] = useState(false);
-  const [isLEDDisplayOpen, setIsLEDDisplayOpen] = useState(false);
-  const [isDJClubOpen, setIsDJClubOpen] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const sectionRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   const services = [
     {
       icon: Eye,
-      title: "PDLC Smart Film",
+      title: "PDLC Smart Glass Solutions",
+      path: "/pdlc",
       description: "Switchable glass film for privacy on demand. Suitable for homes, offices, hospitals, and commercial interiors.",
       image: pdlcBanner,
-      features: ["Instant Privacy Control", "Energy Efficient", "Easy Installation", "Durable & Long-lasting"],
-      link: "https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20PDLC%20services",
-      detailedInfo: {
-        fullTitle: "PDLC Smart Film (Switchable Glass/Film)",
-        whatIs: "PDLC (Polymer Dispersed Liquid Crystal) Smart Film is an advanced glass technology that allows you to instantly change the transparency of glass at the touch of a button or via smart automation. When powered ON, the film becomes clear and transparent, allowing natural light to pass through. When powered OFF, the film turns opaque, providing complete privacy while still allowing light diffusion.",
-        features: [
-          "Instant privacy control at the touch of a button",
-          "Energy efficient - reduces heat and glare",
-          "Easy installation on existing glass",
-          "Durable and long-lasting technology",
-          "Smart automation compatibility",
-          "Maintains natural light diffusion when opaque"
-        ],
-        perfectFor: [
-          { category: "Offices", details: "Boardrooms, meeting rooms, and private workspaces" },
-          { category: "Residential Spaces", details: "Bedrooms, bathrooms, and living rooms" },
-          { category: "Healthcare", details: "Patient rooms and consultation areas" },
-          { category: "Retail", details: "Display windows and store interiors" }
-        ]
-      }
+      features: [
+        "Instant Privacy Control",
+        "Energy Efficient",
+        "Easy Installation",
+        "Durable & Long-lasting"
+      ]
     },
     {
       icon: Monitor,
       title: "LED Display Systems",
+      path: "/led-display",
       description: "High-quality indoor and outdoor LED displays for events, advertising, and architectural applications.",
       image: ledBanner,
-      features: ["Ultra HD Resolution", "Weather Resistant", "Custom Configurations", "Professional Installation"],
-      link: "https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20LED%20DISPLAY%20services",
-      detailedInfo: {
-        fullTitle: "LED Display Systems (Indoor & Outdoor)",
-        whatIs: "WinmaxGulf is a premier provider of turnkey solutions for DJ nightclubs and entertainment venues. We specialize in the supply, installation, and integration of state-of-the-art sound, lighting, video, rigging, and special effects systems. From conceptual design and 3D visualization to final execution and handover, we create immersive nightlife experiences that match international standards.\n\nWith a team of expert engineers, designers, and technicians, and partnerships with leading global brands, WinmaxGulf ensures every nightclub we deliver is optimized for sound quality, lighting brilliance, and visual impact, creating unforgettable moments for your guests.",
-        features: [
-          "Ultra HD 4K+ resolution capabilities",
-          "Weather-resistant outdoor models",
-          "Custom size configurations",
-          "Energy-efficient LED technology",
-          "Remote content management",
-          "Professional installation and support"
-        ],
-        perfectFor: [
-          { category: "Events & Exhibitions", details: "Trade shows, conferences, and live events" },
-          { category: "Retail & Advertising", details: "Storefronts, shopping malls, and digital billboards" },
-          { category: "Entertainment Venues", details: "Theaters, clubs, and concert halls" },
-          { category: "Corporate Spaces", details: "Lobbies, presentation rooms, and digital signage" }
-        ]
-      }
+      features: [
+        "Ultra HD Resolution",
+        "Weather Resistant",
+        "Custom Configurations",
+        "Professional Installation"
+      ]
     },
     {
       icon: Music,
-      title: "DJ Club Solutions",
+      title: "Specialized AV & DJ Club Engineering",
+      path: "/dj-club-solutions",
       description: "Complete turnkey DJ club setups with immersive audio-visual experiences and interactive installations.",
       image: djBanner,
-      features: ["Professional Sound Systems", "Interactive Lighting", "Turnkey Solutions", "Custom Design"],
-      link: "https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20DJSOLUTION%20services",
-      detailedInfo: {
-        fullTitle: "DJ Club Solutions (Complete Entertainment Systems)",
-        whatIs: "Our DJ Club Solutions provide complete turnkey entertainment systems designed to create immersive audio-visual experiences. We integrate professional-grade sound systems, dynamic lighting, interactive installations, and custom design elements to transform any space into an world-class entertainment venue.",
-        features: [
-          "Professional-grade sound systems with crystal-clear audio",
-          "Interactive lighting synchronized with music",
-          "Custom booth and stage design",
-          "Advanced mixing and DJ equipment",
-          "Immersive visual effects and projections",
-          "Complete turnkey installation and setup"
-        ],
-        perfectFor: [
-          { category: "Nightclubs & Bars", details: "Complete club transformations with premium sound and lighting" },
-          { category: "Event Venues", details: "Wedding halls, party venues, and event spaces" },
-          { category: "Private Spaces", details: "Home entertainment rooms and private clubs" },
-          { category: "Commercial Venues", details: "Restaurants, lounges, and hospitality spaces" }
-        ]
-      }
+      features: [
+        "Professional Sound Systems",
+        "Interactive Lighting",
+        "Turnkey Solutions",
+        "Custom Design"
+      ]
+    },
+    {
+      icon: Cpu,
+      title: "Smart Automation",
+      path: "/smart-automation",
+      description: "Integrated automation frameworks that unify lighting, climate, and security into a single intuitive control interface.",
+      image: smartAutomationBanner,
+      features: [
+        "Centralized Control",
+        "Energy Management",
+        "Security Integration",
+        "Seamless Automation"
+      ]
+    },
+    {
+      icon: Presentation,
+      title: "Collaboration AV",
+      path: "/collaboration-av",
+      description: "Optimized boardroom technology and collaboration systems designed for seamless hybrid meetings and enterprise efficiency.",
+      image: collaborationBanner,
+      features: [
+        "Wireless Presentation",
+        "Video Conferencing",
+        "Acoustic Treatment",
+        "Room Scheduling"
+      ]
+    },
+    {
+      icon: Sun,
+      title: "Solar Solutions",
+      path: "/solar-solutions",
+      description: "Complete photovoltaic solutions providing energy independence for 25-30 years, featuring A+ grade panels, advanced MPPT hybrid inverters, and lithium energy storage.",
+      image: solarBanner,
+      features: [
+        "Residential & Commercial PV Systems",
+        "Utility Grade Power Plants (1MW+)",
+        "Advanced Lithium-Ion Energy Storage"
+      ]
     }
   ];
 
-  const handleKnowMore = (service: any) => {
-    setSelectedService({
-      ...service,
-      ...service.detailedInfo,
-      image: service.image,
-      link: service.link
-    });
-    setIsModalOpen(true);
+  const handleKnowMore = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
   };
 
   return (
-    <section id="services" className="relative py-20 overflow-hidden">
-      {/* Animated Background */}
-      <AnimatedGradientBackground variant="section" className="z-0" />
-      
-      <div className="container mx-auto px-6 lg:px-8 relative z-10">
-        {/* Enhanced Section Header */}
-        <EnhancedScrollAnimation animation="bounceIn" className="text-center mb-16">
-          <GlassmorphismCard intensity="medium" glow className="inline-flex items-center px-6 py-3 rounded-full mb-6">
-            <span className="text-sm font-medium text-winmax-orange">🚀 Our Services</span>
-          </GlassmorphismCard>
-          
-          <EnhancedScrollAnimation animation="slideInRotate" delay={200}>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Comprehensive <span className="text-winmax-orange">Smart Technology</span> Services in UAE
-            </h2>
-          </EnhancedScrollAnimation>
-          
-          <EnhancedScrollAnimation animation="fadeInUp" delay={400}>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-4">
-              We deliver complete end-to-end product and project services across the UAE, covering initial consultation, custom design solutions, professional project assistance, comprehensive installation, hands-on training, scheduled ongoing maintenance, and expert 24/7 technical support to ensure complete customer success and satisfaction with every smart technology solution we provide.
-            </p>
-            <p className="text-lg text-muted-foreground/80 max-w-2xl mx-auto">
-              Our three core service offerings - PDLC Smart Film for instant privacy control, LED Display Systems for superior visual communication, and complete DJ Club Solutions for immersive entertainment - represent the pinnacle of smart technology innovation in residential, commercial, and entertainment applications throughout Dubai and the wider UAE region.
-            </p>
-          </EnhancedScrollAnimation>
-        </EnhancedScrollAnimation>
+    <section
+      id="services"
+      ref={sectionRef}
+      className="py-40 bg-[#0a0a0a] overflow-hidden relative"
+    >
+      <div className="w-full px-8 md:px-16 lg:px-24 relative z-10">
 
-        {/* Enhanced Services Grid */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <header className="mb-20 text-center md:text-left">
+          <Reveal>
+            <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
+              <div className="w-12 h-px bg-winmax-orange" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-winmax-orange">Core Services</span>
+            </div>
+          </Reveal>
+
+          <div className="max-w-4xl">
+            <Reveal delay={0.2}>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Explore Our Solutions
+              </h2>
+            </Reveal>
+          </div>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {services.map((service, index) => (
-            <EnhancedScrollAnimation 
-              key={index}
-              animation="zoomIn"
-              delay={index * 200}
-            >
-              <Interactive3DCard intensity={20} glowEffect>
-                <GlassmorphismCard 
-                  intensity="medium" 
-                  glow 
-                  className="overflow-hidden group hover:scale-105 transition-all duration-700 h-full min-h-[600px] flex flex-col"
-                >
-              <div className="relative h-48 overflow-hidden">
-                <LazyImage 
-                  src={service.image}
-                  alt={`${service.title} - WinmaxGulf Smart Technology Solutions UAE`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  skeletonClassName="h-48"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-winmax-orange/10 to-winmax-orange/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute top-4 left-4">
-                  <AnimatedIcon 
-                    icon={service.icon}
-                    className="p-3 bg-gradient-to-r from-winmax-orange to-winmax-orange-light rounded-lg text-white shadow-neon"
-                    hoverEffect="glow"
-                    delay={index * 100}
+            <Reveal key={index} delay={0.1 * index} className="h-full" width="100%">
+              <div
+                className="group relative flex flex-col bg-[#222222] rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-all duration-500 h-full border border-white/5 hover:-translate-y-2"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                {/* Image Section */}
+                <div className="relative h-[280px] overflow-hidden bg-black w-full">
+                  <LazyImage
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                   />
+                  {/* Top Left Orange Gradient overlay */}
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-winmax-orange/30 via-transparent to-transparent pointer-events-none mix-blend-overlay"></div>
+                  <div className="absolute top-0 left-0 w-3/4 h-3/4 bg-gradient-to-br from-winmax-orange/20 to-transparent pointer-events-none"></div>
+
+                  {/* Icon Box */}
+                  <div className="absolute top-6 left-6 w-10 h-10 bg-winmax-orange rounded shadow-lg flex items-center justify-center text-white">
+                    <service.icon className="w-5 h-5" />
+                  </div>
                 </div>
-              </div>
-              
-              <CardContent className="p-6 relative flex-grow flex flex-col justify-between">
-                <div className="absolute inset-0 bg-gradient-to-br from-winmax-orange/5 to-winmax-orange/2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative z-10">
-                   <h3 
-                    className={`text-xl font-bold mb-3 group-hover:text-winmax-orange transition-colors duration-300 ${
-                      service.title === "PDLC Smart Film" || service.title === "LED Display Systems" || service.title === "DJ Club Solutions" ? "cursor-pointer hover:underline" : ""
-                    }`}
-                    onClick={() => {
-                      if (service.title === "PDLC Smart Film") {
-                        navigate('/pdlc');
-                      } else if (service.title === "LED Display Systems") {
-                        navigate('/led-display');
-                      } else if (service.title === "DJ Club Solutions") {
-                        navigate('/dj-club-solutions');
-                      }
-                    }}
-                  >
+
+                {/* Content Section */}
+                <div className="p-8 flex flex-col flex-1">
+                  <h3 className="text-2xl font-bold text-white mb-4">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <p className="text-white/70 text-sm leading-relaxed font-normal mb-8">
                     {service.description}
                   </p>
-                  
-                  <div className="space-y-3 mb-6">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center text-sm group/feature hover:text-winmax-orange transition-colors">
-                        <div className="w-2 h-2 bg-winmax-orange rounded-full mr-3 group-hover/feature:scale-125 transition-transform"></div>
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
 
-                  <div className="flex gap-3">
-                    <Button
-                      variant="outline"
-                      className="flex-1 py-3 px-4 border-winmax-orange/50 text-winmax-orange hover:bg-winmax-orange/10 font-semibold text-sm tracking-wide rounded-lg h-auto"
-                      onClick={() => handleKnowMore(service)}
+                  {/* Features List */}
+                  <ul className="space-y-3 mb-8 flex-col">
+                    {service.features.map((feature, i) => (
+                      <li key={i} className="flex items-center gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-winmax-orange flex-shrink-0" />
+                        <span className="text-[13px] text-white/80 font-medium">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Action Buttons */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-auto">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleKnowMore(service.path);
+                      }}
+                      className="flex items-center justify-center gap-2 py-4 sm:py-3 border border-[#333] hover:border-winmax-orange rounded-md bg-[#111] text-winmax-orange transition-colors duration-300 text-sm font-medium"
                     >
-                      <Info className="h-4 w-4 mr-2" />
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
                       Know More
-                    </Button>
-                    <Interactive3DCard intensity={10} className="flex-1">
-                      <MicroInteractionButton 
-                        className="w-full py-3 px-4 bg-gradient-to-r from-winmax-orange to-winmax-orange-light shadow-glow hover:shadow-neon transition-all duration-500 font-semibold text-sm tracking-wide rounded-lg flex items-center justify-center h-auto"
-                        onClick={() => window.open(service.link, '_blank')}
-                      >
-                        <span className="flex items-center gap-2">
-                          Enquire Now
-                          <ArrowRight className="h-4 w-4 group-hover:translate-x-2 transition-transform animate-bounce-gentle" />
-                        </span>
-                      </MicroInteractionButton>
-                    </Interactive3DCard>
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate('/#contact');
+                      }}
+                      className="flex items-center justify-center gap-2 py-4 sm:py-3 bg-winmax-orange hover:bg-winmax-orange/90 rounded-md text-white transition-colors duration-300 text-sm font-medium"
+                    >
+                      Enquire Now <ArrowRight className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
-              </CardContent>
-                </GlassmorphismCard>
-              </Interactive3DCard>
-            </EnhancedScrollAnimation>
+              </div>
+            </Reveal>
           ))}
         </div>
-
-        {/* Enhanced Bottom CTA */}
-        <EnhancedScrollAnimation animation="bounceIn" delay={600}>
-          <div className="text-center mt-16">
-            <GlassmorphismCard intensity="light" className="inline-block p-8 mx-auto">
-              <h3 className="text-2xl font-bold mb-4">Custom Technology Solutions</h3>
-              <p className="text-lg text-muted-foreground mb-6">
-                Need a custom smart technology solution tailored to your unique requirements? Our expert team specializes in designing and implementing bespoke solutions that combine PDLC smart film, LED displays, and entertainment systems to create truly unique spaces that exceed your expectations and deliver exceptional value.
-              </p>
-              <Interactive3DCard intensity={15} glowEffect>
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-winmax-orange text-winmax-orange hover:bg-winmax-orange/20 transition-all duration-500 px-8 py-3 font-semibold hover:scale-105 hover:shadow-glow"
-                  onClick={() => window.open('https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20custom%20solutions', '_blank')}
-                >
-                  Get Custom Quote ✨
-                </Button>
-              </Interactive3DCard>
-            </GlassmorphismCard>
-          </div>
-        </EnhancedScrollAnimation>
       </div>
-
-      {/* Service Detail Modal */}
-      {selectedService && (
-        <ServiceDetailModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          service={selectedService}
-        />
-      )}
-
-      {/* PDLC Info Modal */}
-      <PDLCInfoModal
-        isOpen={isPDLCInfoOpen}
-        onClose={() => setIsPDLCInfoOpen(false)}
-      />
-
-      {/* LED Display Modal */}
-      <LEDDisplayModal
-        isOpen={isLEDDisplayOpen}
-        onClose={() => setIsLEDDisplayOpen(false)}
-      />
-
-      {/* DJ Club Modal */}
-      <DJClubModal
-        isOpen={isDJClubOpen}
-        onClose={() => setIsDJClubOpen(false)}
-      />
     </section>
   );
 };

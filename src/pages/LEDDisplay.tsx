@@ -1,509 +1,503 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Monitor, Shield, Globe, Headphones, Building, Store, Calendar, Camera, MapPin, Users } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AnimatedGradientBackground from "@/components/AnimatedGradientBackground";
-import EnhancedScrollAnimation from "@/components/EnhancedScrollAnimations";
+import Reveal from "@/components/Reveal";
+import TechnicalResources from "@/components/TechnicalResources";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
-import Interactive3DCard from "@/components/Interactive3DCard";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { 
+  FileText, Cpu, Database, Microscope, Monitor,
+  ArrowRight, Building2, Store, Calendar, Tv, Star, CheckCircle2
+} from "lucide-react";
 import ledBanner from "@/assets/led-banner.jpg";
-import ledDisplay from "@/assets/led-display.jpg";
+import ledDisplay from "@/assets/led-display.png";
+
+// --- Page Resources ---
+
+const ledResources = [
+  {
+    title: "High-Pitch Calibration Standards",
+    type: "Whitepaper",
+    size: "2.9 MB",
+    description: "Technical standards for P0.9 to P2.5 displays including 22-bit grey scale depth and 7,680Hz refresh rate calibration.",
+    icon: Monitor
+  },
+  {
+    title: "Thermal Management Systems",
+    type: "Technical Guide",
+    size: "3.4 MB",
+    description: "Detailed cooling architecture requirements for outdoor LED signage operating in extreme UAE ambient temperatures (+50°C).",
+    icon: Microscope
+  },
+  {
+    title: "Creative LED Geometry Specs",
+    type: "Design Guide",
+    size: "1.9 MB",
+    description: "Engineering specifications for flexible, transparent, and curved LED modules for architectural facade integration.",
+    icon: FileText
+  },
+  {
+    title: "Content Sync & Timing logic",
+    type: "Spec Sheet",
+    size: "1.4 MB",
+    description: "Protocols for frame-delay synchronization across multi-controller video wall clusters and distributed display networks.",
+    icon: Database
+  }
+];
+
+// ─── LED Product Verticals ─────────────────────────────────────────────────────
+
+const ledVerticals = [
+  {
+    id: "outdoor",
+    icon: Building2,
+    title: "Outdoor LED Screens",
+    subtitle: "High-Brightness Billboard & Facade Displays",
+    badge: "Exterior & Facades",
+    description:
+      "Ultra-bright outdoor LED displays engineered to cut through direct sunlight in the UAE's intense climate. Our outdoor screens deliver up to 8,500 nits peak brightness with IP66 weatherproofing for dust, humidity, and rain resistance. Ideal for roadside billboards, building facades, petrol station canopies, stadium perimeters, and outdoor event backdrops.",
+    features: [
+      "8,500 nits peak brightness (direct sunlight readable)",
+      "IP66 weatherproof — dust & water resistant",
+      "Pixel pitch: P4 to P10 outdoor options",
+      "Automatic brightness adjustment (day/night)",
+      "Low power consumption with smart dimming",
+      "Wind-load rated structural mounting systems",
+    ],
+    specs: [
+      { label: "Max Brightness", value: "8,500 nits" },
+      { label: "Protection", value: "IP66" },
+      { label: "Pixel Pitch", value: "P4 – P10" },
+      { label: "Lifespan", value: "100,000 hrs" },
+    ],
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop",
+    imageCaption: "Outdoor LED Billboard — 8,500 nits in full UAE sunlight",
+  },
+  {
+    id: "indoor",
+    icon: Monitor,
+    title: "Indoor Fine-Pitch Walls",
+    subtitle: "Ultra-HD Video Walls & Conference Displays",
+    badge: "Indoor Commercial",
+    description:
+      "Fine-pitch indoor LED video walls for corporate lobbies, boardrooms, control rooms, broadcast studios, and retail flagships. With pixel pitches from P0.9 to P2.5, our indoor displays deliver 4K — even 8K — resolution across large seamless canvases. HDR-certified colour reproduction at up to 22-bit depth, 7,680Hz refresh for flicker-free video capture.",
+    features: [
+      "Ultra-fine pixel pitch: P0.9 to P2.5",
+      "22-bit colour depth, HDR certified",
+      "7,680Hz refresh — flicker-free on camera",
+      "Seamless borderless panel system",
+      "Front-access maintenance design",
+      "Low EMF for control room environments",
+    ],
+    specs: [
+      { label: "Pixel Pitch", value: "P0.9 – P2.5" },
+      { label: "Colour Depth", value: "22-bit" },
+      { label: "Refresh Rate", value: "7,680 Hz" },
+      { label: "Contrast", value: "5,000:1+" },
+    ],
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1200&auto=format&fit=crop",
+    imageCaption: "Fine-Pitch Indoor LED Wall — Seamless 4K in a corporate lobby",
+  },
+  {
+    id: "retail",
+    icon: Store,
+    title: "Retail & Wayfinding",
+    subtitle: "In-Store Digital Signage & Menu Boards",
+    badge: "Retail & F&B",
+    description:
+      "High-impact digital signage for retail stores, shopping malls, restaurants, fast-food chains, and hospitality venues. Our modular LED totems, menu boards, and strip displays drive dwell time, promote products, and update dynamically — all managed remotely via cloud-based content management systems compatible with every major CMS platform including BrightSign, Samsung MagicINFO, and custom APIs.",
+    features: [
+      "LED menu boards & digital price lists",
+      "Indoor totem & freestanding displays",
+      "Cloud CMS remote content scheduling",
+      "Multi-screen synchronized campaigns",
+      "Portrait & landscape configurations",
+      "Energy-efficient 24/7 commercial rating",
+    ],
+    specs: [
+      { label: "Brightness", value: "1,500 nits" },
+      { label: "Pixel Pitch", value: "P1.8 – P4" },
+      { label: "Control", value: "Cloud CMS" },
+      { label: "Formats", value: "Portrait/Landscape" },
+    ],
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop",
+    imageCaption: "Retail LED Signage — Dynamic cloud-managed display network",
+  },
+  {
+    id: "rental",
+    icon: Calendar,
+    title: "Rental & Events",
+    subtitle: "Modular LED Stages for Events",
+    badge: "Events & Exhibitions",
+    description:
+      "High-performance modular LED rental panels for live events, concerts, exhibitions, award ceremonies, product launches, and corporate town halls. Our rental inventory features lightweight aluminium cabinet panels that assemble in hours — creating massive seamless screens at any shape or dimension. Full technical crew support, delivery, rigging, and on-site operation available across the UAE.",
+    features: [
+      "Lightweight modular rental panels",
+      "Indoor P2.6 & outdoor P3.9 stock",
+      "Custom shapes and curved configurations",
+      "Full rigging & structural support",
+      "On-site technical crew included",
+      "Delivered across Dubai, Abu Dhabi & GCC",
+    ],
+    specs: [
+      { label: "Indoor Pitch", value: "P2.6" },
+      { label: "Outdoor Pitch", value: "P3.9" },
+      { label: "Cabinet Weight", value: "< 9 kg" },
+      { label: "Build Time", value: "Per hour" },
+    ],
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200&auto=format&fit=crop",
+    imageCaption: "Event Rental LED — Modular stage screen for corporate launch",
+  },
+];
+
+// ─── Engineering Metrics ───────────────────────────────────────────────────────
+
+const engineeringCards = [
+  { label: "Refresh Rate", value: "7,680", unit: "Hz", detail: "Flicker-free on broadcast cameras and high-speed video." },
+  { label: "Peak Brightness", value: "8,500", unit: "nits", detail: "Outdoor readability in direct UAE midday sunlight." },
+  { label: "Colour Depth", value: "22", unit: "bit", detail: "HDR-certified with full DCI-P3 wide colour gamut coverage." },
+  { label: "IP Rating", value: "IP66", unit: "", detail: "Certified dust-tight and water-jet proof for UAE outdoor use." },
+];
+
+// ─── Showcase ─────────────────────────────────────────────────────────────────
+
+const showcaseItems = [
+  {
+    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=900&auto=format&fit=crop",
+    title: "Outdoor LED Billboard",
+    tag: "8,500 Nits · IP66",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1577495508048-b635879837f1?q=80&w=900&auto=format&fit=crop",
+    title: "Corporate Lobby Video Wall",
+    tag: "P1.2 Fine Pitch · HDR",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=900&auto=format&fit=crop",
+    title: "Event Stage LED Screen",
+    tag: "Modular Rental · Full Crew",
+  },
+];
+
+// ─── Schema ────────────────────────────────────────────────────────────────────
+
+const ledSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://winmaxgulf.com/led-display#service",
+      "name": "LED Display Systems Installation",
+      "description": "Professional LED display systems across UAE. Includes outdoor billboards, fine-pitch indoor video walls, retail digital signage, and modular event rental screens.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Winmax Gulf",
+        "@id": "https://winmaxgulf.com/#organization"
+      },
+      "areaServed": [
+        { "@type": "Place", "name": "Dubai" },
+        { "@type": "Place", "name": "Abu Dhabi" },
+        { "@type": "Place", "name": "Sharjah" }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "areaServed": "AE"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://winmaxgulf.com/led-display"
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Professional LED Display Systems",
+      "image": "https://winmaxgulf.com/assets/led-banner.jpg",
+      "description": "High-brightness outdoor LED billboards, fine-pitch indoor video walls, and retail digital signage systems in Dubai.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Winmax Gulf"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "AED",
+        "availability": "https://schema.org/InStock",
+        "areaServed": ["Dubai", "Abu Dhabi", "GCC"]
+      }
+    }
+  ]
+};
+
+// ─── Component ─────────────────────────────────────────────────────────────────
 
 const LEDDisplay = () => {
-  const whyChooseUs = [
-    {
-      icon: Shield,
-      number: "01",
-      title: "Quality Management",
-      description: "We strictly follow the ISO9001 quality management system. All products are strictly controlled and tested from raw material procurement to finished product delivery to ensure that the quality of each product meets industry standards and customer requirements."
-    },
-    {
-      icon: Globe,
-      number: "02", 
-      title: "Global Distribution",
-      description: "We have a strong logistics network that can deliver products quickly and safely to all parts of the world. To ensure safety during transportation, the company uses professional packaging to prevent products from being damaged during transportation."
-    },
-    {
-      icon: Headphones,
-      number: "03",
-      title: "Remote Technical Support",
-      description: "We provide 24×7 hours of remote technical support services, and customers can quickly obtain technical support through telephone, email or online platforms. Whether it is system debugging, control software use, or troubleshooting, the technical team can provide timely solutions."
-    },
-    {
-      icon: Building,
-      number: "04",
-      title: "Product Application",
-      description: "Wide products application of Commercial display, entertainment culture, stage performance, smart city, exhibition display, conference display application scenarios."
-    }
-  ];
-
-  const ledTypes = [
-    {
-      title: "Large Outdoor LED Screen",
-      description: "High brightness displays perfect for outdoor advertising and large-scale visibility.",
-      applications: ["Highway Billboards", "Stadium Displays", "Building Facades", "Event Stages"]
-    },
-    {
-      title: "Indoor LED Video Wall",
-      description: "High-resolution indoor displays for premium viewing experiences.",
-      applications: ["Shopping Malls", "Corporate Lobbies", "Conference Rooms", "Control Centers"]
-    },
-    {
-      title: "Outdoor LED Billboard",
-      description: "Weather-resistant displays designed for continuous outdoor operation.",
-      applications: ["Roadside Advertising", "Transit Stations", "Commercial Buildings", "Public Spaces"]
-    },
-    {
-      title: "Flexible LED Screen",
-      description: "Bendable and curved LED displays for creative installations.",
-      applications: ["Curved Walls", "Cylindrical Displays", "Creative Installations", "Artistic Projects"]
-    },
-    {
-      title: "Interactive LED Display",
-      description: "Touch-enabled LED screens for engaging user experiences.",
-      applications: ["Retail Stores", "Museums", "Information Kiosks", "Educational Facilities"]
-    },
-    {
-      title: "Transparent LED Screen",
-      description: "See-through LED displays that maintain visibility while showcasing content.",
-      applications: ["Store Windows", "Glass Facades", "Showrooms", "Modern Offices"]
-    },
-    {
-      title: "Rental LED Screen",
-      description: "Portable LED solutions perfect for temporary events and exhibitions.",
-      applications: ["Concerts", "Trade Shows", "Conferences", "Temporary Events"]
-    },
-    {
-      title: "Fine Pitch LED Display",
-      description: "Ultra-high resolution displays for close viewing distances.",
-      applications: ["Control Rooms", "Broadcast Studios", "High-end Retail", "Premium Venues"]
-    },
-    {
-      title: "Stadium LED Display",
-      description: "Large-scale displays specifically designed for sports venues and entertainment.",
-      applications: ["Sports Stadiums", "Concert Venues", "Arenas", "Entertainment Centers"]
-    }
-  ];
-
-  const applications = [
-    {
-      icon: Store,
-      title: "Commercial Display",
-      description: "Retail stores, shopping centers, and commercial spaces"
-    },
-    {
-      icon: Calendar,
-      title: "Entertainment Culture",
-      description: "Theaters, clubs, entertainment venues, and cultural centers"
-    },
-    {
-      icon: Camera,
-      title: "Stage Performance",
-      description: "Concert stages, live performances, and broadcast studios"
-    },
-    {
-      icon: Building,
-      title: "Smart City",
-      description: "Urban displays, information boards, and city infrastructure"
-    },
-    {
-      icon: MapPin,
-      title: "Exhibition Display",
-      description: "Trade shows, exhibitions, and promotional events"
-    },
-    {
-      icon: Users,
-      title: "Conference Display",
-      description: "Meeting rooms, presentation halls, and corporate events"
-    }
-  ];
-
-  const ledSchema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Product",
-        "@id": "https://winmaxgulf.com/led-display#product",
-        "name": "LED Display Systems",
-        "description": "Professional LED display installation for indoor and outdoor applications. High brightness, ultra HD resolution, weather-resistant options available.",
-        "brand": {
-          "@type": "Brand",
-          "name": "WinmaxGulf"
-        },
-        "category": "Digital Signage",
-        "offers": {
-          "@type": "AggregateOffer",
-          "priceCurrency": "AED",
-          "availability": "https://schema.org/InStock",
-          "seller": {
-            "@type": "Organization",
-            "name": "WinmaxGulf"
-          }
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "180",
-          "bestRating": "5"
-        }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://winmaxgulf.com"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "LED Display",
-            "item": "https://winmaxgulf.com/led-display"
-          }
-        ]
-      },
-      {
-        "@type": "ItemList",
-        "name": "LED Display Types",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Large Outdoor LED Screen" },
-          { "@type": "ListItem", "position": 2, "name": "Indoor LED Video Wall" },
-          { "@type": "ListItem", "position": 3, "name": "Flexible LED Screen" },
-          { "@type": "ListItem", "position": 4, "name": "Transparent LED Screen" },
-          { "@type": "ListItem", "position": 5, "name": "Fine Pitch LED Display" },
-          { "@type": "ListItem", "position": 6, "name": "Rental LED Screen" },
-          { "@type": "ListItem", "position": 7, "name": "Stadium LED Display" }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What pixel pitch LED display do I need?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "For close viewing (under 3 meters), choose P1.5-P2.5. For outdoor advertising and larger viewing distances, P4-P10 is suitable. Our team can help you choose the right specification for your needs."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Are your LED displays weatherproof?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, our outdoor LED displays are IP65/IP66 rated, fully protected against dust and water. They operate in temperatures from -20°C to +50°C."
-            }
-          }
-        ]
-      }
-    ]
-  };
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <>
-      <SEOHead 
-        title="LED Display Systems UAE | Indoor & Outdoor LED Screens Dubai"
-        description="Professional LED display installation in Dubai. Indoor LED video walls, outdoor LED billboards, rental LED screens. Ultra HD quality with expert installation & support."
+      <SEOHead
+        title="LED Display Systems Dubai | Video Walls & Digital Signage UAE | WinmaxGulf"
+        description="Professional LED display installation in Dubai. Outdoor billboards, fine-pitch indoor video walls, retail digital signage, and event rental screens. Experts across UAE."
         keywords="LED display Dubai, LED video wall UAE, outdoor LED screen, indoor LED display, LED billboard Dubai, LED screen rental UAE, digital signage Dubai"
-        ogTitle="LED Display Systems UAE | Professional Installation Dubai"
-        ogDescription="Professional LED display systems in Dubai. Ultra HD resolution, weather-resistant outdoor displays, custom configurations. Expert installation & 24/7 support."
-        ogImage="/og-led-display.jpg"
         structuredData={ledSchema}
       />
-      <div className="min-h-screen">
+
+      <div className="bg-[#050505] text-white min-h-screen selection:bg-winmax-orange/30">
         <Header />
-        <Breadcrumbs items={[{ label: "LED Display" }]} />
-      
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <AnimatedGradientBackground variant="hero" className="z-0" />
-        
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-          style={{ backgroundImage: `url(${ledBanner})` }}
-        />
-        
-          <div className="container mx-auto px-6 lg:px-8 relative z-10 text-center">
-            <EnhancedScrollAnimation animation="bounceIn">
-              <Badge variant="outline" className="mb-6 px-6 py-2 border-winmax-orange text-winmax-orange">
-                LED Display Technology
-              </Badge>
-            </EnhancedScrollAnimation>
-          
-          <EnhancedScrollAnimation animation="slideInRotate" delay={200}>
-            <h1 className="text-4xl md:text-7xl font-bold mb-6">
-              LED Advertising
-              <span className="block bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent">
-                Displays
-              </span>
-            </h1>
-          </EnhancedScrollAnimation>
-          
-          <EnhancedScrollAnimation animation="fadeInUp" delay={400}>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
-              <span className="text-winmax-orange font-semibold">Shine Brighter, Advertise Smarter</span>
-              <br />
-              LED Advertising Displays are high brightness digital screens that showcase dynamic advertisements, promotional content, and brand messaging using vivid visuals and animations. Designed for both indoor and outdoor use, they capture attention and maximize visibility in any environment.
-            </p>
-          </EnhancedScrollAnimation>
-          
-          <EnhancedScrollAnimation animation="zoomIn" delay={600}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg"
-                className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light shadow-glow hover:shadow-neon transition-all duration-500 px-8 py-4 text-lg font-semibold"
-                onClick={() => window.open('https://winmaxgulf.com/contact-us/', '_blank')}
-              >
-                Get Quote
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button 
-                variant="outline"
-                size="lg"
-                className="border-2 border-winmax-orange text-winmax-orange hover:bg-winmax-orange/20 px-8 py-4 text-lg font-semibold"
-                onClick={() => window.open('https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20LED%20DISPLAY%20services', '_blank')}
-              >
-                WhatsApp Us
-              </Button>
-            </div>
-          </EnhancedScrollAnimation>
-        </div>
-      </section>
+        <Breadcrumbs items={[{ label: "LED Display Systems", href: "/led-display" }]} />
 
-      {/* Why Choose Us Section */}
-      <section className="py-20 relative overflow-hidden">
-        <AnimatedGradientBackground variant="section" className="z-0" />
-        
-          <div className="container mx-auto px-6 lg:px-8 relative z-10">
-          <EnhancedScrollAnimation animation="bounceIn" className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Why Choose 
-              <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent"> Us</span>
-            </h2>
-          </EnhancedScrollAnimation>
-
-          <div className="grid md:grid-cols-2 gap-8 items-stretch">
-            {whyChooseUs.map((item, index) => (
-              <EnhancedScrollAnimation 
-                key={index}
-                animation="zoomIn"
-                delay={index * 150}
-                className="h-full"
-              >
-                <Interactive3DCard intensity={15} glowEffect className="h-full">
-                  <GlassmorphismCard intensity="medium" className="p-8 h-full min-h-[240px] hover:shadow-glow transition-all duration-500 flex flex-col">
-                    <div className="flex items-start gap-6 flex-1">
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-gradient-to-r from-winmax-orange to-winmax-orange-light rounded-lg flex items-center justify-center mb-4">
-                          <item.icon className="h-6 w-6 text-white" />
-                        </div>
-                        <Badge variant="outline" className="border-winmax-orange text-winmax-orange">
-                          {item.number}
-                        </Badge>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold mb-3 text-winmax-orange">{item.title}</h3>
-                        <p className="text-muted-foreground leading-relaxed">{item.description}</p>
-                      </div>
-                    </div>
-                  </GlassmorphismCard>
-                </Interactive3DCard>
-              </EnhancedScrollAnimation>
-            ))}
+        {/* ── HERO ──────────────────────────────────────────────────────── */}
+        <section className="relative h-screen flex items-center overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <img
+              src={ledBanner}
+              alt="Winmax Gulf High-Brightness LED Display Installation"
+              className="absolute inset-0 w-full h-full object-cover object-center opacity-90 brightness-110 scale-105"
+              fetchPriority="high"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/20 to-transparent" />
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
+              style={{ backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
           </div>
-        </div>
-      </section>
 
-      {/* Types of LED Displays Section */}
-      <section className="py-20 relative overflow-hidden">
-        <AnimatedGradientBackground variant="section" className="z-0" />
-        
-          <div className="container mx-auto px-6 lg:px-8 relative z-10">
-          <EnhancedScrollAnimation animation="bounceIn" className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Types of 
-              <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent">LED Advertising Displays</span>
-            </h2>
-          </EnhancedScrollAnimation>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {ledTypes.map((type, index) => (
-              <EnhancedScrollAnimation 
-                key={index}
-                animation="fadeInUp"
-                delay={index * 100}
-              >
-                <Interactive3DCard intensity={10} glowEffect>
-                  <GlassmorphismCard intensity="medium" className="p-6 h-full hover:shadow-glow transition-all duration-500 group">
-                    <div className="text-center">
-                      <div className="mb-4 inline-flex p-3 bg-gradient-to-r from-winmax-orange to-winmax-orange-light rounded-lg">
-                        <Monitor className="h-6 w-6 text-white" />
-                      </div>
-                      <h3 className="text-lg font-bold mb-3 group-hover:text-winmax-orange transition-colors">{type.title}</h3>
-                      <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{type.description}</p>
-                      
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-semibold text-winmax-orange">Perfect For:</h4>
-                        <div className="space-y-1">
-                          {type.applications.map((app, idx) => (
-                            <div key={idx} className="flex items-center text-xs text-muted-foreground">
-                              <div className="w-1.5 h-1.5 bg-winmax-orange rounded-full mr-2"></div>
-                              <span>{app}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="mt-4 w-full border-winmax-orange/50 text-winmax-orange hover:bg-winmax-orange/10"
-                        onClick={() => window.open('https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20LED%20DISPLAY%20services', '_blank')}
-                      >
-                        Get Quote
-                      </Button>
-                    </div>
-                  </GlassmorphismCard>
-                </Interactive3DCard>
-              </EnhancedScrollAnimation>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Applications Section */}
-      <section className="py-20 relative overflow-hidden">
-        <AnimatedGradientBackground variant="section" className="z-0" />
-        
-          <div className="container mx-auto px-6 lg:px-8 relative z-10">
-          <EnhancedScrollAnimation animation="bounceIn" className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Product 
-              <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent">Applications</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Wide range of applications across various industries and scenarios
-            </p>
-          </EnhancedScrollAnimation>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {applications.map((app, index) => (
-              <EnhancedScrollAnimation 
-                key={index}
-                animation="scaleIn"
-                delay={index * 100}
-              >
-                <GlassmorphismCard intensity="medium" className="p-6 text-center h-full hover:shadow-glow transition-all duration-500 group">
-                  <div className="mb-4 inline-flex p-3 bg-gradient-to-r from-winmax-orange to-winmax-orange-light rounded-lg">
-                    <app.icon className="h-6 w-6 text-white" />
+          <div className="container mx-auto px-6 lg:px-12 relative z-10">
+            <div className="max-w-5xl">
+              <Reveal>
+                <span className="inline-block text-winmax-orange font-mono text-xs uppercase tracking-[0.4em] mb-6 px-4 py-1.5 border border-winmax-orange/25 rounded-full">
+                  LED Display Solutions
+                </span>
+              </Reveal>
+              <Reveal delay={0.15}>
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-8 mt-4">
+                  MAXIMUM IMPACT.
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-winmax-orange via-orange-400 to-white">
+                    PIXEL PERFECT.
+                  </span>
+                </h1>
+              </Reveal>
+              <Reveal delay={0.3}>
+                <p className="text-lg md:text-xl text-muted-foreground font-light max-w-2xl leading-relaxed mb-12">
+                  From <span className="text-white font-medium">outdoor billboards</span> and{" "}
+                  <span className="text-white font-medium">fine-pitch indoor video walls</span> to{" "}
+                  <span className="text-white font-medium">retail digital signage</span> and{" "}
+                  <span className="text-white font-medium">event rental screens</span> — we supply, install, and support LED display systems across the UAE.
+                </p>
+              </Reveal>
+              <Reveal delay={0.45}>
+                <div className="flex flex-wrap gap-10">
+                  <div className="border-l-2 border-winmax-orange/40 pl-5">
+                    <span className="block text-[10px] uppercase tracking-widest text-muted-foreground font-mono mb-1">Brightness</span>
+                    <span className="text-sm font-bold">Up to 8,500 nits</span>
                   </div>
-                  <h3 className="text-lg font-bold mb-3 group-hover:text-winmax-orange transition-colors">{app.title}</h3>
-                  <p className="text-muted-foreground text-sm">{app.description}</p>
-                </GlassmorphismCard>
-              </EnhancedScrollAnimation>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 relative overflow-hidden">
-        <AnimatedGradientBackground variant="section" className="z-0" />
-        
-          <div className="container mx-auto px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <EnhancedScrollAnimation animation="fadeInLeft">
-              <div>
-                <Badge variant="outline" className="mb-6 border-winmax-orange text-winmax-orange">
-                  Advanced Technology
-                </Badge>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  State-of-the-Art 
-                  <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent"> LED Technology</span>
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Our LED displays feature cutting-edge technology with ultra-high brightness, superior color accuracy, and exceptional durability for both indoor and outdoor applications.
-                </p>
-                
-                <div className="space-y-4">
-                  {[
-                    "Ultra HD 4K+ Resolution",
-                    "High Brightness up to 6000 nits",
-                    "Wide Viewing Angles (160°)",
-                    "Weather Resistant IP65 Rating",
-                    "Energy Efficient LED Technology",
-                    "Remote Content Management",
-                    "24/7 Technical Support"
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-winmax-orange rounded-full"></div>
-                      <span className="text-muted-foreground">{feature}</span>
-                    </div>
-                  ))}
+                  <div className="border-l-2 border-white/10 pl-5">
+                    <span className="block text-[10px] uppercase tracking-widest text-muted-foreground font-mono mb-1">Refresh Rate</span>
+                    <span className="text-sm font-bold">7,680 Hz</span>
+                  </div>
+                  <div className="border-l-2 border-white/10 pl-5">
+                    <span className="block text-[10px] uppercase tracking-widest text-muted-foreground font-mono mb-1">Protection</span>
+                    <span className="text-sm font-bold">IP66 Weatherproof</span>
+                  </div>
                 </div>
-              </div>
-            </EnhancedScrollAnimation>
-
-            <EnhancedScrollAnimation animation="fadeInRight" delay={200}>
-              <div className="relative">
-                <img 
-                  src={ledDisplay}
-                  alt="LED Display Technology"
-                  className="w-full rounded-lg shadow-2xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent rounded-lg"></div>
-              </div>
-            </EnhancedScrollAnimation>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden">
-        <AnimatedGradientBackground variant="section" className="z-0" />
-        
-        <div className="container mx-auto px-6 lg:px-8 relative z-10">
-          <EnhancedScrollAnimation animation="zoomIn">
-            <div className="text-center">
-              <GlassmorphismCard intensity="medium" className="inline-block p-12 mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Ready to Transform Your 
-                  <span className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light bg-clip-text text-transparent"> Advertising?</span>
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  Get in touch with our experts to discuss your LED display requirements and receive a customized solution for your business.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    size="lg"
-                    className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light shadow-glow hover:shadow-neon transition-all duration-500 px-8 py-4 font-semibold"
-                    onClick={() => window.open('https://winmaxgulf.com/contact-us/', '_blank')}
-                  >
-                    Request Consultation
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                  <Button 
-                    variant="outline"
-                    size="lg"
-                    className="border-2 border-winmax-orange text-winmax-orange hover:bg-winmax-orange/20 px-8 py-4 font-semibold"
-                    onClick={() => window.open('https://wa.me/+971527200466?text=Hello%20I%20want%20to%20know%20about%20your%20LED%20DISPLAY%20services', '_blank')}
-                  >
-                    WhatsApp Now
-                  </Button>
-                </div>
-              </GlassmorphismCard>
+              </Reveal>
             </div>
-          </EnhancedScrollAnimation>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <Footer />
+        {/* ── PRODUCT TABS ──────────────────────────────────────────────── */}
+        <section className="py-32 relative overflow-hidden bg-[#050505] border-y border-white/5">
+          <div className="container mx-auto px-6 lg:px-12 relative z-10">
+            <Reveal>
+              <div className="mb-16">
+                <span className="text-winmax-orange font-mono text-xs uppercase tracking-[0.4em] mb-4 block">[ Display Categories ]</span>
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6">WHAT WE <span className="text-white/30">SUPPLY.</span></h2>
+                <p className="text-muted-foreground font-light max-w-2xl leading-relaxed">
+                  From a single roadside billboard to a multi-screen indoor video wall ecosystem — explore our four core LED display product categories.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="grid lg:grid-cols-12 gap-12">
+              <div className="lg:col-span-4 flex flex-col gap-2">
+                {ledVerticals.map((vert, idx) => {
+                  const TabIcon = vert.icon;
+                  return (
+                    <button key={vert.id} onClick={() => setActiveTab(idx)}
+                      className={`text-left p-6 rounded-3xl transition-all duration-500 border ${activeTab === idx ? "bg-winmax-orange/10 border-winmax-orange/30 shadow-[0_0_30px_rgba(255,102,0,0.1)]" : "bg-transparent border-transparent hover:bg-white/5"}`}>
+                      <div className="flex items-center gap-5">
+                        <div className={`p-4 rounded-xl transition-colors duration-500 ${activeTab === idx ? "bg-winmax-orange/20 text-winmax-orange" : "bg-white/5 text-white/50"}`}>
+                          <TabIcon className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <h4 className={`font-bold text-lg tracking-tight transition-colors duration-500 ${activeTab === idx ? "text-white" : "text-white/60"}`}>{vert.title}</h4>
+                          <span className={`text-[10px] uppercase tracking-widest font-mono mt-1 block transition-colors duration-500 ${activeTab === idx ? "text-winmax-orange/80" : "text-white/30"}`}>{vert.badge}</span>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="lg:col-span-8 relative min-h-[620px]">
+                <AnimatePresence mode="wait">
+                  {(() => {
+                    const vert = ledVerticals[activeTab];
+                    const VertIcon = vert.icon;
+                    return (
+                      <motion.div key={activeTab}
+                        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute inset-0 bg-[#0a0a0a] border border-white/10 rounded-[2.5rem] overflow-hidden flex flex-col">
+                        <div className="relative h-52 overflow-hidden flex-shrink-0">
+                          <img src={vert.image} alt={vert.title} className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0a0a0a]" />
+                          <div className="absolute top-4 left-6">
+                            <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-black/60 backdrop-blur-md border border-winmax-orange/30 rounded-full">
+                              <VertIcon className="w-3 h-3 text-winmax-orange" />
+                              <span className="text-[10px] tracking-widest uppercase font-mono text-winmax-orange">{vert.badge}</span>
+                            </span>
+                          </div>
+                          <div className="absolute bottom-3 right-5"><span className="text-[10px] font-mono text-white/40 tracking-widest">{vert.imageCaption}</span></div>
+                        </div>
+                        <div className="p-8 md:p-10 flex flex-col gap-5 flex-1">
+                          <div>
+                            <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-3">{vert.subtitle}</h3>
+                            <p className="text-base text-muted-foreground font-light leading-relaxed">{vert.description}</p>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            {vert.features.map((f, i) => (
+                              <div key={i} className="flex items-center gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-winmax-orange flex-shrink-0" />
+                                <span className="text-sm text-white/70">{f}</span>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-5 border-t border-white/10 mt-auto">
+                            {vert.specs.map((spec, sIdx) => (
+                              <div key={sIdx}>
+                                <span className="block text-[10px] uppercase font-mono tracking-widest text-white/30 mb-1">{spec.label}</span>
+                                <span className="font-bold text-white tracking-tight text-sm">{spec.value}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })()}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── SHOWCASE ──────────────────────────────────────────────────── */}
+        <section className="py-20 relative bg-[#020202]">
+          <div className="container mx-auto px-6 lg:px-12">
+            <Reveal>
+              <h2 className="text-3xl font-bold mb-12 tracking-tight border-l-4 border-winmax-orange pl-6">Deployed Across <span className="text-winmax-orange">UAE.</span></h2>
+            </Reveal>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {showcaseItems.map((item, idx) => (
+                <Reveal delay={idx * 0.12} key={idx}>
+                  <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group border border-white/5 shadow-xl">
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent flex flex-col justify-end p-8">
+                      <span className="text-white font-bold tracking-widest uppercase text-sm mb-1">{item.title}</span>
+                      <span className="text-winmax-orange font-mono text-[10px] uppercase tracking-widest">{item.tag}</span>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── ENGINEERING METRICS ───────────────────────────────────────── */}
+        <section className="py-32 bg-white/[0.01] relative overflow-hidden">
+          <div className="container mx-auto px-6 lg:px-12 relative z-10">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-20">
+              <Reveal>
+                <div>
+                  <span className="text-winmax-orange font-mono text-xs uppercase tracking-[0.4em] mb-4 block">[ Performance Standards ]</span>
+                  <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">DISPLAY<br />METRICS.</h2>
+                </div>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="text-muted-foreground max-w-sm font-light leading-relaxed">
+                  Every LED display we install meets international performance benchmarks — from brightness and colour depth to weather and lifespan certification.
+                </p>
+              </Reveal>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {engineeringCards.map((spec, idx) => (
+                <Reveal key={idx} delay={idx * 0.1} direction="up">
+                  <GlassmorphismCard className="p-10 border-white/5 group relative overflow-hidden bg-white/[0.01]">
+                    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-winmax-orange/30 to-transparent group-hover:via-winmax-orange transition-all duration-500" />
+                    <div className="flex items-baseline gap-1 mb-6">
+                      <span className="text-4xl font-bold tracking-tighter group-hover:text-winmax-orange transition-colors">{spec.value}</span>
+                      <span className="text-sm font-mono text-muted-foreground">{spec.unit}</span>
+                    </div>
+                    <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-white/90 mb-2">{spec.label}</h4>
+                    <p className="text-[11px] text-muted-foreground font-mono leading-relaxed group-hover:text-white/60 transition-colors">{spec.detail}</p>
+                  </GlassmorphismCard>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <TechnicalResources resources={ledResources} />
+        {/* ── CTA ───────────────────────────────────────────────────────── */}
+        <section className="py-32 relative overflow-hidden">
+          <motion.div animate={{ rotate: 360 }} transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+            className="absolute right-[-5%] md:right-[2%] bottom-[5%] hidden md:block z-0 pointer-events-none opacity-20">
+            <div className="relative w-96 h-96">
+              <div className="absolute inset-0 border-[2px] border-white/30 rounded-full border-dashed" />
+              <div className="absolute inset-8 border-[1.5px] border-winmax-orange/40 rounded-full" />
+              <div className="absolute inset-16 border-[1px] border-white/20 rounded-full border-dashed" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-winmax-orange/10 rounded-full border border-winmax-orange/40" />
+            </div>
+          </motion.div>
+
+          <div className="container mx-auto px-6 lg:px-12 relative z-10">
+            <Reveal direction="up">
+              <div className="max-w-6xl mx-auto rounded-[3rem] p-12 md:p-20 border border-white/10 bg-[#080808] relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-winmax-orange/5 blur-[180px] -translate-y-1/2 translate-x-1/3" />
+                <div className="relative z-10 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12">
+                  <div className="flex-1">
+                    <span className="inline-block text-winmax-orange font-mono text-[10px] uppercase tracking-[0.5em] mb-8 px-5 py-2 border border-winmax-orange/20 rounded-full">Make an Impact</span>
+                    <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[0.9] mb-6">
+                      LIGHT UP YOUR<br />
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/60 to-white/90">BRAND.</span>
+                    </h2>
+                    <p className="text-lg text-muted-foreground font-light leading-relaxed max-w-lg">
+                      From a single digital menu board to a campus-wide LED network — our team will survey, design, and install professionally across Dubai, Abu Dhabi, and the UAE.
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-6 lg:items-end">
+                    <button className="group px-10 py-5 bg-winmax-orange text-black font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:opacity-90 flex items-center gap-3 rounded-xl shadow-[0_0_40px_rgba(255,102,0,0.3)] hover:shadow-[0_0_60px_rgba(255,102,0,0.5)]"
+                      onClick={() => window.open("https://wa.me/+971504171875?text=Hello, I am interested in your LED Display solutions.")}>
+                      <span>Request a Quote</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </button>
+                    <div className="flex flex-col items-end text-right border-t border-white/10 pt-6">
+                      <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-muted-foreground mb-1">Direct Line</span>
+                      <a href="tel:+971504171875" className="text-xl font-bold hover:text-winmax-orange transition-colors duration-300">+971 50 417 1875</a>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-white/10" />
+                <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-white/10" />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <Footer />
       </div>
     </>
   );

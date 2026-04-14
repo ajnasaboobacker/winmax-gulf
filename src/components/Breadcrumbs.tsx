@@ -19,8 +19,30 @@ interface BreadcrumbsProps {
 }
 
 const Breadcrumbs = ({ items, className = "" }: BreadcrumbsProps) => {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://winmaxgulf.com"
+      },
+      ...items.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": item.label,
+        "item": item.href ? `https://winmaxgulf.com${item.href}` : undefined
+      }))
+    ]
+  };
+
   return (
     <nav className={`container mx-auto px-6 pt-24 pb-4 ${className}`} aria-label="Breadcrumb">
+      <script type="application/ld+json">
+        {JSON.stringify(breadcrumbSchema)}
+      </script>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

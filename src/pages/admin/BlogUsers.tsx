@@ -90,6 +90,17 @@ interface CreateUserForm {
   role: AppRole;
 }
 
+interface FunctionError {
+  context?: {
+    body: {
+      getReader: () => {
+        read: () => Promise<{ value: Uint8Array; done: boolean }>;
+      };
+    };
+  };
+  message?: string;
+}
+
 const ROLE_COLORS: Record<AppRole, string> = {
   admin: "bg-red-500/20 text-red-400 border-red-500/30",
   editor: "bg-blue-500/20 text-blue-400 border-blue-500/30",
@@ -255,13 +266,16 @@ const BlogUsers = () => {
         // Try to extract the actual error message from the response
         let errorMessage = "Failed to create user";
         try {
-          if (error.message) errorMessage = error.message;
+          const funcErr = error as FunctionError;
+          if (funcErr.message) errorMessage = funcErr.message;
           // For FunctionsHttpError, the context contains the response
-          if ('context' in error && (error as any).context?.body) {
-            const body = await (error as any).context.body.getReader().read();
-            const text = new TextDecoder().decode(body.value);
-            const parsed = JSON.parse(text);
-            if (parsed.error) errorMessage = parsed.error;
+          if (funcErr.context?.body) {
+            const body = await funcErr.context.body.getReader().read();
+            if (body.value) {
+              const text = new TextDecoder().decode(body.value);
+              const parsed = JSON.parse(text);
+              if (parsed.error) errorMessage = parsed.error;
+            }
           }
         } catch (e) {
           console.error("Error parsing edge function response:", e);
@@ -296,11 +310,14 @@ const BlogUsers = () => {
       if (error) {
         let errorMessage = "Failed to reset password";
         try {
-          if ('context' in error && (error as any).context?.body) {
-            const body = await (error as any).context.body.getReader().read();
-            const text = new TextDecoder().decode(body.value);
-            const parsed = JSON.parse(text);
-            if (parsed.error) errorMessage = parsed.error;
+          const funcErr = error as FunctionError;
+          if (funcErr.context?.body) {
+            const body = await funcErr.context.body.getReader().read();
+            if (body.value) {
+              const text = new TextDecoder().decode(body.value);
+              const parsed = JSON.parse(text);
+              if (parsed.error) errorMessage = parsed.error;
+            }
           }
         } catch (e) { /* fallback */ }
         throw new Error(errorMessage);
