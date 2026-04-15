@@ -217,8 +217,8 @@ const PDLC = () => {
   return (
     <>
       <SEOHead
-        title="PDLC Smart Glass & Switchable Privacy Glass Dubai | WinmaxGulf"
-        description="Premium PDLC smart film and switchable glass installation in Dubai & UAE. Residential villas, office boardrooms, hotel suites, and rear-projection screens. Instant privacy — call +971 50 417 1875."
+        title="PDLC Smart Film UAE | Switchable Privacy Glass Dubai"
+        description="Premium PDLC smart film installation in Dubai and UAE. Retrofit privacy film, switchable smart glass, automation controls, and expert installation for offices, villas, and commercial spaces."
         keywords="PDLC smart film UAE, switchable glass Dubai, smart privacy glass, electronic glass UAE, PDLC film installation Dubai, privacy glass Abu Dhabi, rear projection glass UAE"
         structuredData={pdlcSchema}
       />
@@ -252,11 +252,9 @@ const PDLC = () => {
               </Reveal>
               <Reveal delay={0.15}>
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-8 mt-4">
-                  INSTANT PRIVACY.
+                  PDLC <span className="text-transparent bg-clip-text bg-gradient-to-br from-winmax-orange via-orange-400 to-white">Smart Film</span>
                   <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-winmax-orange via-orange-400 to-white">
-                    INTELLIGENT GLASS.
-                  </span>
+                  IN UAE
                 </h1>
               </Reveal>
               <Reveal delay={0.3}>

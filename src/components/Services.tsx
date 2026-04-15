@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { LazyImage } from "@/components/LazyImage";
 import { ArrowRight, Eye, Monitor, Music, Cpu, Presentation, Sun, ShieldCheck, Zap } from "lucide-react";
 import pdlcBanner from "@/assets/banners/pdlc-banner.jpg";
@@ -180,25 +180,24 @@ const Services = () => {
 
                   {/* Action Buttons */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-auto">
-                    <button
+                    <Link
+                      to={service.path}
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleKnowMore(service.path);
+                        window.scrollTo(0, 0);
                       }}
                       className="flex items-center justify-center gap-2 py-4 sm:py-3 border border-[#333] hover:border-winmax-orange rounded-md bg-[#111] text-winmax-orange transition-colors duration-300 text-sm font-medium"
                     >
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
                       Know More
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate('/#contact');
-                      }}
+                    </Link>
+                    <Link
+                      to="/#contact"
+                      onClick={(e) => e.stopPropagation()}
                       className="flex items-center justify-center gap-2 py-4 sm:py-3 bg-winmax-orange hover:bg-winmax-orange/90 rounded-md text-white transition-colors duration-300 text-sm font-medium"
                     >
                       Enquire Now <ArrowRight className="w-4 h-4" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -3,6 +3,8 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { X, Maximize2, ArrowRight, ShieldCheck, Zap, Layers } from "lucide-react";
 import Reveal from "./Reveal";
+import smartSurfaceImg from "../assets/images/smart-surface.png";
+
 
 const Gallery = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -55,7 +57,7 @@ const Gallery = () => {
     },
     {
       id: 5,
-      src: "https://images.unsplash.com/photo-1558223175-0e6d4217646a?q=80&w=1200&auto=format&fit=crop",
+      src: smartSurfaceImg,
       alt: "Integrated Smart Surface",
       category: "Interior Tech Architecture",
       span: "md:col-span-2 md:row-span-1",

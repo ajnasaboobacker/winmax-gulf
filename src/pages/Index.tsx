@@ -12,18 +12,16 @@ import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import ServiceHotline from "@/components/ServiceHotline";
 import Footer from "@/components/Footer";
-import { Helmet } from "react-helmet-async";
+import SEOHead from "@/components/SEOHead";
 
 const Index = () => {
   return (
     <>
-      <Helmet>
-        <title>Winmax Gulf | Precision PDLC Smart Glass & LED Display Systems in UAE</title>
-        <meta name="description" content="Winmax Gulf is the UAE's premier provider of PDLC Smart Glass, LED Displays, and AV smart automation. Professional engineering solutions for Dubai & Abu Dhabi." />
-        <meta name="keywords" content="PDLC Smart Glass UAE, LED Display installation Dubai, AV Integration Abu Dhabi, Switchable Smart Film GCC, Commercial LED Video Walls, Smart Home Automation UAE" />
-        <meta property="og:title" content="Winmax Gulf | Precision PDLC Smart Glass & LED Display Systems" />
-        <meta property="og:description" content="Winmax Gulf is the UAE's premier provider of architectural technology. We specialize in PDLC Smart Glass installation, scalable LED Display Systems, and professional Audiovisual (AV) integrations." />
-      </Helmet>
+      <SEOHead 
+        title="PDLC Smart Film Supplier in UAE | Smart Glass Dubai | WinmaxGulf"
+        description="WinmaxGulf supplies and installs PDLC smart film and switchable privacy glass in Dubai and across the UAE for offices, villas, hotels, clinics, and commercial spaces."
+        keywords="PDLC smart film UAE, smart glass Dubai, switchable privacy glass, smart film supplier UAE"
+      />
       <div className="min-h-screen bg-[#050505] text-white selection:bg-winmax-orange selection:text-black relative">
         <Header />
         <main className="relative z-10">

@@ -19,6 +19,10 @@ import BlogPostPage from "./pages/BlogPost";
 import SmartAutomation from "./pages/SmartAutomation";
 import CollaborationAV from "./pages/CollaborationAV";
 import SolarSolutions from "./pages/SolarSolutions";
+import SmartFilmDubai from "./pages/SmartFilmDubai";
+import SmartFilmOffices from "./pages/SmartFilmOffices";
+import PDLCFAQPage from "./pages/PDLCFAQ";
+import CaseStudyDIFC from "./pages/CaseStudyDIFC";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import BlogDashboard from "./pages/admin/BlogDashboard";
@@ -63,6 +67,10 @@ const AppContent = () => {
             <Route path="/smart-automation" element={<SmartAutomation />} />
             <Route path="/collaboration-av" element={<CollaborationAV />} />
             <Route path="/solar-solutions" element={<SolarSolutions />} />
+            <Route path="/smart-film-dubai" element={<SmartFilmDubai />} />
+            <Route path="/smart-film-for-offices-uae" element={<SmartFilmOffices />} />
+            <Route path="/pdlc-faq" element={<PDLCFAQPage />} />
+            <Route path="/case-study-difc" element={<CaseStudyDIFC />} />
             <Route path="/lp" element={<LandingPage />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />

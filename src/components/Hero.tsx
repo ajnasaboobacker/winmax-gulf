@@ -98,8 +98,8 @@ const Hero = () => {
               {/* Main Heading */}
               <EnhancedScrollAnimation animation="slideInRotate" delay={400}>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-[0.95] tracking-tighter text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]">
-                  WinmaxGulf — Smart <br />
-                  <span className="text-winmax-orange drop-shadow-[0_0_15px_rgba(255,90,0,0.4)]">Technology Solutions</span> UAE.
+                  PDLC Smart Film Supplier <br />
+                  <span className="text-winmax-orange drop-shadow-[0_0_15px_rgba(255,90,0,0.4)]">in UAE</span>
                 </h1>
               </EnhancedScrollAnimation>
 
