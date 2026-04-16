@@ -1,32 +1,37 @@
 import React from 'react';
 import Reveal from './Reveal';
+import { Link } from 'react-router-dom';
 import GlassmorphismCard from './GlassmorphismCard';
 import { ArrowUpRight, MapPin, CheckCircle2 } from 'lucide-react';
+import conferenceImage from '@/assets/images/conference-room.jpg';
 
 const projects = [
   {
-    title: "Burj Khalifa",
-    location: "Downtown Dubai",
-    category: "Command & Control AV",
-    description: "High-level integration of command center video walls and automated life-safety display networks operating at peak uptime.",
-    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200&auto=format&fit=crop",
-    tags: ["Display Network", "BMS Integration"]
+    title: "DIFC Corporate HQ",
+    location: "DIFC, Dubai",
+    category: "PDLC & Smart Office",
+    description: "Multi-floor PDLC smart glass retrofit and high-fidelity AV integration for a global financial institution.",
+    image: conferenceImage,
+    tags: ["DIFC Case Study", "BMS"],
+    link: "/case-study-difc"
   },
   {
-    title: "Dubai Chambers",
-    location: "Deira, Dubai",
-    category: "PDLC & Smart Office",
-    description: "Complete privacy infrastructure using intelligent PDLC glass for executive boardrooms and comprehensive AV automation.",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",
-    tags: ["Smart Glass", "Collab AV"]
+    title: "Royal Villa Palm",
+    location: "Palm Jumeirah",
+    category: "Luxury Home Automation",
+    description: "Bespoke smart glass installation for oceanside privacy with integration into specialized home automation.",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",
+    tags: ["VIP Project", "Residential"],
+    link: "/case-study-royal-villa"
   },
   {
     title: "Emirates HQ",
     location: "Garhoud, Dubai",
     category: "Ultra-Fine LED Systems",
-    description: "Custom ultra-fine pitch LED display installations for critical data visualization and internal corporate communications.",
+    description: "Custom ultra-fine pitch LED display installations for critical data visualization.",
     image: "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=1200&auto=format&fit=crop",
-    tags: ["LED Displays", "Pro-AV"]
+    tags: ["LED Displays", "Pro-AV"],
+    link: "/led-display"
   }
 ];
 
@@ -57,7 +62,7 @@ const FeaturedProjects = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {projects.map((project, i) => (
             <Reveal key={i} delay={i * 0.15} className="h-full" width="100%">
-              <div className="group relative flex flex-col h-full">
+              <Link to={project.link || "#"} className="group relative flex flex-col h-full">
                 <div className="relative aspect-[16/10] rounded-3xl overflow-hidden mb-6 border border-white/10 group-hover:border-winmax-orange/30 transition-all duration-500">
                   <img src={project.image} alt={project.title} loading="lazy" className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
@@ -86,7 +91,7 @@ const FeaturedProjects = () => {
                   <CheckCircle2 className="w-4 h-4 text-winmax-orange" />
                   <span className="text-[10px] font-mono text-white/30 uppercase tracking-[0.2em]">Verified Delivery</span>
                 </div>
-              </div>
+              </Link>
             </Reveal>
           ))}
         </div>

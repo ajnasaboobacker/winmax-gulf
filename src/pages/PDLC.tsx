@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
@@ -25,7 +26,9 @@ const pdlcVerticals = [
     subtitle: "Smart Privacy for Luxury Homes",
     badge: "Home & Villa",
     description:
-      "Transform bathroom glass, bedroom partitions, skylights, and exterior glazing in villas and apartments into on-demand privacy surfaces. At the flick of a switch — or a voice command — PDLC smart glass transitions from crystal-clear to fully frosted in under 0.1 seconds. Integrates seamlessly with KNX, Crestron, Google Home, and Alexa ecosystems for automated privacy scenes.",
+      "Transform bathroom glass, bedroom partitions, skylights, and exterior glazing in villas and apartments into on-demand privacy surfaces. Integrates seamlessly with KNX, Crestron, Google Home, and Alexa ecosystems for automated privacy scenes. We provide specialized installation for luxury estates through our specialized residential branch.",
+    link: "/smart-film-for-villas-uae",
+    linkText: "Explore Smart Film for Villas",
     features: [
       "Bathroom & bedroom partition privacy",
       "Skylight & rooflight dimming",
@@ -50,7 +53,9 @@ const pdlcVerticals = [
     subtitle: "Dynamic Partition Walls & Boardrooms",
     badge: "Office & Commercial",
     description:
-      "Replace static frosted glass in meeting rooms, executive offices, and open-plan partition walls with electronically switchable PDLC film or laminated glass. Create open, collaborative spaces that instantly convert to private meeting environments — without blinds, curtains, or mechanical systems. Ideal for boardrooms, private offices, and branded reception areas.",
+      "Replace static frosted glass in meeting rooms, executive offices, and open-plan partition walls with electronically switchable PDLC film or laminated glass. Create open, collaborative spaces that instantly convert to private meeting environments — without blinds, curtains, or mechanical systems.",
+    link: "/smart-film-for-offices-uae",
+    linkText: "View Office & Boardroom Solutions",
     features: [
       "Meeting room & boardroom privacy",
       "Open-plan partition conversion",
@@ -92,6 +97,8 @@ const pdlcVerticals = [
     ],
     image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1200&auto=format&fit=crop",
     imageCaption: "Hotel Smart Glass — Five-star privacy without curtains",
+    link: "/switchable-privacy-glass-dubai",
+    linkText: "Hospitality Glass Specs",
   },
   {
     id: "projection",
@@ -100,7 +107,9 @@ const pdlcVerticals = [
     subtitle: "Rear-Projection Smart Glass",
     badge: "Media & Retail",
     description:
-      "PDLC glass doubles as a high-gain rear-projection screen. In transparent mode it acts as a standard window or partition; switch it to frosted mode and project marketing content, presentations, or interactive media directly onto the glass. Used widely in retail storefronts, showroom displays, exhibition stands, and high-tech boardrooms for immersive communications.",
+      "PDLC glass doubles as a high-gain rear-projection screen. In transparent mode it acts as a standard window or partition; switch it to frosted mode and project marketing content, presentations, or interactive media directly onto the glass.",
+    link: "/switchable-privacy-glass-dubai",
+    linkText: "Learn about Switchable Tech",
     features: [
       "High-gain rear-projection surface",
       "Storefront & retail display screens",
@@ -347,7 +356,7 @@ const PDLC = () => {
                             <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-3">{vert.subtitle}</h3>
                             <p className="text-base text-muted-foreground font-light leading-relaxed">{vert.description}</p>
                           </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6">
                             {vert.features.map((f, i) => (
                               <div key={i} className="flex items-center gap-2">
                                 <CheckCircle2 className="w-4 h-4 text-winmax-orange flex-shrink-0" />
@@ -355,6 +364,12 @@ const PDLC = () => {
                               </div>
                             ))}
                           </div>
+                          {vert.link && (
+                            <Link to={vert.link} className="inline-flex items-center gap-2 text-winmax-orange font-bold text-sm hover:underline group/link">
+                              {vert.linkText}
+                              <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                            </Link>
+                          )}
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-5 border-t border-white/10 mt-auto">
                             {vert.specs.map((spec, sIdx) => (
                               <div key={sIdx}>
@@ -425,6 +440,57 @@ const PDLC = () => {
                   </GlassmorphismCard>
                 </Reveal>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── KNOWLEDGE HUB ────────────────────────────────────────────── */}
+        <section className="py-32 relative bg-[#050505] border-t border-white/5">
+          <div className="container mx-auto px-6 lg:px-12 relative z-10">
+            <Reveal>
+              <div className="mb-20 text-center">
+                <span className="text-winmax-orange font-mono text-xs uppercase tracking-[0.4em] mb-4 block">[ Knowledge Center ]</span>
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6">RESOURCES & <span className="text-white/30">INSIGHTS.</span></h2>
+              </div>
+            </Reveal>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Reveal delay={0.1}>
+                <Link to="/smart-film-cost-uae" className="group block bg-[#111] border border-white/5 p-8 rounded-3xl hover:border-winmax-orange/30 transition-all h-full">
+                  <h3 className="text-xl font-bold mb-4 group-hover:text-winmax-orange transition-colors">Pricing Guide</h3>
+                  <p className="text-sm text-white/50 leading-relaxed mb-6">Understand how smart film cost is calculated per square meter in the UAE market.</p>
+                  <span className="text-xs font-bold uppercase tracking-wider text-white/30 group-hover:text-white transition-colors flex items-center gap-2">View Pricing Breakdown <ArrowRight className="w-3 h-3" /></span>
+                </Link>
+              </Reveal>
+
+              <Reveal delay={0.2}>
+                <Link to="/pdlc-vs-smart-glass" className="group block bg-[#111] border border-white/5 p-8 rounded-3xl hover:border-winmax-orange/30 transition-all h-full">
+                  <h3 className="text-xl font-bold mb-4 group-hover:text-winmax-orange transition-colors">Film vs Glass</h3>
+                  <p className="text-sm text-white/50 leading-relaxed mb-6">Learn the technical differences between retrofit adhesive film and factory laminated glass.</p>
+                  <span className="text-xs font-bold uppercase tracking-wider text-white/30 group-hover:text-white transition-colors flex items-center gap-2">Read Tech Comparison <ArrowRight className="w-3 h-3" /></span>
+                </Link>
+              </Reveal>
+
+              <Reveal delay={0.3}>
+                <Link to="/smart-film-automation" className="group block bg-[#111] border border-white/5 p-8 rounded-3xl hover:border-winmax-orange/30 transition-all h-full">
+                  <h3 className="text-xl font-bold mb-4 group-hover:text-winmax-orange transition-colors">Integration & BMS</h3>
+                  <p className="text-sm text-white/50 leading-relaxed mb-6">Advanced guides for connecting PDLC systems to KNX, Crestron, and central building controls.</p>
+                  <span className="text-xs font-bold uppercase tracking-wider text-white/30 group-hover:text-white transition-colors flex items-center gap-2">View Integration Docs <ArrowRight className="w-3 h-3" /></span>
+                </Link>
+              </Reveal>
+
+              <Reveal delay={0.4}>
+                <Link to="/pdlc-faq" className="group block bg-[#111] border border-white/5 p-8 rounded-3xl hover:border-winmax-orange/30 transition-all h-full">
+                  <h3 className="text-xl font-bold mb-4 group-hover:text-winmax-orange transition-colors">Technical FAQ</h3>
+                  <p className="text-sm text-white/50 leading-relaxed mb-6">Answers to the most common engineering and installation questions for switchable tech.</p>
+                  <span className="text-xs font-bold uppercase tracking-wider text-white/30 group-hover:text-white transition-colors flex items-center gap-2">See All Questions <ArrowRight className="w-3 h-3" /></span>
+                </Link>
+              </Reveal>
+            </div>
+            
+            <div className="mt-12 flex justify-center gap-8">
+               <Link to="/case-study-difc" className="text-xs font-bold uppercase tracking-widest text-white/40 hover:text-winmax-orange transition-colors flex items-center gap-2 underline decoration-white/10 underline-offset-8">Case Study: DIFC Office</Link>
+               <Link to="/case-study-royal-villa" className="text-xs font-bold uppercase tracking-widest text-white/40 hover:text-winmax-orange transition-colors flex items-center gap-2 underline decoration-white/10 underline-offset-8">Case Study: Palm Jumeirah</Link>
             </div>
           </div>
         </section>

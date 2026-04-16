@@ -21,8 +21,15 @@ import CollaborationAV from "./pages/CollaborationAV";
 import SolarSolutions from "./pages/SolarSolutions";
 import SmartFilmDubai from "./pages/SmartFilmDubai";
 import SmartFilmOffices from "./pages/SmartFilmOffices";
+import SmartFilmForVillas from "./pages/SmartFilmForVillas";
+import SmartFilmCost from "./pages/SmartFilmCost";
+import SwitchablePrivacyGlassDubai from "./pages/SwitchablePrivacyGlassDubai";
+import SmartfilmMeetingRooms from "./pages/SmartfilmMeetingRooms";
+import PdlcVsSmartGlass from "./pages/PdlcVsSmartGlass";
+import SmartFilmAutomation from "./pages/SmartFilmAutomation";
 import PDLCFAQPage from "./pages/PDLCFAQ";
 import CaseStudyDIFC from "./pages/CaseStudyDIFC";
+import CaseStudyRoyalVilla from "./pages/CaseStudyRoyalVilla";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import BlogDashboard from "./pages/admin/BlogDashboard";
@@ -69,8 +76,15 @@ const AppContent = () => {
             <Route path="/solar-solutions" element={<SolarSolutions />} />
             <Route path="/smart-film-dubai" element={<SmartFilmDubai />} />
             <Route path="/smart-film-for-offices-uae" element={<SmartFilmOffices />} />
+            <Route path="/smart-film-for-villas-uae" element={<SmartFilmForVillas />} />
+            <Route path="/smart-film-cost-uae" element={<SmartFilmCost />} />
+            <Route path="/switchable-privacy-glass-dubai" element={<SwitchablePrivacyGlassDubai />} />
+            <Route path="/smart-film-for-meeting-rooms" element={<SmartfilmMeetingRooms />} />
+            <Route path="/pdlc-vs-smart-glass" element={<PdlcVsSmartGlass />} />
+            <Route path="/smart-film-automation" element={<SmartFilmAutomation />} />
             <Route path="/pdlc-faq" element={<PDLCFAQPage />} />
             <Route path="/case-study-difc" element={<CaseStudyDIFC />} />
+            <Route path="/case-study-royal-villa" element={<CaseStudyRoyalVilla />} />
             <Route path="/lp" element={<LandingPage />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />

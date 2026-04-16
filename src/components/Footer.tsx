@@ -23,10 +23,17 @@ const Footer = () => {
   const solutionLinks = [
     { name: "PDLC Smart Glass", href: "/pdlc" },
     { name: "LED Display Systems", href: "/led-display" },
-    { name: "Specialized AV & DJ Club Engineering", href: "/dj-club-solutions" },
+    { name: "Specialized AV & DJ Club", href: "/dj-club-solutions" },
     { name: "Smart Automation", href: "/smart-automation" },
-    { name: "Collaboration AV", href: "/collaboration-av" },
     { name: "Solar Solutions", href: "/solar-solutions" }
+  ];
+
+  const pdlcHubLinks = [
+    { name: "Smart Film for Offices", href: "/smart-film-for-offices-uae" },
+    { name: "Smart Film for Villas", href: "/smart-film-for-villas-uae" },
+    { name: "Pricing & Cost Guide", href: "/smart-film-cost-uae" },
+    { name: "Automation Integration", href: "/smart-film-automation" },
+    { name: "Technical PDLC FAQ", href: "/pdlc-faq" }
   ];
 
   const socialLinks = [
@@ -46,7 +53,7 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-20 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-10 mb-32">
 
           {/* Column 1: Brand & Identity */}
           <div className="space-y-10">
@@ -103,16 +110,36 @@ const Footer = () => {
             <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20">
               [ Our Solutions ]
             </h4>
-            <ul className="space-y-5">
+            <ul className="space-y-4">
               {solutionLinks.map((service, idx) => (
                 <li key={idx}>
-                  <a
-                    href={service.href}
+                  <Link
+                    to={service.href}
                     className="group flex items-center gap-2 text-sm font-bold text-white/50 hover:text-white transition-colors"
                   >
                     {service.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -translate-y-1 group-hover:translate-x-1 group-hover:translate-y-0 transition-all text-winmax-orange" />
-                  </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: PDLC Knowledge Hub */}
+          <div className="space-y-10">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20">
+              [ Smart Glass Hub ]
+            </h4>
+            <ul className="space-y-4">
+              {pdlcHubLinks.map((link, idx) => (
+                <li key={idx}>
+                  <Link
+                    to={link.href}
+                    className="group flex items-center gap-2 text-sm font-bold text-white/50 hover:text-white transition-colors"
+                  >
+                    {link.name}
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -translate-y-1 group-hover:translate-x-1 group-hover:translate-y-0 transition-all text-winmax-orange" />
+                  </Link>
                 </li>
               ))}
             </ul>
