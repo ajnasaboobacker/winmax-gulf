@@ -44,6 +44,11 @@ export default defineConfig(({ mode }) => ({
           '/case-study-difc',
           '/case-study-royal-villa'
         ],
+        renderer: new PluginPrerender.PuppeteerRenderer({
+          renderAfterTime: 5000,
+          headless: true,
+          args: ['--no-sandbox', '--disable-setuid-sandbox']
+        }),
       })
     ] : [])
   ].filter(Boolean),
