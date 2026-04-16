@@ -2,11 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-import { createRequire } from 'node:module';
+import prerender from '@prerenderer/rollup-plugin';
 import { fileURLToPath } from "node:url";
-
-const require = createRequire(import.meta.url);
-const PluginPrerender = require("vite-plugin-prerender");
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,8 +18,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === "development" && componentTagger(),
     ...(mode === 'production' ? [
-      PluginPrerender({
-        staticDir: path.join(__dirname, 'dist'),
+      prerender({
         routes: [
           '/',
           '/pdlc',
@@ -44,11 +40,19 @@ export default defineConfig(({ mode }) => ({
           '/case-study-difc',
           '/case-study-royal-villa'
         ],
-        renderer: new PluginPrerender.PuppeteerRenderer({
+        renderer: '@prerenderer/renderer-puppeteer',
+        rendererOptions: {
           renderAfterTime: 5000,
           headless: true,
           args: ['--no-sandbox', '--disable-setuid-sandbox']
-        }),
+        },
+        postProcess(renderedRoute) {
+          // Clean up the HTML if needed
+          renderedRoute.html = renderedRoute.html.replace(
+            /http:\/\/localhost:8080/g,
+            'https://winmaxgulf.com'
+          );
+        },
       })
     ] : [])
   ].filter(Boolean),
