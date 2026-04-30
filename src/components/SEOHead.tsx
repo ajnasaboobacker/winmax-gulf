@@ -18,8 +18,8 @@ interface SEOHeadProps {
 
 const SEOHead = ({
   title = "WinmaxGulf - Smart Technology Solutions UAE",
-  description = "Leading UAE provider of PDLC smart glass, LED displays, Specialized AV & DJ Club Engineering, solar systems, AV, and smart automation. Over 1,000 successful technical installations.",
-  keywords = "PDLC smart glass UAE, LED display systems Dubai, Specialized AV & DJ Club Engineering, sustainable solar PV UAE, collaboration AV systems, integrated smart building automation, switchable glass technology",
+  description = "Leading UAE provider of PDLC smart film, LED displays, Specialized AV & DJ Club Engineering, solar systems, AV, and smart automation. Over 1,000 successful technical installations.",
+  keywords = "PDLC smart film, PDLC smart glass UAE, LED display systems Dubai, Specialized AV & DJ Club Engineering, sustainable solar PV UAE, collaboration AV systems, integrated smart building automation, switchable glass technology",
   ogTitle,
   ogDescription,
   ogImage = "/favicon.png",
@@ -183,7 +183,7 @@ const SEOHead = ({
         "@id": `${baseUrl}/#organization`,
         "name": "WinmaxGulf",
         "alternateName": ["Winmax Gulf", "WinMax Gulf", "Winmax Gulf LLC"],
-        "description": "Leading UAE provider of PDLC smart glass, LED display systems, DJ club solutions, sustainable solar, collaboration AV, and integrated smart automation with over 1,000 successful technical installations",
+        "description": "Leading UAE provider of PDLC smart film, LED display systems, DJ club solutions, sustainable solar, collaboration AV, and integrated smart automation with over 1,000 successful technical installations",
         "url": baseUrl,
         "logo": {
           "@type": "ImageObject",
@@ -198,9 +198,9 @@ const SEOHead = ({
         "foundingDate": "2015",
         "slogan": "Smart Technology Solutions UAE",
         "knowsAbout": [
-          "PDLC Smart Glass",
-          "LED Display Systems",
           "Smart Film Technology",
+          "LED Display Systems",
+          "PDLC Smart Glass",
           "DJ Club Solutions",
           "Solar Energy PV Systems",
           "Collaboration AV",
@@ -303,8 +303,8 @@ const SEOHead = ({
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "PDLC Smart Glass Solutions",
-                "description": "Switchable privacy glass and smart film solutions for offices, homes, and commercial spaces in Dubai and UAE",
+                "name": "PDLC Smart Film Solutions",
+                "description": "Switchable privacy film and smart glass solutions for offices, homes, and commercial spaces in Dubai and UAE",
                 "url": `${baseUrl}/pdlc`,
                 "areaServed": "United Arab Emirates",
                 "provider": { "@id": `${baseUrl}/#organization` }

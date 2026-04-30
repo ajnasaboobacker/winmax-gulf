@@ -49,11 +49,11 @@ const Gallery = () => {
     {
       id: 4,
       src: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",
-      alt: "Executive Privacy Glass",
-      category: "PDLC Glass Integration",
+      alt: "Executive Smart Film",
+      category: "PDLC Smart Film Integration",
       span: "md:col-span-1 md:row-span-1",
       challenge: "High-level transparency needed during meetings, with instant opacity for high-security executive briefings.",
-      outcome: "Installed Gen-3 PDLC Smart Glass Solutions with <40ms transition speed and integrated voice-command automation."
+      outcome: "Installed Gen-3 PDLC Smart Film Solutions with <40ms transition speed and integrated voice-command automation."
     },
     {
       id: 5,

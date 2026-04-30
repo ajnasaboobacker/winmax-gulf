@@ -3,7 +3,7 @@ import { Phone, Shapes, Monitor, Volume2, Settings, Presentation, Sun } from "lu
 import Reveal from "./Reveal";
 
 const services = [
-  { title: "PDLC Smart Glass", icon: <Shapes />, numbers: ["+971 52 720 0466", "+971 54 234 0588"] },
+  { title: "PDLC Smart Film", icon: <Shapes />, numbers: ["+971 52 720 0466", "+971 54 234 0588"] },
   { title: "LED Display Systems", icon: <Monitor />, numbers: ["+971 52 720 0466", "+971 54 234 0588"] },
   { title: "Specialized AV & DJ Club Engineering", icon: <Volume2 />, numbers: ["+971 52 720 0466"] },
   { title: "Smart Automation", icon: <Settings />, numbers: ["+971 54 234 0586"] },

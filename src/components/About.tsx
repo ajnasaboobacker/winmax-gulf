@@ -8,9 +8,9 @@ import { motion } from "framer-motion";
 const services = [
   {
     icon: Layers,
-    name: "PDLC Smart Glass",
+    name: "PDLC Smart Film",
     tagline: "Precision Privacy Control",
-    description: "Enterprise-grade switchable PDLC glass and smart glass solutions. Instant opacity transition in <0.1ms with 99.9% UV protection for luxury architecture.",
+    description: "Enterprise-grade switchable PDLC smart film and glass solutions. Instant opacity transition in <0.1ms with 99.9% UV protection for luxury architecture.",
     span: "col-span-1 md:col-span-1"
   },
   {

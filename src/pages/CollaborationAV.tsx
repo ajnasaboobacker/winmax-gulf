@@ -201,6 +201,19 @@ const collaborationSchema = {
         "@type": "WebPage",
         "@id": "https://winmaxgulf.com/collaboration-av"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are Smart Office and Collaboration AV Solutions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Smart Office and Collaboration AV (Audio Visual) Solutions integrate advanced enterprise technologies—such as IP telephony, 4K video conferencing room systems, and acoustic meeting pods—into modern workspaces. By combining certified hardware from Microsoft Teams, Zoom, and Cisco Webex with intelligent room control systems like Crestron and AMX, these solutions create seamless, unified communication environments that facilitate hybrid work models and improve team productivity. In the fast-paced corporate sectors of Dubai and Abu Dhabi, businesses require robust AV infrastructure that guarantees data security and high performance. Enterprise deployments feature AES-256 encrypted VoIP calls, Dante network-based audio routing, and HDMI 2.1 throughput for uncompressed 4K content sharing. Additionally, acoustic isolation enclosures (meeting pods) delivering up to 42dB STC sound reduction are increasingly adopted in open-plan offices to provide private, distraction-free zones for confidential executive meetings and focused individual work."
+          }
+        }
+      ]
     }
   ]
 };
@@ -294,6 +307,25 @@ const CollaborationAV = () => {
                     </span>
                     <span className="text-sm font-bold">AES-256 / TLS Encrypted</span>
                   </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ── AI / GEO CITABLE DEFINITION ────────────────────────────────── */}
+        <section className="py-16 md:py-24 bg-[#080808] border-y border-white/5 relative z-10">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto">
+              <Reveal>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6 text-white">What are Smart Office and Collaboration AV Solutions?</h2>
+                <div className="prose prose-invert max-w-none text-white/70 leading-relaxed font-light text-base md:text-lg">
+                  <p>
+                    Smart Office and Collaboration AV (Audio Visual) Solutions integrate advanced enterprise technologies—such as IP telephony, 4K video conferencing room systems, and acoustic meeting pods—into modern workspaces. By combining certified hardware from Microsoft Teams, Zoom, and Cisco Webex with intelligent room control systems like Crestron and AMX, these solutions create seamless, unified communication environments that facilitate hybrid work models and improve team productivity.
+                  </p>
+                  <p className="mt-5">
+                    In the fast-paced corporate sectors of Dubai and Abu Dhabi, businesses require robust AV infrastructure that guarantees data security and high performance. Enterprise deployments feature AES-256 encrypted VoIP calls, Dante network-based audio routing, and HDMI 2.1 throughput for uncompressed 4K content sharing. Additionally, acoustic isolation enclosures (meeting pods) delivering up to 42dB STC sound reduction are increasingly adopted in open-plan offices to provide private, distraction-free zones for confidential executive meetings and focused individual work.
+                  </p>
                 </div>
               </Reveal>
             </div>

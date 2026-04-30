@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { LazyImage } from "@/components/LazyImage";
 import { ArrowRight, Eye, Monitor, Music, Cpu, Presentation, Sun, ShieldCheck, Zap } from "lucide-react";
 import pdlcBanner from "@/assets/banners/pdlc-banner.jpg";
-import ledBanner from "@/assets/banners/led-banner.jpg";
+import ledBanner from "@/assets/banners/led-banner.png";
 import djBanner from "@/assets/images/dj-club.jpg";
 import smartAutomationBanner from "@/assets/banners/smart-automation-banner.png";
 import collaborationBanner from "@/assets/images/conference-room.jpg";
@@ -27,7 +27,7 @@ const Services = () => {
   const services = [
     {
       icon: Eye,
-      title: "PDLC Smart Glass Solutions",
+      title: "PDLC Smart Film Solutions",
       path: "/pdlc",
       description: "Switchable glass film for privacy on demand. Suitable for homes, offices, hospitals, and commercial interiors.",
       image: pdlcBanner,

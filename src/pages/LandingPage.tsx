@@ -39,7 +39,7 @@ const leadFormSchema = z.object({
 type LeadFormData = z.infer<typeof leadFormSchema>;
 
 const serviceOptions = [
-  { value: 'pdlc_smart_glass', label: 'PDLC Smart Glass Solutions' },
+  { value: 'pdlc_smart_glass', label: 'PDLC Smart Film & Glass Solutions' },
   { value: 'led_display', label: 'LED Display Systems' },
   { value: 'specialized_av_engineering', label: 'Specialized AV & DJ Club Engineering' },
   { value: 'solar_solutions', label: 'PV Solar Infrastructure' },
@@ -199,7 +199,7 @@ const LandingPage = () => {
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-winmax-orange/30 font-sans">
       <SEOHead
         title="Consultation Portal | Winmax Gulf - Architectural Technology"
-        description="Professional consultation for PDLC Smart Glass, LED Displays, and Solar Infrastructure in UAE. Request a technical brief today."
+        description="Professional consultation for PDLC Smart Film & Glass, LED Displays, and Solar Infrastructure in UAE. Request a technical brief today."
         noIndex={true}
       />
 

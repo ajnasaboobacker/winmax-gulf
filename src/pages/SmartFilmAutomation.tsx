@@ -12,7 +12,7 @@ const pageSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Smart Film Automation Integration",
-  "description": "Integration of PDLC smart glass with modern BMS and smart home ecosystems including KNX, Crestron, Control4, and Lutron.",
+  "description": "Integration of PDLC smart film and glass with modern BMS and smart home ecosystems including KNX, Crestron, Control4, and Lutron.",
   "provider": {
     "@type": "Organization",
     "name": "Winmax Gulf"
@@ -23,7 +23,7 @@ const SmartFilmAutomation = () => {
   return (
     <>
       <SEOHead
-        title="Smart Glass Automation | KNX & Crestron Integration UAE"
+        title="Smart Film Automation | KNX & Crestron Integration UAE"
         description="Connect your switchable privacy glass to central automation systems. We integrate smart film with KNX, Crestron, Control4, and major Building Management Systems."
         keywords="smart film automation, KNX smart glass, Crestron privacy glass connection, smart home window integration"
         structuredData={pageSchema}
@@ -31,7 +31,7 @@ const SmartFilmAutomation = () => {
       <div className="bg-[#050505] text-white min-h-screen selection:bg-winmax-orange/30">
         <Header />
         <Breadcrumbs items={[
-          { label: "PDLC Smart Glass", href: "/pdlc" },
+          { label: "PDLC Smart Film", href: "/pdlc" },
           { label: "Automation Integration", href: "/smart-film-automation" }
         ]} />
 
@@ -57,21 +57,21 @@ const SmartFilmAutomation = () => {
                   <div className="bg-[#141414] border border-white/5 p-8 rounded-2xl h-full">
                     <Cpu className="w-10 h-10 text-winmax-orange mb-6" />
                     <h3 className="text-xl font-bold mb-3">KNX Ecosystems</h3>
-                    <p className="text-white/60 text-sm">Via dedicated KNX relay modules, we route the smart glass transformers directly into the global KNX bus, allowing control from your unified keypad.</p>
+                    <p className="text-white/60 text-sm">Via dedicated KNX relay modules, we route the smart film and glass transformers directly into the global KNX bus, allowing control from your unified keypad.</p>
                   </div>
                 </Reveal>
                 <Reveal delay={0.3} className="h-full">
                   <div className="bg-[#141414] border border-white/5 p-8 rounded-2xl h-full">
                     <LayoutDashboard className="w-10 h-10 text-winmax-orange mb-6" />
                     <h3 className="text-xl font-bold mb-3">Enterprise Control4 / Crestron</h3>
-                    <p className="text-white/60 text-sm">Perfect for corporate boardrooms setup. "Presentation Mode" can dim lights and activate the privacy glass simultaneously.</p>
+                    <p className="text-white/60 text-sm">Perfect for corporate boardrooms setup. "Presentation Mode" can dim lights and activate the privacy film and glass simultaneously.</p>
                   </div>
                 </Reveal>
                 <Reveal delay={0.4} className="h-full">
                   <div className="bg-[#141414] border border-white/5 p-8 rounded-2xl h-full">
                     <Globe className="w-10 h-10 text-winmax-orange mb-6" />
                     <h3 className="text-xl font-bold mb-3">BMS Protocol (DALI / RS485)</h3>
-                    <p className="text-white/60 text-sm">Facility managers can monitor and override all privacy glass states across an entire high-rise using standard serial protocols.</p>
+                    <p className="text-white/60 text-sm">Facility managers can monitor and override all privacy film and glass states across an entire high-rise using standard serial protocols.</p>
                   </div>
                 </Reveal>
                 <Reveal delay={0.5} className="h-full">

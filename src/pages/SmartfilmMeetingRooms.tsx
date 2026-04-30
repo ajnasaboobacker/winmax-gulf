@@ -31,7 +31,7 @@ const SmartfilmMeetingRooms = () => {
       <div className="bg-[#050505] text-white min-h-screen selection:bg-winmax-orange/30">
         <Header />
         <Breadcrumbs items={[
-          { label: "PDLC Smart Glass", href: "/pdlc" },
+          { label: "PDLC Smart Film", href: "/pdlc" },
           { label: "Smart Film for Offices", href: "/smart-film-for-offices-uae" },
           { label: "Meeting Rooms", href: "/smart-film-for-meeting-rooms" }
         ]} />
@@ -92,13 +92,13 @@ const SmartfilmMeetingRooms = () => {
               <div className="border border-white/10 bg-[#141414] rounded-xl p-8">
                 <h3 className="text-xl font-bold mb-3 text-winmax-orange">Meeting Scheduler Integration</h3>
                 <p className="text-white/70">
-                  We can synchronize the smart glass switching mechanism with your Microsoft Exchange or Google Workspace room booking panels. When a meeting is officially initiated on the panel outside the door, the glass automatically frosts.
+                  We can synchronize the smart film switching mechanism with your Microsoft Exchange or Google Workspace room booking panels. When a meeting is officially initiated on the panel outside the door, the glass automatically frosts.
                 </p>
               </div>
               <div className="border border-white/10 bg-[#141414] rounded-xl p-8">
                 <h3 className="text-xl font-bold mb-3 text-winmax-orange">Presentation Mode Trigger</h3>
                 <p className="text-white/70">
-                  Through our <Link to="/collaboration-av" className="underline hover:text-winmax-orange">Collaboration AV deployment</Link>, pressing "Present" on the boardroom touch-panel will simultaneously lower the room lights, drop the projector screen, and frost the smart glass walls for the ultimate cinema-grade viewing environment.
+                  Through our <Link to="/collaboration-av" className="underline hover:text-winmax-orange">Collaboration AV deployment</Link>, pressing "Present" on the boardroom touch-panel will simultaneously lower the room lights, drop the projector screen, and frost the smart film walls for the ultimate cinema-grade viewing environment.
                 </p>
               </div>
             </div>

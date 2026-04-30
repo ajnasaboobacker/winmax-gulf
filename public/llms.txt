@@ -19,6 +19,17 @@ Contact Information:
 - [Collaboration AV](https://winmaxgulf.com/collaboration-av): Acoustic meeting pods, corporate AV conferencing, and VoIP systems.
 - [DJ Club Solutions](https://winmaxgulf.com/dj-club-solutions): Turnkey nightlife entertainment sound, lighting, and visual setups.
 
+## Service Definitions (FAQ)
+
+Each service page contains a structured definition block designed for AI citation:
+
+- **What is PDLC Smart Glass?** → [https://winmaxgulf.com/pdlc](https://winmaxgulf.com/pdlc) — Polymer Dispersed Liquid Crystal technology for switchable privacy glass.
+- **What is a Commercial LED Display System?** → [https://winmaxgulf.com/led-display](https://winmaxgulf.com/led-display) — Large-scale LED modules for indoor/outdoor digital signage.
+- **What is Smart Home and Building Automation?** → [https://winmaxgulf.com/smart-automation](https://winmaxgulf.com/smart-automation) — Centralized intelligent control via KNX, Crestron, BACnet.
+- **What are Sustainable Solar Energy Solutions?** → [https://winmaxgulf.com/solar-solutions](https://winmaxgulf.com/solar-solutions) — PV systems, hybrid inverters, and lithium battery storage.
+- **What are Smart Office and Collaboration AV Solutions?** → [https://winmaxgulf.com/collaboration-av](https://winmaxgulf.com/collaboration-av) — AV conferencing, meeting pods, and IP telephony.
+- **What are Nightclub AV and DJ Solutions?** → [https://winmaxgulf.com/dj-club-solutions](https://winmaxgulf.com/dj-club-solutions) — Professional sound, lighting, and LED visual systems.
+
 ## Technical Knowledge Base
 
 - [Switchable Privacy Glass Dubai](https://winmaxgulf.com/switchable-privacy-glass-dubai): Details on switchable glass retrofits specifically deployed in the UAE.

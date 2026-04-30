@@ -212,6 +212,19 @@ const automationSchema = {
         "@type": "WebPage",
         "@id": "https://winmaxgulf.com/smart-automation"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Smart Home and Building Automation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Smart Home and Building Automation refers to the centralized, intelligent control of a property's lighting, HVAC (heating, ventilation, and air conditioning), security, and entertainment systems. By utilizing advanced networking protocols like KNX, Crestron, BACnet, and LoRaWAN IoT sensors, these systems allow users to manage their entire environment via mobile applications, voice commands, or automated schedules based on occupancy and time of day. In the UAE, adopting a Building Management System (BMS) or smart villa automation drastically enhances both lifestyle convenience and operational efficiency. Intelligent systems equipped with AES-256 encryption guarantee secure, remote multi-site monitoring for businesses, while delivering up to 45% in measurable energy savings by eliminating unnecessary power usage. Whether for luxury residences, corporate office spaces, or expansive agricultural facilities utilizing precision smart farming, automation seamlessly unifies disparate technological subsystems into one intuitive interface with near-instantaneous response latency under 50 milliseconds."
+          }
+        }
+      ]
     }
   ]
 };
@@ -304,6 +317,25 @@ const SmartAutomation = () => {
                     </span>
                     <span className="text-sm font-bold">AES-256 Encrypted</span>
                   </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ── AI / GEO CITABLE DEFINITION ────────────────────────────────── */}
+        <section className="py-16 md:py-24 bg-[#080808] border-y border-white/5 relative z-10">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto">
+              <Reveal>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6 text-white">What is Smart Home and Building Automation?</h2>
+                <div className="prose prose-invert max-w-none text-white/70 leading-relaxed font-light text-base md:text-lg">
+                  <p>
+                    Smart Home and Building Automation refers to the centralized, intelligent control of a property's lighting, HVAC (heating, ventilation, and air conditioning), security, and entertainment systems. By utilizing advanced networking protocols like KNX, Crestron, BACnet, and LoRaWAN IoT sensors, these systems allow users to manage their entire environment via mobile applications, voice commands, or automated schedules based on occupancy and time of day.
+                  </p>
+                  <p className="mt-5">
+                    In the UAE, adopting a Building Management System (BMS) or smart villa automation drastically enhances both lifestyle convenience and operational efficiency. Intelligent systems equipped with AES-256 encryption guarantee secure, remote multi-site monitoring for businesses, while delivering up to 45% in measurable energy savings by eliminating unnecessary power usage. Whether for luxury residences, corporate office spaces, or expansive agricultural facilities utilizing precision smart farming, automation seamlessly unifies disparate technological subsystems into one intuitive interface with near-instantaneous response latency under 50 milliseconds.
+                  </p>
                 </div>
               </Reveal>
             </div>

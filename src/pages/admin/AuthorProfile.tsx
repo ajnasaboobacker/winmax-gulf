@@ -1,7 +1,4 @@
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/contexts/AuthContext";
-import { useToast } from "@/hooks/use-toast";
+import { useAuthorProfile } from "@/hooks/useAuthorProfile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,187 +6,32 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Loader2, Save, Upload, User, Globe, Twitter, Linkedin } from "lucide-react";
-import { z } from "zod";
-
-const profileSchema = z.object({
-  display_name: z.string().min(2, "Display name must be at least 2 characters").max(100, "Display name too long"),
-  bio: z.string().max(500, "Bio must be under 500 characters").optional(),
-  website_url: z.string().url("Invalid URL format").optional().or(z.literal("")),
-  social_twitter: z.string().max(50, "Twitter handle too long").optional(),
-  social_linkedin: z.string().url("Invalid LinkedIn URL").optional().or(z.literal("")),
-});
 
 const AuthorProfile = () => {
-  const { user } = useAuth();
-  const { toast } = useToast();
+  const {
+    isLoading,
+    isSaving,
+    isUploading,
+    displayName,
+    setDisplayName,
+    bio,
+    setBio,
+    avatarUrl,
+    websiteUrl,
+    setWebsiteUrl,
+    socialTwitter,
+    setSocialTwitter,
+    socialLinkedin,
+    setSocialLinkedin,
+    errors,
+    handleAvatarUpload,
+    handleSave,
+  } = useAuthorProfile();
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSaving, setIsSaving] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
-  const [profileId, setProfileId] = useState<string | null>(null);
-
-  // Form state
-  const [displayName, setDisplayName] = useState("");
-  const [bio, setBio] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
-  const [websiteUrl, setWebsiteUrl] = useState("");
-  const [socialTwitter, setSocialTwitter] = useState("");
-  const [socialLinkedin, setSocialLinkedin] = useState("");
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  // Fetch existing profile
-  useEffect(() => {
-    if (!user?.id) return;
-
-    const fetchProfile = async () => {
-      setIsLoading(true);
-      try {
-        const { data, error } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("user_id", user.id)
-          .maybeSingle();
-
-        if (error) throw error;
-
-        if (data) {
-          setProfileId(data.id);
-          setDisplayName(data.display_name || "");
-          setBio(data.bio || "");
-          setAvatarUrl(data.avatar_url);
-          setWebsiteUrl(data.website_url || "");
-          setSocialTwitter(data.social_twitter || "");
-          setSocialLinkedin(data.social_linkedin || "");
-        } else {
-          // No profile exists yet - set defaults
-          setDisplayName(user.email?.split("@")[0] || "Author");
-        }
-      } catch (error) {
-        console.error("Error fetching profile:", error);
-        toast({ title: "Failed to load profile", variant: "destructive" });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProfile();
-  }, [user?.id, toast]);
-
-  // Handle avatar upload
-  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file || !user?.id) return;
-
-    // Validate file
-    if (!file.type.startsWith("image/")) {
-      toast({ title: "Please select an image file", variant: "destructive" });
-      return;
-    }
-
-    if (file.size > 2 * 1024 * 1024) {
-      toast({ title: "Image must be less than 2MB", variant: "destructive" });
-      return;
-    }
-
-    setIsUploading(true);
-
-    try {
-      const fileExt = file.name.split(".").pop();
-      const fileName = `${user.id}/avatar.${fileExt}`;
-
-      // Upload to storage
-      const { error: uploadError } = await supabase.storage
-        .from("blog-images")
-        .upload(fileName, file, { upsert: true });
-
-      if (uploadError) throw uploadError;
-
-      // Get public URL
-      const { data: urlData } = supabase.storage
-        .from("blog-images")
-        .getPublicUrl(fileName);
-
-      setAvatarUrl(urlData.publicUrl);
-      toast({ title: "Avatar uploaded successfully" });
-    } catch (error: unknown) {
-      console.error("Upload error:", error);
-      const err = error as { message: string };
-      toast({ title: "Failed to upload avatar", description: err.message, variant: "destructive" });
-    } finally {
-      setIsUploading(false);
-    }
-  };
-
-  // Validate form
-  const validate = () => {
-    try {
-      profileSchema.parse({
-        display_name: displayName,
-        bio: bio || undefined,
-        website_url: websiteUrl || undefined,
-        social_twitter: socialTwitter || undefined,
-        social_linkedin: socialLinkedin || undefined,
-      });
-      setErrors({});
-      return true;
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        const newErrors: Record<string, string> = {};
-        err.errors.forEach((e) => {
-          if (e.path[0]) {
-            newErrors[e.path[0] as string] = e.message;
-          }
-        });
-        setErrors(newErrors);
-      }
-      return false;
-    }
-  };
-
-  // Save profile
-  const handleSave = async () => {
-    if (!validate() || !user?.id) return;
-
-    setIsSaving(true);
-
-    try {
-      const profileData = {
-        user_id: user.id,
-        display_name: displayName.trim(),
-        bio: bio.trim() || null,
-        avatar_url: avatarUrl,
-        website_url: websiteUrl.trim() || null,
-        social_twitter: socialTwitter.trim() || null,
-        social_linkedin: socialLinkedin.trim() || null,
-      };
-
-      if (profileId) {
-        // Update existing profile
-        const { error } = await supabase
-          .from("profiles")
-          .update(profileData)
-          .eq("id", profileId);
-
-        if (error) throw error;
-      } else {
-        // Create new profile
-        const { data, error } = await supabase
-          .from("profiles")
-          .insert(profileData)
-          .select("id")
-          .single();
-
-        if (error) throw error;
-        setProfileId(data.id);
-      }
-
-      toast({ title: "Profile saved successfully!" });
-    } catch (error: unknown) {
-      console.error("Save error:", error);
-      const err = error as { message: string };
-      toast({ title: "Failed to save profile", description: err.message, variant: "destructive" });
-    } finally {
-      setIsSaving(false);
+    if (file) {
+      await handleAvatarUpload(file);
     }
   };
 
@@ -242,7 +84,7 @@ const AuthorProfile = () => {
                 id="avatar-upload"
                 type="file"
                 accept="image/*"
-                onChange={handleAvatarUpload}
+                onChange={onAvatarChange}
                 className="hidden"
                 disabled={isUploading}
               />
@@ -374,3 +216,4 @@ const AuthorProfile = () => {
 };
 
 export default AuthorProfile;
+

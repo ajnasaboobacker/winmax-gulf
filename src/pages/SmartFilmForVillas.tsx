@@ -35,7 +35,7 @@ const SmartFilmForVillas = () => {
       <div className="bg-[#050505] text-white min-h-screen selection:bg-winmax-orange/30">
         <Header />
         <Breadcrumbs items={[
-          { label: "PDLC Smart Glass", href: "/pdlc" },
+          { label: "PDLC Smart Film", href: "/pdlc" },
           { label: "Smart Film for Villas", href: "/smart-film-for-villas-uae" }
         ]} />
 

@@ -31,7 +31,7 @@ const Terms = () => {
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">2. Professional Services</h2>
               <p>
-                Winmax Gulf L.L.C. provides specialist engineering services including but not limited to PDLC Smart Glass, LED Displays, and Smart Automation. All technical specifications provided on the website are for informational purposes and may be subject to site-specific verification.
+                Winmax Gulf L.L.C. provides specialist engineering services including but not limited to PDLC Smart Film & Glass, LED Displays, and Smart Automation. All technical specifications provided on the website are for informational purposes and may be subject to site-specific verification.
               </p>
             </section>
 

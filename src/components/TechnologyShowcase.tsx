@@ -9,7 +9,7 @@ const TechnologyShowcase = () => {
   const technologies = [
     {
       icon: <Eye className="h-8 w-8" />,
-      title: "PDLC Smart Glass Solutions",
+      title: "PDLC Smart Film Solutions",
       category: "Privacy & Environment Context",
       description: "Advanced switchable glass film that transitions from frosted to transparent essentially instantly, offering on-demand privacy and glare reduction without compromising natural light.",
       features: ["Blocks 99% of harmful UV rays", "Reduces HVAC energy consumption", "Retrofit application on existing glass"],

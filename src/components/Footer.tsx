@@ -21,7 +21,7 @@ const Footer = () => {
   ];
 
   const solutionLinks = [
-    { name: "PDLC Smart Glass", href: "/pdlc" },
+    { name: "PDLC Smart Film", href: "/pdlc" },
     { name: "LED Display Systems", href: "/led-display" },
     { name: "Specialized AV & DJ Club", href: "/dj-club-solutions" },
     { name: "Smart Automation", href: "/smart-automation" },
@@ -128,7 +128,7 @@ const Footer = () => {
           {/* Column 4: PDLC Knowledge Hub */}
           <div className="space-y-10">
             <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20">
-              [ Smart Glass Hub ]
+              [ Smart Film Hub ]
             </h4>
             <ul className="space-y-4">
               {pdlcHubLinks.map((link, idx) => (

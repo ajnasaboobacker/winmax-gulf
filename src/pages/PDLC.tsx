@@ -44,7 +44,7 @@ const pdlcVerticals = [
       { label: "Lifespan", value: "10+ Years" },
     ],
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",
-    imageCaption: "Smart Glass Villa — Instant privacy at the touch of a button",
+    imageCaption: "Smart Film Villa — Instant privacy at the touch of a button",
   },
   {
     id: "office",
@@ -77,10 +77,10 @@ const pdlcVerticals = [
     id: "hospitality",
     icon: Layers,
     title: "Hotels & Hospitality",
-    subtitle: "Premium Guest Experience Glass",
+    subtitle: "Premium Guest Experience Film",
     badge: "Hotels & Resorts",
     description:
-      "Deliver a five-star guest experience with PDLC smart glass in hotel room shower enclosures, suite dividers, spa treatment rooms, and restaurant vu booths. Replace manual blinds and curtains with whisper-quiet electronic privacy glass that elevates the aesthetic language of any luxury hospitality space — from boutique hotels to large-scale resort properties across the UAE.",
+      "Deliver a five-star guest experience with PDLC smart film in hotel room shower enclosures, suite dividers, spa treatment rooms, and restaurant VIP booths. Replace manual blinds and curtains with whisper-quiet electronic privacy film that elevates the aesthetic language of any luxury hospitality space — from boutique hotels to large-scale resort properties across the UAE.",
     features: [
       "Shower room & bathroom enclosures",
       "Suite bedroom/bathroom dividers",
@@ -96,7 +96,7 @@ const pdlcVerticals = [
       { label: "Warranty", value: "5 Years" },
     ],
     image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1200&auto=format&fit=crop",
-    imageCaption: "Hotel Smart Glass — Five-star privacy without curtains",
+    imageCaption: "Hotel Smart Film — Five-star privacy without curtains",
     link: "/switchable-privacy-glass-dubai",
     linkText: "Hospitality Glass Specs",
   },
@@ -104,10 +104,10 @@ const pdlcVerticals = [
     id: "projection",
     icon: Eye,
     title: "Projection & Display",
-    subtitle: "Rear-Projection Smart Glass",
+    subtitle: "Rear-Projection Smart Film",
     badge: "Media & Retail",
     description:
-      "PDLC glass doubles as a high-gain rear-projection screen. In transparent mode it acts as a standard window or partition; switch it to frosted mode and project marketing content, presentations, or interactive media directly onto the glass.",
+      "PDLC film doubles as a high-gain rear-projection screen. In transparent mode it acts as a standard window or partition; switch it to frosted mode and project marketing content, presentations, or interactive media directly onto the film.",
     link: "/switchable-privacy-glass-dubai",
     linkText: "Learn about Switchable Tech",
     features: [
@@ -125,7 +125,7 @@ const pdlcVerticals = [
       { label: "Contrast", value: "800:1" },
     ],
     image: "https://images.unsplash.com/photo-1558002038-1037906d9974?q=80&w=1200&auto=format&fit=crop",
-    imageCaption: "Rear-Projection Smart Glass — Storefront meets display screen",
+    imageCaption: "Rear-Projection Smart Film — Storefront meets display screen",
   },
 ];
 
@@ -153,19 +153,19 @@ const engineeringCards = [
 
 const showcaseItems = [
   {
-    image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=900&auto=format&fit=crop",
-    title: "Luxury Villa Bathroom",
-    tag: "Residential Smart Privacy",
+    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=900&auto=format&fit=crop",
+    title: "Burj Khalifa",
+    tag: "Iconic Landmark Installation",
   },
   {
-    image: "https://images.unsplash.com/photo-1497366412874-3415097a27e7?q=80&w=900&auto=format&fit=crop",
-    title: "Corporate Boardroom Partition",
-    tag: "Office Commercial",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=900&auto=format&fit=crop",
+    title: "UAE Media Council",
+    tag: "Government Sector",
   },
   {
-    image: "https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?q=80&w=900&auto=format&fit=crop",
-    title: "Hotel Suite Divider",
-    tag: "Hospitality Grade",
+    image: "https://media.assettype.com/gulfnews%2Fimport%2F2023%2F11%2F09%2FStock-Emirates-Airlines_18bb3128878_large.jpg",
+    title: "Emirates",
+    tag: "Corporate Headquarters",
   },
 ];
 
@@ -177,8 +177,8 @@ const pdlcSchema = {
     {
       "@type": "Service",
       "@id": "https://winmaxgulf.com/pdlc#service",
-      "name": "PDLC Smart Glass & Film Installation",
-      "description": "Professional installation of PDLC switchable smart glass and privacy film in Dubai and UAE. Suitable for residential villas, offices, hospitals, and retail displays.",
+      "name": "PDLC Smart Film & Glass Installation",
+      "description": "Professional installation of PDLC switchable smart film and privacy glass in Dubai and UAE. Suitable for residential villas, offices, hospitals, and retail displays.",
       "provider": {
         "@type": "Organization",
         "name": "Winmax Gulf",
@@ -201,7 +201,7 @@ const pdlcSchema = {
     },
     {
       "@type": "Product",
-      "name": "PDLC Smart Glass & Switchable Film",
+      "name": "PDLC Smart Film & Switchable Glass",
       "image": "https://winmaxgulf.com/assets/banners/hero-smart-glass.jpg",
       "description": "Premium switchable privacy glass and PDLC film for residential and commercial architectural installations in Dubai.",
       "brand": {
@@ -214,6 +214,19 @@ const pdlcSchema = {
         "availability": "https://schema.org/InStock",
         "areaServed": ["Dubai", "Abu Dhabi", "GCC"]
       }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is PDLC Smart Film and Switchable Privacy Glass?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Polymer Dispersed Liquid Crystal (PDLC) is an advanced optical technology utilized in smart glass and privacy films. It operates through the electrical alignment of liquid crystal molecules suspended in a polymer matrix. When a low-voltage electrical current is applied, the crystals align uniformly, allowing light to pass through and rendering the glass transparent. When the power is removed, the crystals scatter randomly, turning the glass opaque and providing immediate privacy. This switchable technology is widely adopted in Dubai's premium corporate offices, luxury residential villas, and healthcare facilities for dynamic space management, eliminating the need for traditional blinds while blocking up to 99% of harmful UV radiation."
+          }
+        }
+      ]
     }
   ]
 };
@@ -234,14 +247,14 @@ const PDLC = () => {
 
       <div className="bg-[#050505] text-white min-h-screen selection:bg-winmax-orange/30">
         <Header />
-        <Breadcrumbs items={[{ label: "PDLC Smart Glass", href: "/pdlc" }]} />
+        <Breadcrumbs items={[{ label: "PDLC Smart Film", href: "/pdlc" }]} />
 
         {/* ── HERO ──────────────────────────────────────────────────────── */}
         <section className="relative h-screen flex items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img
               src={heroImage}
-              alt="Winmax Gulf PDLC Smart Glass Installation"
+              alt="Winmax Gulf PDLC Smart Film Installation"
               className="absolute inset-0 w-full h-full object-cover object-left opacity-90 brightness-110 scale-105"
               fetchPriority="high"
               loading="eager"
@@ -256,7 +269,7 @@ const PDLC = () => {
             <div className="max-w-5xl">
               <Reveal>
                 <span className="inline-block text-winmax-orange font-mono text-xs uppercase tracking-[0.4em] mb-6 px-4 py-1.5 border border-winmax-orange/25 rounded-full">
-                  PDLC Smart Glass Solutions
+                  PDLC Smart Film Solutions
                 </span>
               </Reveal>
               <Reveal delay={0.15}>
@@ -271,7 +284,7 @@ const PDLC = () => {
                   From <span className="text-white font-medium">luxury villa bathrooms</span> and{" "}
                   <span className="text-white font-medium">corporate boardrooms</span> to{" "}
                   <span className="text-white font-medium">hotel suites</span> and{" "}
-                  <span className="text-white font-medium">rear-projection displays</span> — we supply, install, and integrate PDLC switchable smart glass across the UAE.
+                  <span className="text-white font-medium">rear-projection displays</span> — we supply, install, and integrate PDLC switchable smart film and glass across the UAE.
                 </p>
               </Reveal>
               <Reveal delay={0.45}>
@@ -294,6 +307,25 @@ const PDLC = () => {
           </div>
         </section>
 
+        {/* ── AI / GEO CITABLE DEFINITION ────────────────────────────────── */}
+        <section className="py-16 md:py-24 bg-[#080808] border-y border-white/5 relative z-10">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto">
+              <Reveal>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6 text-white">What is PDLC Smart Film and Glass?</h2>
+                <div className="prose prose-invert max-w-none text-white/70 leading-relaxed font-light text-base md:text-lg">
+                  <p>
+                    PDLC (Polymer Dispersed Liquid Crystal) Smart Film is an advanced architectural technology that instantly transforms glass from frosted (opaque) to clear (transparent) using a low-voltage electrical current. When the power is off, the liquid crystal molecules scatter light, providing 95%+ haze and complete two-way privacy. When electricity is applied, these molecules align perfectly, allowing light to pass through with over 80% visual light transmission (VLT) for total clarity.
+                  </p>
+                  <p className="mt-5">
+                    In the UAE, switchable smart film and glass are heavily utilized in luxury residential villas, corporate boardroom partitions, and premium hotel suites to replace maintenance-heavy traditional blinds. Beyond offering instant privacy, PDLC switchable film blocks 99.9% of harmful UV rays and rejects over 92% of infrared radiation, acting as a powerful thermal insulator. Operating at a minimal power draw of less than 5 watts per square meter, it integrates natively with smart home ecosystems like KNX, Crestron, and Alexa.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
         {/* ── APPLICATION TABS ──────────────────────────────────────────── */}
         <section className="py-32 relative overflow-hidden bg-[#050505] border-y border-white/5">
           <div className="container mx-auto px-6 lg:px-12 relative z-10">
@@ -302,7 +334,7 @@ const PDLC = () => {
                 <span className="text-winmax-orange font-mono text-xs uppercase tracking-[0.4em] mb-4 block">[ Applications ]</span>
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6">WHERE WE <span className="text-white/30">INSTALL.</span></h2>
                 <p className="text-muted-foreground font-light max-w-2xl leading-relaxed">
-                  PDLC smart glass transforms any glazed surface into a switchable privacy screen. Explore the four primary application environments we serve across the UAE.
+                  PDLC smart film transforms any glazed surface into a switchable privacy screen. Explore the four primary application environments we serve across the UAE.
                 </p>
               </div>
             </Reveal>
@@ -496,10 +528,10 @@ const PDLC = () => {
         </section>
 
         <ServiceBrochureCTA
-          badge="PDLC Smart Glass"
+          badge="PDLC Smart Film"
           headline={<>ELEVATE YOUR<br /><span className="text-winmax-orange">SPACE.</span></>}
-          subtext="From a single bathroom panel to a full office partition — our team will survey, specify, and install PDLC smart glass tailored to your environment across the UAE."
-          whatsappMessage="Hello, I am interested in your PDLC Smart Glass solutions and would like a free survey."
+          subtext="From a single bathroom panel to a full office partition — our team will survey, specify, and install PDLC smart film and glass tailored to your environment across the UAE."
+          whatsappMessage="Hello, I am interested in your PDLC Smart Film solutions and would like a free survey."
           brochureFile="/brochures/pdlc-smart-glass.pdf"
         />
 

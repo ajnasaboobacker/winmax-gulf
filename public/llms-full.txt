@@ -816,8 +816,9 @@ Dubai, UAE, Abu Dhabi, Sharjah, United Arab Emirates, GCC, Middle East, Saudi Ar
 
 ===============================================================================
 
-*Document Version: 2.0*
-*Last Updated: April 13, 2026*
+*Document Version: 3.0*
+*Last Updated: April 30, 2026*
+*GEO Optimized: All service pages now include AI-citable definition blocks and FAQPage schema.*
 *For the most current information, visit: https://winmaxgulf.com*
 *Contact: sales@winmaxgulf.com | +971 4 271 3101*
 

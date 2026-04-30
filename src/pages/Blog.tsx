@@ -82,7 +82,7 @@ const Blog = () => {
     "@context": "https://schema.org",
     "@type": "Blog",
     "name": "Winmax Gulf Blog",
-    "description": "Professional insights and corporate news on smart glass, specialized AV engineering, and solar infrastructure.",
+    "description": "Professional insights and corporate news on smart film and glass, specialized AV engineering, and solar infrastructure.",
     "url": "https://winmaxgulf.com/blog",
     "publisher": {
       "@type": "Organization",
@@ -95,7 +95,7 @@ const Blog = () => {
     <>
       <SEOHead
         title="Blog | Winmax Gulf - Corporate Insights"
-        description="Official blog covering PDLC smart glass solutions, specialized AV engineering, and solar infrastructure in the UAE."
+        description="Official blog covering PDLC smart film and glass solutions, specialized AV engineering, and solar infrastructure in the UAE."
         structuredData={blogSchema}
       />
       <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-winmax-orange/30 font-sans">

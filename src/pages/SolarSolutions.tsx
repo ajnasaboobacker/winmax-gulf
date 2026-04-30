@@ -206,6 +206,19 @@ const SolarSolutions = () => {
         "availability": "https://schema.org/InStock",
         "areaServed": ["Dubai", "Abu Dhabi", "GCC"]
       }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are Sustainable Solar Energy Solutions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sustainable Solar Energy Solutions encompass the full engineering, deployment, and management of Photovoltaic (PV) power systems designed to reduce or eliminate reliance on the traditional electrical grid. These systems integrate high-efficiency monocrystalline solar panels with advanced intelligent hybrid inverters, seamlessly converting captured solar irradiance into usable AC power. For uninterrupted operation, solar arrays are paired with high-density lithium (LiFePO4) battery storage systems that stockpile excess energy for use during nighttime or grid outages. In the UAE’s demanding climate, industrial-grade solar infrastructure is engineered to withstand extreme heat and dust. By implementing these tailored renewable energy solutions—which often include EV charging stations and solar water pumping systems—businesses and residential villas achieve significant cost savings, secure a rapid Return on Investment (ROI), and drastically lower their carbon footprint while ensuring continuous, self-sustaining power delivery."
+          }
+        }
+      ]
     }
   ]
 };
@@ -278,6 +291,25 @@ const SolarSolutions = () => {
                     <span className="block text-[10px] uppercase tracking-widest text-muted-foreground font-mono mb-1">Technology</span>
                     <span className="text-sm font-bold">Magnizon Power</span>
                   </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* --- AI / GEO CITABLE DEFINITION --- */}
+        <section className="py-16 md:py-24 bg-[#080808] border-y border-white/5 relative z-10">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto">
+              <Reveal>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6 text-white">What is a PV Solar Energy System?</h2>
+                <div className="prose prose-invert max-w-none text-white/70 leading-relaxed font-light text-base md:text-lg">
+                  <p>
+                    A PV (Photovoltaic) Solar Energy System is a renewable infrastructure that captures direct sunlight using semiconductor materials, such as monocrystalline silicon, to generate usable direct current (DC) electricity. This energy is then routed through a smart hybrid inverter, which efficiently converts it into alternating current (AC) to power homes, commercial buildings, and industrial facilities with zero grid reliance. 
+                  </p>
+                  <p className="mt-5">
+                    In Dubai and the wider UAE, commercial solar installations typically pair Tier 1 TopCon solar panels with high-density lithium-ion battery storage systems to guarantee 99.9% uptime. These robust setups are engineered to withstand extreme desert heat, operating reliably in ambient temperatures up to 65°C. With an average return on investment (ROI) horizon of just 3.5 years, a professionally installed solar PV plant offers guaranteed linear performance for 25 to 30 years, drastically reducing operational expenditure and carbon footprints for businesses.
+                  </p>
                 </div>
               </Reveal>
             </div>

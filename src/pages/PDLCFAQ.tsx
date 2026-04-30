@@ -11,7 +11,7 @@ import FAQ from "@/components/FAQ";
 const pageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "PDLC Smart Glass FAQ",
+  "name": "PDLC Smart Film & Glass FAQ",
   "description": "Frequently asked questions about PDLC smart film and switchable glass installations in the UAE."
 };
 
@@ -19,7 +19,7 @@ const PDLCFAQPage = () => {
   return (
     <>
       <SEOHead
-        title="PDLC Smart Glass FAQ | Winmax Gulf"
+        title="PDLC Smart Film & Glass FAQ | Winmax Gulf"
         description="Comprehensive FAQ for PDLC smart film and switchable privacy glass. Learn about costs, installation, and technical specs for projects in the UAE."
         keywords="pdlc smart glass faq, smart film questions, switchable glass maintenance, pdlc installation uae"
         structuredData={pageSchema}
@@ -27,7 +27,7 @@ const PDLCFAQPage = () => {
       <div className="bg-[#050505] text-white min-h-screen selection:bg-winmax-orange/30">
         <Header />
         <Breadcrumbs items={[
-          { label: "PDLC Smart Glass", href: "/pdlc" },
+          { label: "PDLC Smart Film", href: "/pdlc" },
           { label: "PDLC FAQ", href: "/pdlc-faq" }
         ]} />
 
@@ -53,7 +53,7 @@ const PDLCFAQPage = () => {
           badge="Technical Consultation"
           headline={<>STILL HAVE <span className="text-winmax-orange">QUESTIONS?</span></>}
           subtext="Speak directly with one of our specialized PDLC engineers regarding your unique architectural requirements."
-          whatsappMessage="Hello, I have some technical questions about PDLC smart glass before making a decision."
+          whatsappMessage="Hello, I have some technical questions about PDLC smart film and glass before making a decision."
           brochureFile="/brochures/pdlc-smart-glass.pdf"
         />
 

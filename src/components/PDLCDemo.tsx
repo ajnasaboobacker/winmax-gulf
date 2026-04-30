@@ -45,10 +45,10 @@ const PDLCDemo = () => {
         {/* Title */}
         <div className="text-center mb-8">
           <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Real PDLC Smart Glass Demonstration
+            Real PDLC Smart Film Demonstration
           </h3>
           <p className="text-lg text-muted-foreground">
-            Watch actual PDLC smart glass technology in action - switching from opaque to transparent instantly
+            Watch actual PDLC smart film technology in action - switching from opaque to transparent instantly
           </p>
         </div>
 

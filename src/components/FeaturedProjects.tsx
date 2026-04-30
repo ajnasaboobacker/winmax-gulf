@@ -10,7 +10,7 @@ const projects = [
     title: "DIFC Corporate HQ",
     location: "DIFC, Dubai",
     category: "PDLC & Smart Office",
-    description: "Multi-floor PDLC smart glass retrofit and high-fidelity AV integration for a global financial institution.",
+    description: "Multi-floor PDLC smart film retrofit and high-fidelity AV integration for a global financial institution.",
     image: conferenceImage,
     tags: ["DIFC Case Study", "BMS"],
     link: "/case-study-difc"
@@ -19,7 +19,7 @@ const projects = [
     title: "Royal Villa Palm",
     location: "Palm Jumeirah",
     category: "Luxury Home Automation",
-    description: "Bespoke smart glass installation for oceanside privacy with integration into specialized home automation.",
+    description: "Bespoke smart film installation for oceanside privacy with integration into specialized home automation.",
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",
     tags: ["VIP Project", "Residential"],
     link: "/case-study-royal-villa"

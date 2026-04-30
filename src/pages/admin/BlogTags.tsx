@@ -1,7 +1,4 @@
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { useSlug } from "@/hooks/useSlug";
-import { useToast } from "@/hooks/use-toast";
+import { useTaxonomy } from "@/hooks/useTaxonomy";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -26,148 +23,33 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Plus, Edit, Trash2, Tags as TagsIcon, Loader2 } from "lucide-react";
 
-interface Tag {
-  id: string;
-  name: string;
-  slug: string;
-  created_at: string;
-}
-
 const BlogTags = () => {
-  const [tags, setTags] = useState<Tag[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [editingTag, setEditingTag] = useState<Tag | null>(null);
-  const [deleteId, setDeleteId] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const [name, setName] = useState("");
-  const [slug, setSlug] = useState("");
-
-  const { generateSlug } = useSlug();
-  const { toast } = useToast();
-
-  const fetchTags = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from("blog_tags")
-        .select("*")
-        .order("name");
-
-      if (error) throw error;
-      setTags(data || []);
-    } catch (error) {
-      console.error("Error fetching tags:", error);
-      toast({ title: "Failed to load tags", variant: "destructive" });
-    } finally {
-      setIsLoading(false);
-    }
-  }, [toast]);
-
-  useEffect(() => {
-    fetchTags();
-  }, [fetchTags]);
-
-  const openCreateDialog = () => {
-    setEditingTag(null);
-    setName("");
-    setSlug("");
-    setIsDialogOpen(true);
-  };
-
-  const openEditDialog = (tag: Tag) => {
-    setEditingTag(tag);
-    setName(tag.name);
-    setSlug(tag.slug);
-    setIsDialogOpen(true);
-  };
-
-  const handleNameChange = (value: string) => {
-    setName(value);
-    if (!editingTag) {
-      setSlug(generateSlug(value));
-    }
-  };
-
-  const handleSave = async () => {
-    if (!name.trim() || !slug.trim()) {
-      toast({ title: "Name and slug are required", variant: "destructive" });
-      return;
-    }
-
-    setIsSaving(true);
-    try {
-      const tagData = {
-        name: name.trim(),
-        slug: slug.trim(),
-      };
-
-      if (editingTag) {
-        const { error } = await supabase
-          .from("blog_tags")
-          .update(tagData)
-          .eq("id", editingTag.id);
-
-        if (error) throw error;
-        toast({ title: "Tag updated" });
-      } else {
-        const { error } = await supabase
-          .from("blog_tags")
-          .insert(tagData);
-
-        if (error) throw error;
-        toast({ title: "Tag created" });
-      }
-
-      setIsDialogOpen(false);
-      fetchTags();
-    } catch (error: unknown) {
-      console.error("Save error:", error);
-      const err = error as { code?: string; message: string };
-      if (err.code === "23505") {
-        toast({ title: "Slug already exists", variant: "destructive" });
-      } else {
-        toast({ title: "Failed to save tag", variant: "destructive" });
-      }
-    } finally {
-      setIsSaving(false);
-    }
-  };
-
-  const handleDelete = async () => {
-    if (!deleteId) return;
-
-    setIsDeleting(true);
-    try {
-      const { error } = await supabase
-        .from("blog_tags")
-        .delete()
-        .eq("id", deleteId);
-
-      if (error) throw error;
-
-      setTags((prev) => prev.filter((t) => t.id !== deleteId));
-      toast({ title: "Tag deleted" });
-    } catch (error) {
-      console.error("Delete error:", error);
-      toast({ title: "Failed to delete tag", variant: "destructive" });
-    } finally {
-      setIsDeleting(false);
-      setDeleteId(null);
-    }
-  };
+  const {
+    items: tags,
+    isLoading,
+    isDialogOpen,
+    setIsDialogOpen,
+    editingItem: editingTag,
+    deleteId,
+    setDeleteId,
+    isSaving,
+    isDeleting,
+    name,
+    setName,
+    slug,
+    setSlug,
+    openCreateDialog,
+    openEditDialog,
+    handleSave,
+    handleDelete,
+  } = useTaxonomy("blog_tags");
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-white">Tags</h1>
-          <p className="text-slate-400 mt-1">
-            Manage tags for your blog posts
-          </p>
+          <p className="text-slate-400 mt-1">Manage tags for your blog posts</p>
         </div>
         <Button onClick={openCreateDialog}>
           <Plus className="h-4 w-4 mr-2" />
@@ -175,7 +57,6 @@ const BlogTags = () => {
         </Button>
       </div>
 
-      {/* Tags List */}
       {isLoading ? (
         <div className="flex items-center justify-center h-64">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -222,7 +103,6 @@ const BlogTags = () => {
         </div>
       )}
 
-      {/* Create/Edit Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="bg-slate-800 border-slate-700">
           <DialogHeader>
@@ -240,7 +120,7 @@ const BlogTags = () => {
               <Input
                 id="tag-name"
                 value={name}
-                onChange={(e) => handleNameChange(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Tag name"
                 className="bg-slate-700/50 border-slate-600 text-white"
               />
@@ -270,7 +150,6 @@ const BlogTags = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Delete Confirmation */}
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
         <AlertDialogContent className="bg-slate-800 border-slate-700">
           <AlertDialogHeader>

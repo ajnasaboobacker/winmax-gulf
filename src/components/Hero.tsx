@@ -17,12 +17,66 @@ const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const heroImages = [
-    { src: heroImage, alt: "Precision PDLC Smart Glass Technology", title: "PDLC Smart Glass", objectPosition: "left" },
-    { src: ledImage, alt: "High-Pitch Modular LED Display Systems", title: "LED Displays", objectPosition: "center" },
-    { src: djImage, alt: "Turnkey DJ & Club Audio-Visual Solutions", title: "DJ / Pro-AV", objectPosition: "center" },
-    { src: solarImage, alt: "Sustainable PV Solar Energy Infrastructure", title: "Solar Systems", objectPosition: "left" },
-    { src: collabImage, alt: "Unified Collaboration AV & Smart Boardrooms", title: "Collaboration AV", objectPosition: "right" },
-    { src: automationImage, alt: "Integrated Building Automation (BMS & IoT)", title: "Smart Automation", objectPosition: "right" }
+    { 
+      src: heroImage, 
+      alt: "Precision PDLC Smart Film Technology", 
+      title: "PDLC Smart Film",
+      headingMain: "PDLC Smart Film Supplier",
+      headingHighlight: "in UAE",
+      subheading: "Leading UAE provider of PDLC smart film, LED display systems, professional DJ solutions, sustainable PV solar energy, collaboration AV, and integrated smart automation architecture.",
+      description: "Enhance privacy, visual communication, and energy independence with our innovative smart technology solutions in the UAE. We deliver complete end-to-end services including technical consultation, custom design, professional installation, and maintenance.",
+      objectPosition: "left" 
+    },
+    { 
+      src: ledImage, 
+      alt: "High-Pitch Modular LED Display Systems", 
+      title: "LED Displays",
+      headingMain: "Advanced LED Display",
+      headingHighlight: "Solutions",
+      subheading: "High-impact visual communication through cutting-edge LED panel technology for indoor and outdoor applications.",
+      description: "Transform your space with high-brightness, seamless modular LED displays. Perfect for retail, corporate environments, events, and DOOH advertising. Our turnkey solutions cover design, structural engineering, installation, and content management.",
+      objectPosition: "center" 
+    },
+    { 
+      src: djImage, 
+      alt: "Turnkey DJ & Club Audio-Visual Solutions", 
+      title: "DJ / Pro-AV",
+      headingMain: "Professional DJ & AV",
+      headingHighlight: "Installations",
+      subheading: "Immersive audio-visual experiences for clubs, lounges, and entertainment venues across the UAE.",
+      description: "Elevate your venue with world-class acoustics, dynamic lighting, and integrated Pro-AV systems. We partner with top-tier brands to deliver uncompromised sound quality and visual spectacle that keeps audiences captivated.",
+      objectPosition: "center" 
+    },
+    { 
+      src: solarImage, 
+      alt: "Sustainable PV Solar Energy Infrastructure", 
+      title: "Solar Systems",
+      headingMain: "PV Solar Energy",
+      headingHighlight: "Infrastructure",
+      subheading: "Empowering businesses and homes with clean, sustainable, and cost-effective solar power solutions.",
+      description: "Transition to renewable energy with our end-to-end solar PV systems. From energy audits and structural assessments to DEWA-approved installations, we ensure maximum efficiency and ROI for your solar investment.",
+      objectPosition: "left" 
+    },
+    { 
+      src: collabImage, 
+      alt: "Unified Collaboration AV & Smart Boardrooms", 
+      title: "Collaboration AV",
+      headingMain: "Smart Boardroom &",
+      headingHighlight: "Collaboration AV",
+      subheading: "Seamless communication technologies for the modern hybrid workplace.",
+      description: "Design productive workspaces with interactive displays, wireless presentation systems, and high-fidelity video conferencing. We create intuitive environments where local and remote teams can collaborate without technical friction.",
+      objectPosition: "right" 
+    },
+    { 
+      src: automationImage, 
+      alt: "Integrated Building Automation (BMS & IoT)", 
+      title: "Smart Automation",
+      headingMain: "Intelligent Building",
+      headingHighlight: "Automation",
+      subheading: "Centralized control for lighting, climate, security, and AV systems.",
+      description: "Experience the future of living and working with custom smart automation. Our IoT-driven solutions integrate fragmented systems into a unified, energy-efficient, and easy-to-use interface tailored to your exact lifestyle or business needs.",
+      objectPosition: "right" 
+    }
   ];
 
   useEffect(() => {
@@ -95,30 +149,54 @@ const Hero = () => {
                 <span className="text-[10px] uppercase font-mono tracking-widest font-bold text-winmax-orange shadow-black drop-shadow-md">✨ Innovative Technology Solutions</span>
               </div>
 
-              {/* Main Heading */}
-              <EnhancedScrollAnimation animation="slideInRotate" delay={400}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-[0.95] tracking-tighter text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]">
-                  PDLC Smart Film Supplier <br />
-                  <span className="text-winmax-orange drop-shadow-[0_0_15px_rgba(255,90,0,0.4)]">in UAE</span>
-                </h1>
-              </EnhancedScrollAnimation>
+              {/* Dynamic Text Content with Grid Stacking for Zero Layout Shift */}
+              <div className="grid">
+                {heroImages.map((content, index) => {
+                  const HeadingTag = index === 0 ? 'h1' : 'div';
+                  return (
+                    <div 
+                      key={index} 
+                      className={`col-start-1 row-start-1 transition-all duration-700 ease-in-out ${
+                        index === currentImageIndex 
+                          ? 'opacity-100 translate-y-0 pointer-events-auto z-10' 
+                          : 'opacity-0 translate-y-4 pointer-events-none z-0'
+                      }`}
+                      aria-hidden={index !== currentImageIndex}
+                    >
+                      {/* Main Heading (Only H1 for the first item to satisfy SEO 'Exactly one H1 per page') */}
+                      <HeadingTag className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-[0.95] tracking-tighter text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)] ${index !== 0 ? 'block' : ''}`}>
+                        {content.headingMain} <br />
+                        <span className="text-winmax-orange drop-shadow-[0_0_15px_rgba(255,90,0,0.4)]">{content.headingHighlight}</span>
+                      </HeadingTag>
 
-              {/* Subheading in Protective Glass */}
-              <EnhancedScrollAnimation animation="fadeInUp" delay={600}>
-                <div className="p-6 md:p-8 rounded-3xl bg-black/50 backdrop-blur-3xl border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] mb-10 relative overflow-hidden group">
-                  <div className="absolute top-0 left-0 w-1.5 h-full bg-winmax-orange transition-all duration-300 group-hover:w-2.5" />
-                  <h2 className="text-base md:text-lg text-white mb-4 leading-relaxed font-semibold tracking-tight drop-shadow-lg">
-                    Leading UAE provider of <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">PDLC smart glass</a>, <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">LED display systems</a>, professional <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">DJ solutions</a>, sustainable <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">PV solar energy</a>, <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">collaboration AV</a>, and integrated <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">smart automation</a> architecture.
-                  </h2>
-                  <p className="text-sm md:text-base text-white/70 leading-relaxed font-light tracking-wide text-left">
-                    Enhance privacy, visual communication, and energy independence with our innovative <strong>smart technology solutions</strong> in the <strong>UAE</strong>. We deliver complete end-to-end services including <a href="/#process" className="text-winmax-orange hover:underline">technical consultation</a>, custom design, professional installation, and maintenance. Our <a href="/#about" className="text-winmax-orange hover:underline">expert engineering team</a> has completed over 1,000 successful technical installations bridging physical architecture and digital innovation.
-                  </p>
-                </div>
-              </EnhancedScrollAnimation>
+                      {/* Subheading in Protective Glass */}
+                      <div className="p-6 md:p-8 rounded-3xl bg-black/50 backdrop-blur-3xl border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] mb-10 relative overflow-hidden group">
+                        <div className="absolute top-0 left-0 w-1.5 h-full bg-winmax-orange transition-all duration-300 group-hover:w-2.5" />
+                        <h2 className="text-base md:text-lg text-white mb-4 leading-relaxed font-semibold tracking-tight drop-shadow-lg">
+                          {index === 0 ? (
+                            // Keep the original HTML with links specifically for the first banner to maintain SEO/navigation
+                            <>Leading UAE provider of <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">PDLC smart film</a>, <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">LED display systems</a>, professional <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">DJ solutions</a>, sustainable <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">PV solar energy</a>, <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">collaboration AV</a>, and integrated <a href="/#services" className="text-winmax-orange hover:text-white transition-colors">smart automation</a> architecture.</>
+                          ) : (
+                            content.subheading
+                          )}
+                        </h2>
+                        <p className="text-sm md:text-base text-white/70 leading-relaxed font-light tracking-wide text-left">
+                          {index === 0 ? (
+                            // Keep the original HTML with links specifically for the first banner
+                            <>Enhance privacy, visual communication, and energy independence with our innovative <strong>smart technology solutions</strong> in the <strong>UAE</strong>. We deliver complete end-to-end services including <a href="/#process" className="text-winmax-orange hover:underline">technical consultation</a>, custom design, professional installation, and maintenance. Our <a href="/#about" className="text-winmax-orange hover:underline">expert engineering team</a> has completed over 1,000 successful technical installations bridging physical architecture and digital innovation.</>
+                          ) : (
+                            content.description
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
 
               {/* CTA Buttons */}
               <EnhancedScrollAnimation animation="fadeInUp" delay={800}>
-                <div className="flex flex-col sm:flex-row gap-6 mb-16">
+                <div className="flex flex-col sm:flex-row gap-6 mb-16 relative z-20">
                   <Button
                     size="lg"
                     className="bg-gradient-to-r from-winmax-orange to-winmax-orange-light hover:opacity-90 px-12 py-6 text-xl font-semibold transition-all duration-300 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105"

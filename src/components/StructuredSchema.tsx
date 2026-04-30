@@ -35,7 +35,7 @@ export const StructuredSchema = () => {
         "position": 1,
         "item": {
           "@type": "Service",
-          "name": "PDLC Smart Glass Solutions",
+          "name": "PDLC Smart Film Solutions",
           "description": "Switchable smart glass and privacy film solutions for instantaneous transparency control."
         }
       },

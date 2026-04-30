@@ -12,8 +12,8 @@ import AntigravityCard from "./AntigravityCard";
 const faqs = [
   {
     id: "01",
-    question: "What is PDLC Smart Glass and how does it work?",
-    answer: "PDLC (Polymer Dispersed Liquid Crystal) Smart Glass is an advanced architectural technology that transitions between transparent and opaque states. When an electrical current is applied, the liquid crystals align to make the glass clear. When powered off, they scatter light, instantly providing 100% visual privacy."
+    question: "What is PDLC Smart Film and how does it work?",
+    answer: "PDLC (Polymer Dispersed Liquid Crystal) Smart Film is an advanced architectural technology that transitions between transparent and opaque states. When an electrical current is applied, the liquid crystals align to make the film clear. When powered off, they scatter light, instantly providing 100% visual privacy."
   },
   {
     id: "02",
@@ -28,7 +28,7 @@ const faqs = [
   {
     id: "04",
     question: "Do you integrate with existing Smart Home systems?",
-    answer: "Absolutely. Our smart automation frameworks are designed for seamless integration. We natively support major building automation platforms like Crestron, Lutron, Control4, and KNX, allowing you to manage PDLC privacy glass and dynamic lighting from a single centralized interface."
+    answer: "Absolutely. Our smart automation frameworks are designed for seamless integration. We natively support major building automation platforms like Crestron, Lutron, Control4, and KNX, allowing you to manage PDLC privacy film and dynamic lighting from a single centralized interface."
   },
   {
     id: "05",

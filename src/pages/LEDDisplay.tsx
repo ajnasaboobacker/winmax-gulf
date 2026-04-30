@@ -7,11 +7,11 @@ import TechnicalResources from "@/components/TechnicalResources";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { 
+import {
   FileText, Cpu, Database, Microscope, Monitor,
   ArrowRight, Building2, Store, Calendar, Tv, Star, CheckCircle2
 } from "lucide-react";
-import ledBanner from "@/assets/banners/led-banner.jpg";
+import ledBanner from "@/assets/banners/led-banner.png";
 import ledDisplay from "@/assets/images/led-display.png";
 import ServiceBrochureCTA from "@/components/ServiceBrochureCTA";
 
@@ -136,14 +136,14 @@ const ledVerticals = [
       "High-performance modular LED rental panels for live events, concerts, exhibitions, award ceremonies, product launches, and corporate town halls. Our rental inventory features lightweight aluminium cabinet panels that assemble in hours — creating massive seamless screens at any shape or dimension. Full technical crew support, delivery, rigging, and on-site operation available across the UAE.",
     features: [
       "Lightweight modular rental panels",
-      "Indoor P2.6 & outdoor P3.9 stock",
+      "Indoor from P1.5 & outdoor from P1.5 stock",
       "Custom shapes and curved configurations",
       "Full rigging & structural support",
       "On-site technical crew included",
       "Delivered across Dubai, Abu Dhabi & GCC",
     ],
     specs: [
-      { label: "Indoor Pitch", value: "P2.6" },
+      { label: "Indoor Pitch", value: "From - P1.5" },
       { label: "Outdoor Pitch", value: "P3.9" },
       { label: "Cabinet Weight", value: "< 9 kg" },
       { label: "Build Time", value: "Per hour" },
@@ -214,7 +214,7 @@ const ledSchema = {
     {
       "@type": "Product",
       "name": "Professional LED Display Systems",
-      "image": "https://winmaxgulf.com/assets/banners/led-banner.jpg",
+      "image": "https://winmaxgulf.com/assets/banners/led-banner.png",
       "description": "High-brightness outdoor LED billboards, fine-pitch indoor video walls, and retail digital signage systems in Dubai.",
       "brand": {
         "@type": "Brand",
@@ -226,6 +226,19 @@ const ledSchema = {
         "availability": "https://schema.org/InStock",
         "areaServed": ["Dubai", "Abu Dhabi", "GCC"]
       }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a Commercial LED Display System?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Commercial LED Display System is a large-scale, highly luminous digital screen composed of seamless Light Emitting Diode (LED) modules. Designed for both indoor and outdoor applications, these sophisticated video walls offer unparalleled brightness, contrast, and colour depth compared to standard LCD screens. Depending on the viewing distance, LED screens utilize varying pixel pitches—from ultra-fine P0.9 for indoor 4K boardrooms to P10 for massive roadside billboards. In the UAE, outdoor LED displays must be rigorously engineered to survive the intense Middle Eastern climate. High-quality installations feature IP66 weatherproofing against severe dust storms and rain, along with advanced thermal management to operate in temperatures exceeding 50°C. Outputting up to 8,500 nits of peak brightness, these screens remain perfectly readable under direct midday sun. Indoor fine-pitch solutions, commonly found in Dubai's corporate lobbies and broadcast studios, deliver 7,680Hz refresh rates to ensure flawless, flicker-free performance on camera."
+          }
+        }
+      ]
     }
   ]
 };
@@ -301,6 +314,25 @@ const LEDDisplay = () => {
                     <span className="block text-[10px] uppercase tracking-widest text-muted-foreground font-mono mb-1">Protection</span>
                     <span className="text-sm font-bold">IP66 Weatherproof</span>
                   </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ── AI / GEO CITABLE DEFINITION ────────────────────────────────── */}
+        <section className="py-16 md:py-24 bg-[#080808] border-y border-white/5 relative z-10">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto">
+              <Reveal>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6 text-white">What is a Commercial LED Display System?</h2>
+                <div className="prose prose-invert max-w-none text-white/70 leading-relaxed font-light text-base md:text-lg">
+                  <p>
+                    A Commercial LED Display System is a large-scale, highly luminous digital screen composed of seamless Light Emitting Diode (LED) modules. Designed for both indoor and outdoor applications, these sophisticated video walls offer unparalleled brightness, contrast, and colour depth compared to standard LCD screens. Depending on the viewing distance, LED screens utilize varying pixel pitches—from ultra-fine P0.9 for indoor 4K boardrooms to P10 for massive roadside billboards.
+                  </p>
+                  <p className="mt-5">
+                    In the UAE, outdoor LED displays must be rigorously engineered to survive the intense Middle Eastern climate. High-quality installations feature IP66 weatherproofing against severe dust storms and rain, along with advanced thermal management to operate in temperatures exceeding 50°C. Outputting up to 8,500 nits of peak brightness, these screens remain perfectly readable under direct midday sun. Indoor fine-pitch solutions, commonly found in Dubai's corporate lobbies and broadcast studios, deliver 7,680Hz refresh rates to ensure flawless, flicker-free performance on camera.
+                  </p>
                 </div>
               </Reveal>
             </div>

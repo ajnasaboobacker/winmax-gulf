@@ -238,7 +238,7 @@ const Contact = () => {
                             className="w-full bg-white/[0.03] border border-white/10 px-8 py-6 text-white appearance-none focus:outline-none focus:border-winmax-orange focus:ring-1 focus:ring-winmax-orange/20 transition-all rounded-2xl"
                           >
                             <option value="" className="bg-black">Select Solution</option>
-                            <option value="PDLC" className="bg-black">PDLC Smart Glass</option>
+                            <option value="PDLC" className="bg-black">PDLC Smart Film</option>
                             <option value="LED" className="bg-black">LED Display Systems</option>
                             <option value="DJ" className="bg-black">DJ & Club Solutions</option>
                             <option value="Solar" className="bg-black">Solar Energy PV</option>

@@ -11,8 +11,8 @@ import { Power, MapPin, Search, Layers } from "lucide-react";
 const pageSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Switchable Privacy Glass Installation in Dubai",
-  "description": "High-technology switchable privacy glass and smart film retrofits serving Dubai and the wider UAE.",
+  "name": "PDLC Smart Film & Glass Installation in Dubai",
+  "description": "High-technology switchable smart film and privacy glass retrofits serving Dubai and the wider UAE.",
   "provider": {
     "@type": "Organization",
     "name": "Winmax Gulf"
@@ -27,7 +27,7 @@ const SwitchablePrivacyGlassDubai = () => {
   return (
     <>
       <SEOHead
-        title="Switchable Privacy Glass Dubai | Instant Opacity Smart Glass"
+        title="Switchable Smart Film Dubai | PDLC Privacy Glass"
         description="Winmax Gulf supplies industry-leading switchable privacy glass in Dubai. Control transparency instantly with our low-voltage PDLC liquid crystal technology."
         keywords="switchable privacy glass Dubai, instant opacity glass, electric frosted glass UAE, switchable film"
         structuredData={pageSchema}
@@ -35,7 +35,7 @@ const SwitchablePrivacyGlassDubai = () => {
       <div className="bg-[#050505] text-white min-h-screen selection:bg-winmax-orange/30">
         <Header />
         <Breadcrumbs items={[
-          { label: "PDLC Smart Glass", href: "/pdlc" },
+          { label: "PDLC Smart Film", href: "/pdlc" },
           { label: "Switchable Privacy Glass Dubai", href: "/switchable-privacy-glass-dubai" }
         ]} />
 
@@ -43,12 +43,12 @@ const SwitchablePrivacyGlassDubai = () => {
           <div className="container mx-auto px-6 lg:px-12 relative z-10">
             <Reveal>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight mb-6 max-w-4xl">
-                Switchable Privacy Glass in <span className="text-winmax-orange">Dubai</span>
+                Switchable Smart Film in <span className="text-winmax-orange">Dubai</span>
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="max-w-3xl text-xl text-white/80 font-light leading-relaxed mb-6">
-                Redefine architectural boundaries with intelligent, switchable privacy glass. Designed to combat Dubai's intense solar glare while providing complete on-demand confidentiality, our switchable solutions are rapidly becoming the standard for modern UAE developments.
+                Redefine architectural boundaries with intelligent, switchable smart film and glass. Designed to combat Dubai's intense solar glare while providing complete on-demand confidentiality, our switchable solutions are rapidly becoming the standard for modern UAE developments.
               </p>
             </Reveal>
 
@@ -58,7 +58,7 @@ const SwitchablePrivacyGlassDubai = () => {
                   <div className="flex gap-4">
                     <Power className="w-8 h-8 text-winmax-orange flex-shrink-0" />
                     <div>
-                      <h3 className="text-xl font-bold mb-2">How Switchable Glass Works</h3>
+                      <h3 className="text-xl font-bold mb-2">How Smart Film Works</h3>
                       <p className="text-white/60 leading-relaxed">
                         The technology relies on Polymer Dispersed Liquid Crystals (PDLC). When low-voltage electric current passes through the film, the liquid crystals align on a parallel axis, rendering the glass transparent. Once the power is disabled, the crystals scatter—instantly forming an opaque, frosted visual barrier while still allowing 70% of ambient light to pass through.
                       </p>
@@ -80,7 +80,7 @@ const SwitchablePrivacyGlassDubai = () => {
                     <div>
                       <h3 className="text-xl font-bold mb-2">HD Projection Screen Capability</h3>
                       <p className="text-white/60 leading-relaxed">
-                        In its opaque state, the fine crystal structure acts as a perfect rear-projection canvas. Retail storefronts in Dubai Mall or luxury showrooms often use our switchable glass as an interactive HD billboard at night.
+                        In its opaque state, the fine crystal structure acts as a perfect rear-projection canvas. Retail storefronts in Dubai Mall or luxury showrooms often use our switchable smart film as an interactive HD billboard at night.
                       </p>
                     </div>
                   </div>
@@ -120,7 +120,7 @@ const SwitchablePrivacyGlassDubai = () => {
           badge="Dubai Operations"
           headline={<>SPEAK WITH A DUBAI <span className="text-winmax-orange">EXPERT.</span></>}
           subtext="Provide us with the details of your project in Dubai, and our technical director will walk you through the possibilities."
-          whatsappMessage="Hello, I am located in Dubai and would like more technical details on switchable privacy glass."
+          whatsappMessage="Hello, I am located in Dubai and would like more technical details on switchable smart film and glass."
           brochureFile="/brochures/pdlc-smart-glass.pdf"
         />
 

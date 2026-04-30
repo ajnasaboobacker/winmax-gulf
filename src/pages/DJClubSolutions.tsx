@@ -72,7 +72,7 @@ const djVerticals = [
     subtitle: "Immersive Video Walls & Screens",
     badge: "Club & Event Visuals",
     description:
-      "High-density LED video walls behind DJ booths, above dance floors, and across bar back-walls using fine-pitch indoor panels down to P2.6. We integrate content media servers (QL Media Server, Resolume Avenue), real-time visual effects triggered by BPM, and custom-mapped content across multi-surface installations — creating fully immersive visual narratives that amplify the performance.",
+      "High-density LED video walls behind DJ booths, above dance floors, and across bar back-walls using fine-pitch indoor panels down to P1.5. We integrate content media servers (QL Media Server, Resolume Avenue), real-time visual effects triggered by BPM, and custom-mapped content across multi-surface installations — creating fully immersive visual narratives that amplify the performance.",
     features: [
       "DJ booth backdrop LED walls",
       "Dance floor ceiling / surround visuals",
@@ -82,7 +82,7 @@ const djVerticals = [
       "Custom shape & pixel-mapped surfaces",
     ],
     specs: [
-      { label: "Pixel Pitch", value: "P2.6 indoor" },
+      { label: "Pixel Pitch", value: "from P1.5 indoor" },
       { label: "Refresh Rate", value: "7,680 Hz" },
       { label: "Colour Depth", value: "22-bit" },
       { label: "Latency", value: "< 1 frame" },
@@ -169,6 +169,19 @@ const djSchema = {
         "@type": "WebPage",
         "@id": "https://winmaxgulf.com/dj-club-solutions"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are Nightclub AV and DJ Solutions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nightclub AV (Audio Visual) and DJ Solutions encompass the professional-grade engineering and integration of high-fidelity sound systems, intelligent DMX lighting, and fine-pitch LED visual displays within entertainment venues. These advanced ecosystems are designed to deliver flat frequency audio responses from 20Hz to 20kHz, pushing up to 135dB Peak SPL without distortion, all while synchronizing kinetic lasers and pixel-mapped screens via beat-detection algorithms. In Dubai's highly competitive nightlife and hospitality sector, deploying turnkey DJ infrastructure is critical for resident and headliner artists. High-end setups involve custom-built, vibration-dampened DJ booths utilizing triple-redundant signal paths and balanced DI distribution to guarantee 99.99% uptime. By combining industry-standard consoles—such as Pioneer CDJ-3000s and Allen & Heath mixers—with Dante digital signal processing and Class 3B/4 laser systems controlled via MA onPC or Avolites, these bespoke AV solutions create fully immersive, zero-latency performance environments."
+          }
+        }
+      ]
     }
   ]
 };
@@ -244,6 +257,25 @@ const DJClubSolutions = () => {
                     <span className="block text-[10px] uppercase tracking-widest text-muted-foreground font-mono mb-1">Signal</span>
                     <span className="text-sm font-bold">Triple-Redundant Path</span>
                   </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ── AI / GEO CITABLE DEFINITION ────────────────────────────────── */}
+        <section className="py-16 md:py-24 bg-[#080808] border-y border-white/5 relative z-10">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto">
+              <Reveal>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6 text-white">What are Nightclub AV and DJ Solutions?</h2>
+                <div className="prose prose-invert max-w-none text-white/70 leading-relaxed font-light text-base md:text-lg">
+                  <p>
+                    Nightclub AV (Audio Visual) and DJ Solutions encompass the professional-grade engineering and integration of high-fidelity sound systems, intelligent DMX lighting, and fine-pitch LED visual displays within entertainment venues. These advanced ecosystems are designed to deliver flat frequency audio responses from 20Hz to 20kHz, pushing up to 135dB Peak SPL without distortion, all while synchronizing kinetic lasers and pixel-mapped screens via beat-detection algorithms.
+                  </p>
+                  <p className="mt-5">
+                    In Dubai's highly competitive nightlife and hospitality sector, deploying turnkey DJ infrastructure is critical for resident and headliner artists. High-end setups involve custom-built, vibration-dampened DJ booths utilizing triple-redundant signal paths and balanced DI distribution to guarantee 99.99% uptime. By combining industry-standard consoles—such as Pioneer CDJ-3000s and Allen & Heath mixers—with Dante digital signal processing and Class 3B/4 laser systems controlled via MA onPC or Avolites, these bespoke AV solutions create fully immersive, zero-latency performance environments.
+                  </p>
                 </div>
               </Reveal>
             </div>
@@ -394,7 +426,7 @@ const DJClubSolutions = () => {
           </div>
         </section>
 
-        <ServiceBrochureCTA 
+        <ServiceBrochureCTA
           headline={<>DESIGN YOUR<br /><span className="text-white/40">EXPERIENCE.</span></>}
           subtext="From a boutique lounge to a large-format nightclub — our entertainment engineers will design, install, and commission the complete sound, lighting, and visual stack for your venue across the UAE."
           badge="Build Your Venue"
